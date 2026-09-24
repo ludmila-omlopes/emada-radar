@@ -157,7 +157,8 @@
     "notFound": "Page not found",
     "notFoundHint": "This address is unavailable. Continue exploring the portal.",
     "backHome": "Back to radar",
-    "close": "Close"
+    "close": "Close",
+    "training": "Learning"
   },
   "Benchmarks": {
     "labels": {
@@ -203,5 +204,27 @@
       "output": "Price in US dollars per million output tokens.",
       "note": "Data from the official Artificial Analysis API. Available metrics vary by model; missing values are preserved. Refreshed every six hours when the portal is visited."
     }
+  },
+  "Training": {
+    "title": "AI courses and certificates",
+    "description": "Learn directly from the institutions. Free training and certificates or badges with no issuance fee, where available.",
+    "search": "Search courses, institutions or topics…",
+    "onlyCredentials": "Only free certificates or badges",
+    "count": "{count, plural, one {# option available} other {# options available}}",
+    "certificate": "Free certificate",
+    "badge": "Free completion badge",
+    "both": "Free badges and certificates",
+    "unconfirmed": "No certificate confirmed",
+    "issuedBy": "Issued by {provider}",
+    "requirements": "Access and requirements",
+    "officialSource": "Check the official source",
+    "newTab": "(opens in a new tab)",
+    "courseDetails": "Course details",
+    "empty": "No courses match these filters.",
+    "reset": "Clear filters",
+    "credentialTitle": "What does “official” mean?",
+    "credentialNote": "These certificates and badges are issued by the institution providing the course. They recognize completion or an assessment of the material; they do not automatically equal an exam-based professional certification or an academic degree.",
+    "reviewed": "Selection reviewed on",
+    "reviewNote": "Check requirements with the institution before enrolling. Free access applies to the lessons and listed credentials; tools or services used in projects may have their own limits."
   }
 }

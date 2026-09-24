@@ -1,4 +1,34 @@
 /* Emada's editorial portal: existing dark palette, restrained rose accents. */
+.training-controls { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; }
+.training-controls .portal-search { width: min(100%, 430px); }
+.training-toggle { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; cursor: pointer; }
+.training-toggle input { width: 18px; height: 18px; accent-color: var(--pink); }
+.training-count { margin: 18px 0; color: var(--muted); font-size: 12px; }
+.training-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(230px, .48fr); gap: 32px 64px; padding: 30px 0; border-top: 1px solid var(--line); }
+.training-provider { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+.training-course h2 { font-size: clamp(20px, 2.2vw, 27px); font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
+.training-course h2 a { display: inline-flex; align-items: baseline; gap: 12px; }
+.training-course h2 svg { flex-shrink: 0; color: var(--muted); }
+.training-course h2 a:hover, .training-credential a:hover { color: var(--pink); }
+.training-description { margin-top: 12px; max-width: 65ch; font-size: 15px; line-height: 1.7; color: var(--muted); }
+.training-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 0; margin: 16px 0 0; list-style: none; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.training-meta li + li::before { content: "·"; margin-right: 18px; }
+.training-credential { padding-top: 3px; font-size: 13px; line-height: 1.65; }
+.training-credential-title { color: var(--pink); font-weight: 500; font-size: 14px; }
+.training-credential-neutral, .training-issuer { color: var(--muted); }
+.training-issuer { margin-top: 4px; }
+.training-credential summary { display: flex; align-items: center; gap: 8px; min-height: 44px; padding-block: 11px; width: fit-content; cursor: pointer; }
+.training-credential details[open] summary svg { transform: rotate(180deg); }
+.training-credential details p { color: var(--muted); max-width: 60ch; }
+.training-credential details a { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; text-decoration: underline; text-underline-offset: 4px; }
+.training-empty { padding: 48px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.training-empty button { min-height: 44px; color: var(--pink); text-decoration: underline; cursor: pointer; }
+.training-note { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 22px; max-width: 80ch; }
+.training-note h2 { font-size: 17px; font-weight: 500; margin-bottom: 12px; }
+.training-note p { font-size: 13px; line-height: 1.75; color: var(--muted); margin-bottom: 12px; }
+.training-page a:focus-visible, .training-page summary:focus-visible, .training-page input:focus-visible, .training-page button:focus-visible { outline: 2px solid var(--pink); outline-offset: 4px; }
+@media (max-width: 1200px) { .desktop-nav { display: none; } .mobile-only { display: inline-flex; } .desktop-language { display: none; } }
+@media (max-width: 700px) { .training-row { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 26px; } .training-meta { display: grid; gap: 4px; } .training-meta li + li::before { content: none; } .training-toggle { font-size: 13px; } }
 .portal-page { max-width: 1400px; padding-top: 40px; }
 .portal-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding-bottom: 36px; }
 .portal-heading > div { min-width: 0; }

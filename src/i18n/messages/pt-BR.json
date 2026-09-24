@@ -157,7 +157,8 @@
     "notFound": "Página não encontrada",
     "notFoundHint": "Este endereço não está disponível. Continue explorando o portal.",
     "backHome": "Voltar ao radar",
-    "close": "Fechar"
+    "close": "Fechar",
+    "training": "Formação"
   },
   "Benchmarks": {
     "labels": {
@@ -203,5 +204,27 @@
       "output": "Preço em US$ por milhão de tokens de saída.",
       "note": "Dados da API oficial da Artificial Analysis. Métricas disponíveis variam por modelo; valores ausentes são preservados. Consulta renovada a cada seis horas quando o portal recebe visitas."
     }
+  },
+  "Training": {
+    "title": "Cursos e certificados em IA",
+    "description": "Aprenda direto com as instituições. Treinamentos gratuitos e certificados ou badges sem taxa de emissão, quando disponíveis.",
+    "search": "Buscar curso, instituição ou assunto…",
+    "onlyCredentials": "Só com certificado ou badge gratuito",
+    "count": "{count, plural, one {# opção disponível} other {# opções disponíveis}}",
+    "certificate": "Certificado gratuito",
+    "badge": "Badge gratuito de conclusão",
+    "both": "Badges e certificados gratuitos",
+    "unconfirmed": "Sem certificado confirmado",
+    "issuedBy": "Emitido por {provider}",
+    "requirements": "Acesso e requisitos",
+    "officialSource": "Conferir na fonte oficial",
+    "newTab": "(abre em nova aba)",
+    "courseDetails": "Informações do curso",
+    "empty": "Nenhum curso corresponde a esses filtros.",
+    "reset": "Limpar filtros",
+    "credentialTitle": "O que significa “oficial”?",
+    "credentialNote": "São certificados e badges emitidos pela instituição responsável pelo curso. Comprovam a conclusão ou uma avaliação do conteúdo; não equivalem automaticamente a uma certificação profissional por exame ou a um diploma.",
+    "reviewed": "Seleção conferida em",
+    "reviewNote": "Confira os requisitos na instituição antes de se inscrever. A gratuidade se refere às aulas e à emissão indicada; ferramentas ou serviços usados em projetos podem ter limites próprios."
   }
 }

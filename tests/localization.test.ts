@@ -12,6 +12,7 @@ import en from "../src/i18n/messages/en.json";
 test("locale negotiation respects explicit URL, remembered choice, browser variant and fallback", () => {
   const middleware = createMiddleware(routing);
   const cases = [
+    ["/formacao", { "accept-language": "en-US" }, "/en/formacao"],
     ["/noticias?source=OpenAI", { "accept-language": "en-US,en;q=0.9" }, "/en/noticias?source=OpenAI"],
     ["/", { "accept-language": "pt-PT,pt;q=0.9" }, "/pt-BR"],
     ["/", { "accept-language": "ja-JP" }, "/pt-BR"],
@@ -26,6 +27,7 @@ test("locale negotiation respects explicit URL, remembered choice, browser varia
 });
 
 test("portal links retain language and do not prefix Academy or authentication routes", () => {
+  assert.equal(portalHref("en", "/formacao"), "/en/formacao");
   assert.equal(portalHref("en", "/modelos"), "/en/modelos");
   assert.equal(portalHref("pt-BR", "/en/vozes"), "/pt-BR/vozes");
   for (const path of ["/entrar?next=/progresso", "/modulos", "/api/auth/callback/google", "/aprender/primeiro-dia"]) assert.equal(portalHref("en", path), path);
