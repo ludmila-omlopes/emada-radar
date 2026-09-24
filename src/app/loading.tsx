@@ -1,0 +1,2 @@
+import { useTranslations } from "next-intl";
+export default function Loading() { const t = useTranslations("Portal"); return <div className="page-container loading-page" role="status" aria-label={t("loadingContent")}><div className="skeleton w-40 h-4"/><div className="skeleton w-3/4 h-24"/><div className="module-grid"><div className="skeleton h-72"/><div className="skeleton h-72"/></div><span className="sr-only">{t("loading")}</span></div>; }

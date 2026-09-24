@@ -1,0 +1,342 @@
+[
+  {
+    "id": 0,
+    "title": "Seu primeiro passo com IA",
+    "goal": "Uma pergunta da sua vida para levar ao curso",
+    "source": "Welcome to the AI Learning Series, 1 jun. 2026",
+    "sections": [
+      {
+        "title": "Seu primeiro passo com IA",
+        "body": "Talvez você já tenha aberto o ChatGPT, feito uma pergunta e pensado: tá, mas onde isso entra na minha vida? É daí que a gente vai começar. Ao longo deste módulo, você vai escolher uma situação sua e experimentar como a IA pode ajudar. Pode ser algo bem simples. O importante é conseguir perceber se a ajuda fez diferença.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-00-1.png",
+          "alt": "Seu primeiro passo com IA. Uma experiência pequena já dá assunto para aprender"
+        }
+      },
+      {
+        "title": "O que vamos usar aqui",
+        "body": "IA é um nome amplo para sistemas que realizam tarefas como reconhecer padrões e gerar conteúdo. Aqui, vamos trabalhar principalmente com ferramentas de conversa. Você escreve ou fala, recebe uma resposta e pode continuar a partir dela. O nome prompt aparece bastante por aí. Neste começo, pense nele simplesmente como o pedido ou a orientação que você dá.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-00-2.png",
+          "alt": "O que vamos usar aqui. Uma IA com a qual você pode conversar. Ela pode ajudar a escrever, organizar ideias e explorar alternativas."
+        }
+      },
+      {
+        "title": "Uma resposta precisa de avaliação",
+        "body": "Uma resposta pode soar muito convincente e ainda assim estar errada. Então, a sua participação continua depois que o texto aparece. Leia, compare com o que você sabe e confira informações que vão orientar uma decisão importante. Nos exercícios, use situações de baixo risco e evite colocar dados pessoais de outras pessoas ou informações confidenciais.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-00-3.png",
+          "alt": "Uma resposta precisa de avaliação. A IA propõe. Um rascunho, uma explicação ou um caminho possível.. Você avalia. Se faz sentido, se está correto e se serve para a sua situação."
+        }
+      },
+      {
+        "title": "Uma primeira conversa",
+        "body": "Um começo possível é pedir ajuda para organizar a semana. Repara que o pedido não exige que você chegue com tudo resolvido. Você pode pedir que a própria IA faça perguntas para entender melhor. Abra uma ferramenta de conversa à qual você já tenha acesso, digite esse pedido e responda à primeira pergunta. Isso já é suficiente para começar.",
+        "prompt": "Quero organizar melhor minha semana.\nAntes de sugerir um plano, me faça uma pergunta de cada vez para entender minha rotina.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-00-4.png",
+          "alt": "Uma primeira conversa. Quero organizar melhor minha semana. Antes de sugerir um plano, me faça uma pergunta de cada vez para entender minha rotina.. Exemplo de pedido. A resposta vai variar."
+        }
+      },
+      {
+        "title": "Sua pergunta de partida",
+        "body": "Agora, pensa em alguma coisa que você gostaria de fazer melhor ou com menos esforço. Pode ser estudar um assunto, planejar refeições ou organizar uma ideia. Complete a frase que está na tela e guarde a resposta. Ela vai acompanhar você nas próximas aulas. Você não precisa ter certeza de que a IA vai conseguir ajudar. Essa é justamente a pergunta que vamos testar.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-00-5.png",
+          "alt": "Sua pergunta de partida. “Eu gostaria de ter ajuda para…”. Complete a frase com uma situação concreta e guarde sua resposta."
+        }
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Qual é a sua pergunta?",
+    "goal": "Uma lista de possibilidades e uma escolha de baixo risco",
+    "source": "01 – The Answer Is Yes. What’s Your Question?, 2 jun. 2026",
+    "sections": [
+      {
+        "title": "Qual é a sua pergunta?",
+        "body": "Pensa numa coisa pequena que ficou pendente nesta semana porque parecia chata, confusa ou trabalhosa. Às vezes é aí que aparece um bom uso de IA. Quando a gente só vê exemplos de outras pessoas, fica tentando encaixar a própria vida naqueles exemplos. Nesta aula, vamos fazer o caminho a partir do que você já precisa resolver.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-01-1.png",
+          "alt": "Qual é a sua pergunta?. As possibilidades começam na sua rotina"
+        }
+      },
+      {
+        "title": "Uma situação antes da ferramenta",
+        "body": "Essa pergunta é o ponto de partida que o Jeremy Utley usa na série que inspirou o módulo. Eu gosto dela porque muda a atenção para a sua situação. Mas vamos tratar a possibilidade como hipótese: algumas tarefas vão funcionar bem, outras vão exigir revisão, e outras vão continuar fora do alcance da ferramenta. A experiência serve para descobrir essa diferença.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-01-2.png",
+          "alt": "Uma situação antes da ferramenta. “Será que a IA poderia me ajudar a…?”. Uma hipótese que você pode testar."
+        }
+      },
+      {
+        "title": "Um exemplo pode despertar outro",
+        "body": "Se alguém usou IA para planejar uma viagem, você pode perceber que precisa organizar um passeio curto com a família. O valor está em adaptar a ideia. No seu caso, talvez existam limites de tempo, de distância ou de orçamento. São esses detalhes que tornam a pergunta útil. E informações como horário de funcionamento precisam de confirmação antes de sair de casa.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-01-3.png",
+          "alt": "Um exemplo pode despertar outro. Ideia que você viu. Alguém usou IA para planejar uma viagem.. Pergunta que é sua. Ela poderia organizar um passeio de duas horas perto de casa?"
+        }
+      },
+      {
+        "title": "Onde procurar possibilidades",
+        "body": "Você pode procurar possibilidades nas dificuldades, mas também no que desperta interesse. Talvez queira entender melhor um filme, aprender jardinagem ou montar um grupo de leitura. Não precisa começar com produtividade no trabalho. Uma pergunta boa para aprender é aquela em que você tem vontade de continuar a conversa e consegue dizer se a resposta ajudou.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-01-4.png",
+          "alt": "Onde procurar possibilidades. Algo que emperra. Uma tarefa repetitiva, uma dúvida ou uma ideia que não sai do lugar.. Algo que interessa. Um hobby, um assunto que você quer entender ou um projeto pessoal."
+        }
+      },
+      {
+        "title": "Dez possibilidades, uma escolha",
+        "body": "Complete essa frase dez vezes, sem tentar encontrar a ideia mais impressionante. Se travar, comece com três e olhe para o que aconteceu no seu dia. Depois, escolha uma tarefa pequena, de baixo risco, que você conseguiria avaliar. Guarde essa escolha. Na próxima aula, vamos transformar a pergunta em uma conversa com um resultado concreto.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-01-5.png",
+          "alt": "Dez possibilidades, uma escolha. “Será que a IA poderia me ajudar a…?”. Liste dez ideias. Escolha uma que importe para você e seja simples de avaliar."
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Seu primeiro projeto pessoal",
+    "goal": "Um resultado pequeno, revisado e útil",
+    "source": "02 – Commission A Personal AI Project, 3 jun. 2026",
+    "sections": [
+      {
+        "title": "Seu primeiro projeto pessoal",
+        "body": "Sabe quando alguém dá uma sugestão que parece boa, mas você pensa: isso não funciona na minha rotina? Com IA acontece bastante. A diferença é que você pode explicar o que não encaixou e pedir outra versão. Hoje, vamos usar a ideia que você escolheu para chegar a um resultado pequeno que faça sentido para você.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-02-1.png",
+          "alt": "Seu primeiro projeto pessoal. Um assunto seu dá motivo para continuar a conversa"
+        }
+      },
+      {
+        "title": "Um projeto que cabe nesta aula",
+        "body": "Vamos usar um exemplo cotidiano: organizar os jantares da semana. Isso pode virar um projeto enorme se você tentar resolver tudo de uma vez. Então, a primeira entrega vai ser só um plano para três noites. Faça o mesmo com a sua ideia: escolha um resultado que você consiga olhar e dizer se serve. Pode ser uma lista, um rascunho ou um pequeno plano.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-02-2.png",
+          "alt": "Um projeto que cabe nesta aula. Objetivo amplo. Quero organizar minha alimentação.. Primeira entrega. Um plano de três jantares que caibam no meu tempo."
+        }
+      },
+      {
+        "title": "O contexto ajuda a orientar",
+        "body": "Nesse pedido, a IA recebe um objetivo e algumas condições. E, em vez de adivinhar os ingredientes, ela precisa perguntar. Você pode responder de um jeito simples, como falaria com alguém. No seu projeto, pense no que uma pessoa precisaria saber para ajudar: o que você quer conseguir, o que já tem e quais limites precisa respeitar.",
+        "prompt": "Quero planejar três jantares para duas pessoas.\nTenho 20 minutos por noite e quero aproveitar o que já tenho.\nMe pergunte quais ingredientes estão disponíveis antes de sugerir o plano.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-02-3.png",
+          "alt": "O contexto ajuda a orientar. Quero planejar três jantares para duas pessoas. Tenho 20 minutos por noite e quero aproveitar o que já tenho. Me pergunte quais ingredientes estão disponíveis antes de sugerir o plano.. Objetivo, condições e uma pergunta para continuar."
+        }
+      },
+      {
+        "title": "A segunda versão",
+        "body": "Quando a resposta chegar, procure alguma coisa que não funciona. Talvez uma receita leve tempo demais ou peça algo que você não quer comprar. Diga exatamente isso. “Melhore” é um pedido aberto demais quando você já sabe qual é o problema. Depois, confira se a nova versão realmente respeitou a condição. A IA também pode errar durante a revisão.",
+        "prompt": "Essa opção leva tempo demais.\nTroque por uma mais simples e reorganize a lista de compras.\nExplique o que você mudou.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-02-4.png",
+          "alt": "A segunda versão. Essa opção leva tempo demais. Troque por uma mais simples e reorganize a lista de compras. Explique o que você mudou.. Feedback específico dá uma direção para a revisão."
+        }
+      },
+      {
+        "title": "Seu primeiro resultado útil",
+        "body": "Agora faça essa sequência com o seu projeto. Peça uma primeira versão, aponte uma coisa que precisa mudar e avalie a revisão. Guarde as duas respostas para comparar. Se nenhuma funcionar, anote o que faltou. O objetivo é aprender a orientar a ferramenta e reconhecer um resultado útil. Na próxima aula, vamos olhar com mais cuidado para esse processo de experimentar.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-02-5.png",
+          "alt": "Seu primeiro resultado útil. Uma entrega pequena. Uma revisão sua.. Guarde o pedido, a primeira resposta e a versão que você aprovou."
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Experimentar e avaliar",
+    "goal": "Três versões comparadas com um critério claro",
+    "source": "03 – Discover the Power of AI for Yourself, 4 jun. 2026",
+    "sections": [
+      {
+        "title": "Experimentar e avaliar",
+        "body": "Você faz um pedido, a resposta vem genérica e a vontade é concluir que a ferramenta não serve. Às vezes ela realmente não serve para aquela tarefa. Mas uma tentativa só deixa muita coisa sem resposta. Faltou contexto? O pedido estava amplo? A ferramenta ignorou uma condição? Nesta aula, a gente vai testar com um pouco mais de método.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-03-1.png",
+          "alt": "Experimentar e avaliar. Uma resposta ruim também pode mostrar o próximo teste"
+        }
+      },
+      {
+        "title": "Um critério antes do teste",
+        "body": "Antes de comparar respostas, escolha um critério. Se você quer estudar um assunto, talvez precise de uma explicação compreensível com um exemplo correto. Se quer organizar a semana, o plano precisa caber nos horários disponíveis. Esse critério evita que você confunda uma resposta longa ou bem escrita com uma resposta que resolve o que você pediu.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-03-2.png",
+          "alt": "Um critério antes do teste. Como vou reconhecer uma resposta útil?. Exemplo: uma explicação clara, com um exemplo que eu consiga conferir."
+        }
+      },
+      {
+        "title": "Três tentativas da mesma tarefa",
+        "body": "Vamos usar porcentagem como exemplo. Primeiro, faça um pedido simples. Depois, acrescente que você é iniciante e quer um exemplo de desconto. Na terceira tentativa, diga qual trecho continuou confuso e peça um exercício. Observe o efeito de cada mudança. Você pode fazer isso no mesmo chat, deixando claro que quer uma revisão da explicação anterior.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-03-3.png",
+          "alt": "Três tentativas da mesma tarefa. 01. Pedido inicial. Explique porcentagem.. 02. Mais contexto. Sou iniciante. Use o exemplo de um desconto.. 03. Revisão dirigida. Explique a etapa que ficou confusa e proponha um exercício."
+        }
+      },
+      {
+        "title": "Uma comparação que ensina",
+        "body": "Agora compare usando o critério que escolheu. A segunda resposta ficou mais adequada? A terceira resolveu sua dúvida? E atenção: pedir que a própria IA revise algo pode ajudar, mas não garante que esteja correto. Para um cálculo simples, confira a conta. Para uma informação factual, consulte uma fonte confiável. A verificação faz parte do experimento.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-03-4.png",
+          "alt": "Uma comparação que ensina. O que melhorou?. Ficou mais claro? Respeitou o contexto? Ajudou a fazer a tarefa?. O que falta conferir?. Fatos, cálculos, referências ou condições que a IA ignorou."
+        }
+      },
+      {
+        "title": "Um teste com começo e fim",
+        "body": "Escolha uma tarefa pequena e faça as três tentativas. Reserve até quinze minutos para isso. Se a ferramenta continuar errando ou consumindo mais esforço do que ajuda, registre esse limite e encerre o teste. Praticar também inclui aprender quando mudar de estratégia. O registro de hoje vai ajudar você a repetir o que funcionou sem começar do zero toda vez.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-03-5.png",
+          "alt": "Um teste com começo e fim. Três tentativas. Um aprendizado registrado.. Reserve até 15 minutos. Anote o que ajudou, o que falhou e o que você faria depois."
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Pensando em voz alta",
+    "goal": "Uma reflexão falada transformada em próximo passo",
+    "source": "04 – Lose Your Thumbs, Find Your Voice, 5 jun. 2026",
+    "sections": [
+      {
+        "title": "Pensando em voz alta",
+        "body": "Às vezes, a parte mais difícil é começar a escrever. Você sabe mais ou menos o que quer, mas tenta organizar a frase antes de colocar qualquer coisa na tela. Falar pode ajudar a sair desse ponto. Hoje, vamos experimentar contar uma situação em voz alta e pedir ajuda para organizar o que apareceu.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-04-1.png",
+          "alt": "Pensando em voz alta. Você pode começar com uma ideia ainda confusa"
+        }
+      },
+      {
+        "title": "Ditar e conversar por voz",
+        "body": "Existem dois jeitos de fazer isso. Você pode usar o ditado do teclado para transformar sua fala em texto, revisar e enviar. Ou pode usar uma conversa por voz, quando a ferramenta oferece essa opção. Para o exercício, o ditado já funciona. Se falar for desconfortável ou pouco acessível para você, escreva livremente. O objetivo é conseguir expressar seu pensamento.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-04-2.png",
+          "alt": "Ditar e conversar por voz. Ditar uma mensagem. Sua fala vira texto. Você pode revisar e depois enviar.. Conversar por voz. Você fala e escuta as respostas, se a ferramenta oferecer esse recurso."
+        }
+      },
+      {
+        "title": "Espaço para pensar antes da resposta",
+        "body": "Comece explicando o que você quer da conversa. Depois, fale por dois ou três minutos sobre o seu projeto: o que gostaria de fazer, onde está travando e quais possibilidades já pensou. Pode voltar atrás ou mudar de assunto. Ao terminar, confira se a transcrição capturou corretamente o que você disse. Nomes e números merecem atenção.",
+        "prompt": "Vou contar uma ideia ainda desorganizada.\nEspere eu dizer “terminei”.\nDepois, resuma o que entendeu e me faça uma pergunta sobre o que ficou pouco claro.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-04-3.png",
+          "alt": "Espaço para pensar antes da resposta. Vou contar uma ideia ainda desorganizada. Espere eu dizer “terminei”. Depois, resuma o que entendeu e me faça uma pergunta sobre o que ficou pouco claro.. Você pode revisar a transcrição antes de enviar."
+        }
+      },
+      {
+        "title": "Sua intenção e a interpretação da IA",
+        "body": "Quando a IA organiza uma fala solta, ela pode preencher lacunas que você deixou em aberto. Então, leia o resumo e veja se ele preserva a sua intenção. Neste exemplo, uma dúvida virou decisão. Corrija isso antes de pedir um plano. Também vale perguntar quais trechos ficaram ambíguos, em vez de aceitar uma versão mais organizada que muda o sentido.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-04-4.png",
+          "alt": "Sua intenção e a interpretação da IA. O que você quis dizer. “Ainda estou escolhendo uma data.”. Uma conclusão indevida. “A data do encontro está definida.”"
+        }
+      },
+      {
+        "title": "Da reflexão ao próximo passo",
+        "body": "Agora escolha um tema do seu projeto e fale sobre ele por alguns minutos. Peça um resumo, corrija o que não representa seu pensamento e solicite um próximo passo possível para hoje. Guarde esse resultado. Depois compare a experiência com a escrita: falar ajudou a dar mais contexto ou atrapalhou? Você pode escolher a forma de interação que funciona melhor para você.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-04-5.png",
+          "alt": "Da reflexão ao próximo passo. Uma ideia falada. Uma ação que cabe hoje.. Fale por 2–3 minutos, revise o resumo e escolha uma ação pequena."
+        }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "O desconforto de começar",
+    "goal": "Reconhecer uma barreira e escolher uma forma de testá-la",
+    "source": "05 – You’re Not Tired of AI. You’re Scared of It., 6 jun. 2026. Adaptação: medo é uma possibilidade, não uma explicação universal.",
+    "sections": [
+      {
+        "title": "O desconforto de começar",
+        "body": "Você já deixou de perguntar alguma coisa porque achou que deveria saber a resposta? Com IA, essa sensação pode aparecer junto com a quantidade de gente falando que todo mundo já deveria estar usando. O resultado é curioso: quanto maior a pressão para começar, mais difícil pode ficar dar o primeiro passo. Vamos olhar para isso sem transformar aprendizagem em cobrança.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-05-1.png",
+          "alt": "O desconforto de começar. Aprender algo novo pode dar trabalho e causar insegurança"
+        }
+      },
+      {
+        "title": "O que pode estar dificultando",
+        "body": "Na série do Jeremy, ele propõe que parte do chamado cansaço de IA pode esconder insegurança. É uma hipótese útil, mas não explica todo mundo. A pessoa pode ter pouco tempo, uma preocupação legítima ou simplesmente não encontrar uma aplicação relevante. Tente identificar o seu caso. Isso ajuda a escolher um próximo passo adequado, inclusive decidir não usar IA numa situação.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-05-2.png",
+          "alt": "O que pode estar dificultando. Insegurança. Receio de errar, de não entender ou de parecer desatualizado.. Outros motivos. Falta de tempo, acesso, interesse ou preocupações com a ferramenta."
+        }
+      },
+      {
+        "title": "A progressão proposta por Utley",
+        "body": "Utley descreve uma progressão que passa por medo, familiaridade, fluência e diversão. Pense nisso como uma imagem possível da aprendizagem, não como uma escada obrigatória. Você pode se sentir confortável numa tarefa e inseguro em outra. A familiaridade cresce quando a experiência deixa de ser inteiramente desconhecida. Um exercício pequeno pode ajudar a perceber esse movimento.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-05-3.png",
+          "alt": "A progressão proposta por Utley. 01. Medo. A ferramenta parece distante.. 02. Familiaridade. Você reconhece como começar.. 03. Fluência. Você orienta e avalia com mais autonomia.. 04. Diversão. Algumas experiências despertam curiosidade."
+        }
+      },
+      {
+        "title": "Uma tentativa sem plateia",
+        "body": "Se a barreira for insegurança, escolha uma tarefa simples que você possa fazer em particular. Pode ser organizar uma lista ou pedir perguntas para estudar. Antes, anote o que imagina que vai acontecer. Depois, escreva o que aconteceu de fato. Essa comparação costuma ser mais útil do que tentar se convencer, no abstrato, de que você deveria se sentir confiante.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-05-4.png",
+          "alt": "Uma tentativa sem plateia. Antes de testar. “Acho que vou me enrolar ao explicar o que quero.”. Depois de testar. “Consegui começar, mas precisei esclarecer dois detalhes.”"
+        }
+      },
+      {
+        "title": "Seu próximo teste possível",
+        "body": "Responda a essa pergunta com honestidade. Se for falta de tempo, talvez o teste precise durar cinco minutos. Se for privacidade, use uma situação fictícia. Se for insegurança, faça algo que ninguém precisa avaliar além de você. Anote sua expectativa e o resultado. A próxima aula vai usar o que você aprendeu para montar uma prática que caiba na sua rotina.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-05-5.png",
+          "alt": "Seu próximo teste possível. “O que está me dificultando começar?”. Nomeie uma barreira e escolha um teste pequeno que respeite esse limite."
+        }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Uma prática que cabe na rotina",
+    "goal": "Um fluxo pessoal e um teste de cinco dias",
+    "source": "06 – It’s a Skill, Not a Pill, 7 jun. 2026",
+    "sections": [
+      {
+        "title": "Uma prática que cabe na rotina",
+        "body": "Você chegou até aqui com uma pergunta, algumas tentativas e pelo menos um resultado para avaliar. Agora, a questão é o que merece continuar. Não precisa abrir mais ferramentas nem aumentar a dificuldade só porque terminou o módulo. Vamos escolher uma tarefa que já acontece na sua vida e criar um jeito simples de praticar com ela.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-06-1.png",
+          "alt": "Uma prática que cabe na rotina. Repetir com atenção ajuda a perceber o que funciona"
+        }
+      },
+      {
+        "title": "Uma habilidade em construção",
+        "body": "O Jeremy usa a expressão “uma habilidade, não uma pílula” para lembrar que acesso à ferramenta não produz domínio instantâneo. Você aprende ao tentar, avaliar e ajustar. Para este exercício, vamos reservar até dez minutos durante cinco dias. Esse prazo é um teste de rotina, não uma promessa de formar um hábito completo em cinco dias.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-06-2.png",
+          "alt": "Uma habilidade em construção. Uma tarefa recorrente. Até dez minutos.. Repetição com avaliação, numa frequência que caiba na sua vida."
+        }
+      },
+      {
+        "title": "Seu fluxo pessoal",
+        "body": "Seu fluxo pode caber em poucas linhas. Escreva qual é a tarefa e que contexto precisa fornecer. Guarde o pedido que funcionou e registre uma forma de revisar a resposta. Por fim, defina como vai aprovar o resultado. Planejar o dia, por exemplo, exige conferir se as tarefas cabem no tempo e se a IA não acrescentou compromissos que você não tem.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-06-3.png",
+          "alt": "Seu fluxo pessoal. 01. Tarefa e contexto. O que você quer fazer e o que a IA precisa saber.. 02. Pedido e revisão. O pedido inicial e o feedback para corrigir a resposta.. 03. Critério de aprovação. Como você verifica se o resultado pode ser usado."
+        }
+      },
+      {
+        "title": "Um teste de cinco dias",
+        "body": "No primeiro dia, teste a tarefa escolhida. No segundo, melhore o contexto. No terceiro, observe como você dá feedback. No quarto, repita o fluxo e veja se ele continua funcionando. No quinto, faça um balanço. Valeu a pena? Melhorou o resultado? Exigiu revisão demais? Se não ajudou, você pode simplificar, escolher outra tarefa ou deixar esse uso de lado.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-06-4.png",
+          "alt": "Um teste de cinco dias. A cada dia: o que ajudou, o que precisou de correção e quanto esforço exigiu?. 1. Escolher a tarefa. 2. Ajustar o contexto. 3. Revisar a resposta. 4. Repetir o fluxo. 5. Decidir o que manter"
+        }
+      },
+      {
+        "title": "O que você leva deste módulo",
+        "body": "Para concluir, reúna o seu fluxo e um exemplo do resultado. Explique o que mudou depois da sua revisão e o que você precisou conferir. É isso que mostra o aprendizado: perceber uma oportunidade, orientar a conversa e julgar a resposta. Escolha agora em que momento vai fazer o primeiro teste de dez minutos. O próximo passo já pode caber no seu dia.",
+        "slide": {
+          "src": "/aulas/basico/slides/aula-06-5.png",
+          "alt": "O que você leva deste módulo. Um fluxo seu. Um resultado que você sabe avaliar.. Entrega: tarefa, contexto, pedido, revisão e critério de aprovação."
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+[
+  { "id": "new-llm", "title": "Introducing Orion 4", "summary": "Today we release Orion 4, our new language model, available now through our API.", "highlight": true },
+  { "id": "new-image", "title": "Aurora Image 2 is here", "summary": "We are launching Aurora Image 2, a new image generation model. A public preview is available today.", "highlight": true },
+  { "id": "title-only", "title": "Introducing Claude Opus 5.5", "summary": "", "highlight": true },
+  { "id": "tutorial", "title": "How to use Orion 4 to build a website", "summary": "A step-by-step guide to prompting the existing Orion 4 model. No new model is being announced.", "highlight": false },
+  { "id": "feature", "title": "Introducing projects in our AI assistant", "summary": "Our chat app now supports project folders, powered by the same Orion 4 model released last year.", "highlight": false },
+  { "id": "rumor", "title": "Orion 5 could arrive next month", "summary": "Unconfirmed rumors suggest a successor is coming. The company has not announced or released a new model.", "highlight": false },
+  { "id": "integration", "title": "Orion 4 is now available on Cloud Hub", "summary": "The hosting service adds support for the existing model first released six months ago.", "highlight": false },
+  { "id": "uncertain", "title": "A new chapter begins", "summary": "More details will follow soon.", "highlight": false }
+]

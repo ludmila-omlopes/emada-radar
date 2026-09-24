@@ -1,0 +1,30 @@
+{
+  "collectedAt": "2026-09-23T23:38:36.000Z",
+  "posts": [
+    { "username": "sama", "id": "2102469008079679640", "publishedAt": "2026-09-22T18:44:08.000Z" },
+    { "username": "sama", "id": "2102468713866055872", "publishedAt": "2026-09-22T18:42:58.000Z" },
+    { "username": "sama", "id": "2102466605758452017", "publishedAt": "2026-09-22T18:34:35.000Z" },
+    { "username": "sama", "id": "2102466603111551187", "publishedAt": "2026-09-22T18:34:34.000Z" },
+    { "username": "sama", "id": "2102465143997440308", "publishedAt": "2026-09-22T18:28:46.000Z" },
+    { "username": "bcherny", "id": "2102854267782705648", "publishedAt": "2026-09-23T20:15:01.000Z" },
+    { "username": "bcherny", "id": "2102543349102338309", "publishedAt": "2026-09-22T23:39:32.000Z" },
+    { "username": "bcherny", "id": "2102543350436180277", "publishedAt": "2026-09-22T23:39:32.000Z" },
+    { "username": "theo", "id": "2102890706197225942", "publishedAt": "2026-09-23T22:39:48.000Z" },
+    { "username": "theo", "id": "2102890675805311147", "publishedAt": "2026-09-23T22:39:41.000Z" },
+    { "username": "theo", "id": "2102888786913087835", "publishedAt": "2026-09-23T22:32:11.000Z" },
+    { "username": "theo", "id": "2102884973695082784", "publishedAt": "2026-09-23T22:17:02.000Z" },
+    { "username": "theo", "id": "2102878738375655676", "publishedAt": "2026-09-23T21:52:15.000Z" },
+    { "username": "OpenAIDevs", "id": "2102819851173773436", "publishedAt": "2026-09-23T17:58:15.000Z" },
+    { "username": "OpenAIDevs", "id": "2102819834790908072", "publishedAt": "2026-09-23T17:58:11.000Z" },
+    { "username": "OpenAIDevs", "id": "2102523228275225031", "publishedAt": "2026-09-22T22:19:35.000Z" },
+    { "username": "OpenAIDevs", "id": "2102523216136900988", "publishedAt": "2026-09-22T22:19:32.000Z" },
+    { "username": "OpenAIDevs", "id": "2102506476401258678", "publishedAt": "2026-09-22T21:13:01.000Z" },
+    { "username": "AnthropicAI", "id": "2102897863097545197", "publishedAt": "2026-09-23T23:08:15.000Z" },
+    { "username": "AnthropicAI", "id": "2102824961538920822", "publishedAt": "2026-09-23T18:18:34.000Z" },
+    { "username": "AnthropicAI", "id": "2102824959827742916", "publishedAt": "2026-09-23T18:18:33.000Z" },
+    { "username": "AnthropicAI", "id": "2102435703535939725", "publishedAt": "2026-09-22T16:31:47.000Z" },
+    { "username": "karpathy", "id": "2102484651072016848", "publishedAt": "2026-09-22T19:46:17.000Z" },
+    { "username": "karpathy", "id": "2102124533729955960", "publishedAt": "2026-09-21T19:55:19.000Z" },
+    { "username": "karpathy", "id": "2102063518979969034", "publishedAt": "2026-09-21T15:52:52.000Z" }
+  ]
+}

@@ -1,0 +1,1616 @@
+{
+  "version": 1,
+  "preparedAt": "2026-09-24T14:30:47.391Z",
+  "entries": [
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
+      "original": "Accelerating vision-language models with LFM2.5-VL-DSpark",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Acelerando modelos de visão e linguagem com LFM2.5-VL-DSpark"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+      "url": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+      "original": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como usar NVIDIA Warp e MjWarp para acelerar fluxos de simulação e aprendizado em robótica"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/research/google-beam-expansion/",
+      "url": "https://blog.google/innovation-and-ai/technology/research/google-beam-expansion/",
+      "original": "Google Beam expands with new regions, partners, and customers",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Google Beam se expande com novas regiões, parceiros e clientes"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+      "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+      "original": "Advancing Private AI Compute with secure, server-side memory",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Avanços no Private AI Compute com memória segura no servidor"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/two-years-of-openai-academy",
+      "url": "https://openai.com/index/two-years-of-openai-academy",
+      "original": "Two years of OpenAI Academy",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Dois anos da OpenAI Academy"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+      "original": "Gemini 3.8 text-to-speech says hello",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "A síntese de voz do Gemini 3.8 dá as boas-vindas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense",
+      "url": "https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense",
+      "original": "OpenAI extends cyber access to Ukraine for civilian defense",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "OpenAI amplia o acesso da Ucrânia a recursos de cibersegurança para a defesa civil"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/sam-altman-un-security-council-remarks",
+      "url": "https://openai.com/index/sam-altman-un-security-council-remarks",
+      "original": "Sam Altman’s remarks at the United Nations Security Council",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Discurso de Sam Altman no Conselho de Segurança das Nações Unidas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/harvey-from-context-to-confidence-with-astra",
+      "url": "https://openai.com/index/harvey-from-context-to-confidence-with-astra",
+      "original": "Harvey turns legal context into stronger drafts with GPT-6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Harvey transforma contexto jurídico em minutas melhores com GPT-6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/invideo-builds-with-gpt-6-astra",
+      "url": "https://openai.com/index/invideo-builds-with-gpt-6-astra",
+      "original": "How invideo improves color grading 3x with GPT‑6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como a invideo melhora a gradação de cores em 3x com GPT‑6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/ringg",
+      "url": "https://openai.com/index/ringg",
+      "original": "Ringg’s AI agents resolve up to 65% of customer calls with OpenAI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Agentes de IA da Ringg resolvem até 65% das ligações de clientes com a OpenAI"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-mentalhealthbench",
+      "url": "https://openai.com/index/introducing-mentalhealthbench",
+      "original": "Introducing MentalHealthBench",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando o MentalHealthBench"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/chatgpt-ads-expands-southeast-asia-taiwan",
+      "url": "https://openai.com/index/chatgpt-ads-expands-southeast-asia-taiwan",
+      "original": "ChatGPT Ads expands to Southeast Asia and Taiwan",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "ChatGPT Ads se expande para o Sudeste Asiático e Taiwan"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/airbnb-gpt-6-astra",
+      "url": "https://openai.com/index/airbnb-gpt-6-astra",
+      "original": "Airbnb widens access to GPT-6 Astra and OpenAI frontier models",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Airbnb amplia o acesso ao GPT-6 Astra e aos modelos de fronteira da OpenAI"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/grab-openai-ai-skills-southeast-asia",
+      "url": "https://openai.com/index/grab-openai-ai-skills-southeast-asia",
+      "original": "Grab and OpenAI bring practical AI skills to Southeast Asia",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Grab e OpenAI levam habilidades práticas de IA ao Sudeste Asiático"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "original": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Claude descobre um novo sistema enzimático com repetições semelhantes às do CRISPR"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/better-prompt-caching-for-gpt-6",
+      "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
+      "original": "Better prompt caching for GPT-6",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Melhorias no cache de prompts para GPT-6"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "original": "Introducing GPT-6 Sol and Luna",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando GPT-6 Sol e Luna"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/parallel-cuts-time-and-cost-with-astra",
+      "url": "https://openai.com/index/parallel-cuts-time-and-cost-with-astra",
+      "original": "Parallel cut research time and cost in half with GPT‑6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Parallel reduz pela metade o tempo e o custo de pesquisa com GPT‑6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/priorities-principles-third-party-assessments",
+      "url": "https://openai.com/index/priorities-principles-third-party-assessments",
+      "original": "Priorities and principles for effective third party assessments",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Prioridades e princípios para avaliações eficazes por terceiros"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/evaleval-aisi",
+      "url": "https://huggingface.co/blog/evaleval-aisi",
+      "original": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como o UK AISI e o EvalEval estão tornando reproduzíveis os resultados de benchmarks"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+      "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+      "original": "Transformers now runs llama.cpp quants",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Transformers agora executa modelos quantizados do llama.cpp"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/omlx",
+      "url": "https://huggingface.co/blog/omlx",
+      "original": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Jun Kim, criador e mantenedor do oMLX, se junta à Hugging Face para apoiar a comunidade MLX"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/claude-opus-5-5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "original": "Introducing Claude Opus 5.5",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando Claude Opus 5.5"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/features/ebola-response",
+      "url": "https://www.anthropic.com/features/ebola-response",
+      "original": "The Situation Report",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Relatório de situação"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
+      "url": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
+      "original": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Podando LLMs como um físico: remoção de blocos como um problema de otimização de Ising"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+      "url": "https://openai.com/index/higgsfield-from-prompt-to-production-with-astra",
+      "original": "Higgsfield AI ships new video features in a day with GPT-6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Higgsfield AI entrega novos recursos de vídeo em um dia com GPT-6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+      "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+      "original": "Advisory Group on Mathematics and Artificial Intelligence",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Grupo consultivo sobre matemática e inteligência artificial"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/building-standards-next-phase-ai",
+      "url": "https://openai.com/index/building-standards-next-phase-ai",
+      "original": "Building standards for the next phase of AI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Criando padrões para a próxima fase da IA"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+      "url": "https://openai.com/index/expanding-openai-academy-with-new-learning-paths",
+      "original": "Expanding OpenAI Academy with new learning paths",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Expandindo a OpenAI Academy com novas trilhas de aprendizado"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/v7",
+      "url": "https://openai.com/index/v7",
+      "original": "How V7 gives AI agents institutional memory",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como a V7 dá memória institucional aos agentes de IA"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/tokenizers-v1",
+      "url": "https://huggingface.co/blog/tokenizers-v1",
+      "original": "tokenizers v1: encode, decode and scaling, measured",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "tokenizers v1: medindo codificação, decodificação e escalabilidade"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
+      "original": "New experts join Google’s AI & Economy team",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Novos especialistas se juntam à equipe de IA e Economia do Google"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
+      "original": "Co-creating the future of fashion with Google",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Cocriando o futuro da moda com o Google"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/australian-youth-safety-blueprint",
+      "url": "https://openai.com/index/australian-youth-safety-blueprint",
+      "original": "Introducing the Australian Youth Safety Blueprint",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando o plano australiano de segurança para jovens"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "original": "Partnering with Accenture on embedded evaluation",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Parceria com a Accenture para incorporar avaliações aos processos"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
+      "original": "Making global data easier to explore",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Tornando os dados globais mais fáceis de explorar"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/cooley-gopublic",
+      "url": "https://openai.com/index/cooley-gopublic",
+      "original": "How Cooley is accelerating IPO work with ChatGPT",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como a Cooley está acelerando o trabalho com IPOs usando o ChatGPT"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/astra-for-law",
+      "url": "https://openai.com/index/astra-for-law",
+      "original": "Introducing Astra for Law",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando Astra for Law"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/news/life-sciences-verification-program",
+      "url": "https://www.anthropic.com/news/life-sciences-verification-program",
+      "original": "Introducing the Life Sciences Verification Program",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando o programa de verificação para ciências da vida"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/model-misalignment-reporting-framework",
+      "url": "https://openai.com/index/model-misalignment-reporting-framework",
+      "original": "Our framework for reporting model misalignment",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Nossa estrutura para relatar desalinhamento de modelos"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
+      "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
+      "original": "Helping older adults use AI in everyday life",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ajudando pessoas idosas a usar IA no dia a dia"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/reimagining-advertising-with-ai",
+      "url": "https://openai.com/index/reimagining-advertising-with-ai",
+      "original": "Reimagining advertising with AI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Reimaginando a publicidade com IA"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/hex-gpt-6-astra",
+      "url": "https://openai.com/index/hex-gpt-6-astra",
+      "original": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Hex transforma análises complexas em relatórios visuais com GPT‑6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+      "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+      "original": "How to connect AI usage to business value",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como conectar o uso de IA ao valor para o negócio"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/unlocking-new-ways-of-working",
+      "url": "https://openai.com/index/unlocking-new-ways-of-working",
+      "original": "How workers are unlocking new ways of working",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como trabalhadores estão descobrindo novas formas de trabalhar"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/",
+      "original": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando Gemini 3.8 Live e 3.8 Live Extended Thinking"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
+      "original": "Your Agent Aced the Task. Will It Do It Again?",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Seu agente acertou em cheio na tarefa. Será que consegue repetir?"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
+      "original": "AI for Societal Impact",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "IA para impacto social"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
+      "original": "Building AI to accelerate science and improve lives",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Desenvolvendo IA para acelerar a ciência e melhorar vidas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
+      "original": "AI for everyone in every language",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "IA para todos, em todos os idiomas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
+      "original": "New insights from Google’s AI & Economy ATLAS",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Novas descobertas do ATLAS de IA e Economia do Google"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
+      "original": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Assista à conversa da astronauta Christina Koch com James Manyika, do Google, sobre espaço, tecnologia e descobertas."
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/",
+      "original": "DevFest is back",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "O DevFest está de volta"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/fyxer",
+      "url": "https://openai.com/index/fyxer",
+      "original": "How Fyxer built an AI executive assistant people trust",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como a Fyxer criou um assistente executivo de IA em que as pessoas confiam"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
+      "original": "Perplexity trusts GPT-6 Astra with end-to-end systems",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Perplexity confia ao GPT-6 Astra sistemas de ponta a ponta"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "url": "https://openai.com/index/cognition-devin-testing-with-astra",
+      "original": "Cognition helps Devin test its own work with GPT‑6 Astra",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Cognition ajuda Devin a testar o próprio trabalho com GPT‑6 Astra"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
+      "original": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Escalando rapidamente o armazenamento online para atender a mais de 1 bilhão de usuários do ChatGPT"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
+      "url": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
+      "original": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como um pesquisador usa Codex e ChatGPT para buscar novas moléculas antimicrobianas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/products-and-platforms/products/search/running-race-training-tips/",
+      "url": "https://blog.google/products-and-platforms/products/search/running-race-training-tips/",
+      "original": "3 ways to prep for your next big race with Search",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "3 maneiras de se preparar para sua próxima grande corrida com a Busca do Google"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/put-data-to-work",
+      "url": "https://openai.com/index/put-data-to-work",
+      "original": "Now everyone can put data to work",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Agora todos podem colocar os dados para trabalhar"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-chatgpt-financial-services",
+      "url": "https://openai.com/index/introducing-chatgpt-financial-services",
+      "original": "Introducing ChatGPT for Financial Services",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando o ChatGPT para serviços financeiros"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/expanding-ai-access-us-government",
+      "url": "https://openai.com/index/expanding-ai-access-us-government",
+      "original": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ampliando o acesso à IA e à defesa cibernética para governos federais, estaduais, locais e tribais"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+      "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+      "original": "Build more natural voice experiences with GPT‑Live‑1 in the API",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Crie experiências de voz mais naturais com GPT‑Live‑1 na API"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-the-agents-api",
+      "url": "https://openai.com/index/introducing-the-agents-api",
+      "original": "Introducing the Agents API",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando a Agents API"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
+      "url": "https://huggingface.co/blog/asyncgrpo-lora-hfjobs",
+      "original": "Async GRPO with LoRA across HF Jobs: a bucket, a proxy, and no NCCL",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "GRPO assíncrono com LoRA em HF Jobs: um bucket, um proxy e nenhum NCCL"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/gradio-workflow-1111",
+      "url": "https://huggingface.co/blog/gradio-workflow-1111",
+      "original": "Rebuilding AUTOMATIC1111 with Gradio Workflow",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Reconstruindo o AUTOMATIC1111 com Gradio Workflow"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "original": "Detecting and countering misuse of AI: September 2026",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Detectando e combatendo o uso indevido de IA: setembro de 2026"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
+      "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
+      "original": "Paul Christiano joins OpenAI Foundation Board",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Paul Christiano entra para o conselho da OpenAI Foundation"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/products-and-platforms/products/search/football-features-google-search/",
+      "url": "https://blog.google/products-and-platforms/products/search/football-features-google-search/",
+      "original": "Get ready for the game with new football features in Search",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Prepare-se para o jogo com novos recursos de futebol na Busca do Google"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/love-rendered-film/",
+      "original": "Recreating a 70-year love story frame by frame",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Recriando uma história de amor de 70 anos, quadro a quadro"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/ai-policy-window",
+      "url": "https://openai.com/index/ai-policy-window",
+      "original": "The AI policy window is open. We need to act.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "A oportunidade de definir políticas de IA está aberta. Precisamos agir."
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/gpt-6-astra-next-generation-work",
+      "url": "https://openai.com/index/gpt-6-astra-next-generation-work",
+      "original": "GPT-6 Astra: The next generation in intelligence for work",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "GPT-6 Astra: a próxima geração de inteligência para o trabalho"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/codex-quantum-computing-experiments",
+      "url": "https://openai.com/index/codex-quantum-computing-experiments",
+      "original": "How GPT-5.6 Sol helps run quantum computing experiments",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como o GPT-5.6 Sol ajuda a executar experimentos de computação quântica"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+      "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+      "original": "AlphaGenome Atlas: A predictive map of every possible DNA letter change in the human genome",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "AlphaGenome Atlas: um mapa preditivo de todas as possíveis alterações de uma letra do DNA no genoma humano"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/the-work-now-within-reach",
+      "url": "https://openai.com/index/the-work-now-within-reach",
+      "original": "The Work Now Within Reach",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "O trabalho que agora está ao nosso alcance"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/introducing-chatgpt-images-2-5",
+      "url": "https://openai.com/index/introducing-chatgpt-images-2-5",
+      "original": "Introducing ChatGPT Images 2.5",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando ChatGPT Images 2.5"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/navier-stokes-solution",
+      "url": "https://openai.com/index/navier-stokes-solution",
+      "original": "On the Navier–Stokes Millennium Prize Problem",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Sobre o problema de Navier–Stokes do Prêmio do Milênio"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/teen-development-research-grants",
+      "url": "https://openai.com/index/teen-development-research-grants",
+      "original": "Funding grants for new research into AI and teen development",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Financiamento para novas pesquisas sobre IA e desenvolvimento de adolescentes"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
+      "url": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
+      "original": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "OpenAI amplia iniciativas de apoio ao jornalismo, das salas de aula às redações"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/1password",
+      "url": "https://openai.com/index/1password",
+      "original": "1Password increases engineering productivity 21% with Codex",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "1Password aumenta a produtividade de engenharia em 21% com Codex"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "url": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
+      "original": "Supporting independent journalism in Ukraine",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apoiando o jornalismo independente na Ucrânia"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://openai.com/index/an-alien-mind",
+      "url": "https://openai.com/index/an-alien-mind",
+      "original": "An Alien Mind",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Uma mente alienígena"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
+      "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
+      "original": "Introducing WeatherNext 3, our most advanced and accurate global weather AI model",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando WeatherNext 3, nosso modelo de IA mais avançado e preciso para previsão do tempo global"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/Hcompany/neomme",
+      "url": "https://huggingface.co/blog/Hcompany/neomme",
+      "original": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "NeoMME: um codificador eficiente, multilíngue e nativamente multimodal"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
+      "url": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
+      "original": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ajustando um modelo de 350M para melhorar saídas estruturadas em 100 etapas de GRPO"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/funes",
+      "url": "https://huggingface.co/blog/funes",
+      "original": "Give Your Coding Agents a Memory You Own",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Dê aos seus agentes de programação uma memória sob seu controle"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/train-to-paint-with-code",
+      "url": "https://huggingface.co/blog/train-to-paint-with-code",
+      "original": "Training a coding model to paint watercolours with TRL and OpenEnv",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Treinando um modelo de programação para pintar aquarelas com TRL e OpenEnv"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/",
+      "url": "https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/",
+      "original": "Proactive cyber defense for governments and enterprises",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Defesa cibernética proativa para governos e empresas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
+      "original": "Introducing Gemini 3.8 Flash and 3.8 Flash Cyber",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando Gemini 3.8 Flash e 3.8 Flash Cyber"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/",
+      "url": "https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program/",
+      "original": "Proactive cyber defense for governments and enterprises",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Defesa cibernética proativa para governos e empresas"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/allenai/benchmirt",
+      "url": "https://huggingface.co/blog/allenai/benchmirt",
+      "original": "BenchMIRT: What are LLM benchmarks actually measuring?",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "BenchMIRT: o que os benchmarks de LLMs realmente medem?"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/",
+      "url": "https://blog.google/innovation-and-ai/technology/google-ai-updates-august-2026/",
+      "original": "The latest AI news we announced in August 2026",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "As últimas novidades de IA que anunciamos em agosto de 2026"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
+      "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
+      "original": "Introducing agentic video understanding with Gemini",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando a compreensão de vídeos por agentes com Gemini"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://blog.google/products-and-platforms/products/workspace/google-pics/",
+      "url": "https://blog.google/products-and-platforms/products/workspace/google-pics/",
+      "original": "Try Google Pics: Easy image creation and editing in Google Workspace",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Experimente o Google Pics: criação e edição de imagens simplificadas no Google Workspace"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/webgpu-kernels",
+      "url": "https://huggingface.co/blog/webgpu-kernels",
+      "original": "Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando @huggingface/kernels: mais de 200 kernels WebGPU para IA local"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "original": "Introducing Claude Fable 5.1 and Claude Mythos 5.1",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Apresentando Claude Fable 5.1 e Claude Mythos 5.1"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/news/enterprise-frontier-safeguards",
+      "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+      "original": "Developing Enterprise Frontier Safeguards with our customers",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Desenvolvendo o Enterprise Frontier Safeguards com nossos clientes"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "anthropic:https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "original": "Improving our alignment and security efforts",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Aprimorando nossos esforços de alinhamento e segurança"
+      }
+    },
+    {
+      "kind": "news",
+      "id": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
+      "url": "https://huggingface.co/blog/open-asr-leaderboard-global-south",
+      "original": "The Open ASR Leaderboard Adds Its First Global South Language",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "O Open ASR Leaderboard adiciona seu primeiro idioma do Sul Global"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49828065",
+      "url": "https://grigio.org/assbench-is-all-you-need-to-benchmark-llm-harness-intelligence-s/",
+      "original": "AssBench is all You need to benchmark LLM Harness Intelligence /s",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "AssBench é tudo de que você precisa para avaliar a inteligência do ambiente de execução de LLMs /s"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49821427",
+      "url": "https://vsarena.vercel.app/",
+      "original": "VSArena – The official open browser benchmark for embodied AI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "VSArena — o benchmark oficial e aberto no navegador para IA incorporada"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49818370",
+      "url": "https://huggingface.co/datasets/TonicAI/Privacy-Bench",
+      "original": "LLM Benchmark for de-identification and synthesis",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Benchmark de LLMs para desidentificação e síntese"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49815970",
+      "url": "https://typedb.com/blog/benchmarking-llm-query-generation-across-sql-cypher-and-typeql",
+      "original": "Benchmarking LLM query generation across SQL, Cypher, and TypeQL",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Avaliando a geração de consultas por LLMs em SQL, Cypher e TypeQL"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49811036",
+      "url": "https://every.to/also-true-for-humans/how-to-create-your-own-personal-ai-benchmark",
+      "original": "How to Create Your Own Personal AI Benchmark",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Como criar seu próprio benchmark pessoal de IA"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49788251",
+      "url": "https://github.com/0xSero/model-toolkit/tree/3ee1d140efff3a3d5129fd207b9ce6eb32df88b0",
+      "original": "Practical model evaluation and compression tools",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ferramentas práticas para avaliação e compressão de modelos"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49788178",
+      "url": "https://github.com/pokertools-arena/pokertools-arena.github.io",
+      "original": "Show HN: PokerTools Arena – Local AI vs. AI Poker LLM Benchmark Table",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: PokerTools Arena — mesa local de benchmark de LLMs com IA contra IA no pôquer"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49770070",
+      "url": "https://github.com/xanpavle/rocmfix",
+      "original": "ROCmFix and InferBench – AMD Local-LLM Setup and Vulkan vs. Hip Benchmarking",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "ROCmFix e InferBench — configuração de LLMs locais em AMD e comparação entre Vulkan e HIP"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49744109",
+      "url": "https://www.askcooper.ai/labs/insurance-agent-benchmark",
+      "original": "Insurance Agent Benchmark: 166 real-world cases for evaluating insurance AI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Insurance Agent Benchmark: 166 casos reais para avaliar IA no setor de seguros"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49742415",
+      "url": "https://blog.mozilla.ai/benchmarking-local-llm-servers-llama-cpp-llamafile-lm-studio-and-ollama/",
+      "original": "Benchmarking Local LLM Servers: Llama.cpp, Llamafile, LM Studio, and Ollama",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Comparando servidores locais de LLMs: Llama.cpp, Llamafile, LM Studio e Ollama"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49740838",
+      "url": "https://cost.dev/models/",
+      "original": "Live AI model pricing and benchmark comparison tool with API",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ferramenta com API para comparar preços e benchmarks atuais de modelos de IA"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49740769",
+      "url": "https://www.elastic.co/search-labs/blog/ai-code-optimization-elasticsearch-agent-harness",
+      "original": "Trust, but benchmark: How we let an AI agent optimize Elasticsearch",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Confie, mas teste: como deixamos um agente de IA otimizar o Elasticsearch"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49737278",
+      "url": "https://computearena.ai/",
+      "original": "Show HN: Compute:Arena – Community submitted local AI benchmarks",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: Compute:Arena — benchmarks de IA local enviados pela comunidade"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49736325",
+      "url": "https://jsous.github.io/blogs/is-physics-dead/",
+      "original": "Is Physics Dead: Broken benchmarks and re-evaluating frontier models in physics",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "A física está morta? Benchmarks falhos e a reavaliação de modelos de fronteira em física"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49735433",
+      "url": "https://research.withdavid.ai/blog/st-s2s-eval",
+      "original": "Evaluating S2S Model Quality with Human Preference Data",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Avaliando a qualidade de modelos S2S com dados de preferência humana"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49727542",
+      "url": "https://github.com/Fortitude-Group/OmnisBench",
+      "original": "Show HN: OmnisBench, a re-gradable, open LLM routing benchmark on fresh tasks",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: OmnisBench, um benchmark aberto de roteamento de LLMs com tarefas novas e resultados que podem ser reavaliados"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49711545",
+      "url": "https://danluu.com/ai-coding/",
+      "original": "Agentic test processes, LLM benchmarks, and other notes on agentic coding",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Processos de teste com agentes, benchmarks de LLMs e outras notas sobre programação com agentes"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49711157",
+      "url": "https://blog.trailofbits.com/2026/09/15/1passwords-ai-patching-benchmark-is-misleading/",
+      "original": "1Password's AI patching benchmark is misleading",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "O benchmark da 1Password para correção de código com IA é enganoso"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49708262",
+      "url": "https://assistantbenchmark.com/",
+      "original": "Benchmark for AI Assistants",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Benchmark para assistentes de IA"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49683287",
+      "url": "https://www.pcmag.com/opinions/why-ai-benchmarks-are-total-bs-and-how-openai-and-anthropic-use-them-to",
+      "original": "Why AI Benchmarks Are Total BS",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Por que os benchmarks de IA são uma grande bobagem"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49676820",
+      "url": "https://withspecific.com/benchmarks/real-swe",
+      "original": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Real-SWE: avaliando modelos de IA em bases de código empresariais privadas e reais"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49668966",
+      "url": "https://dailyskill.ai/ai-benchmark-2026/",
+      "original": "We blind-tested ChatGPT, Claude, and Gemini on 20 everyday tasks (Open Dataset)",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Testamos ChatGPT, Claude e Gemini às cegas em 20 tarefas do dia a dia (dados abertos)"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49649760",
+      "url": "https://www.neural-nova.com/benchmark",
+      "original": "Neural Nova – GPU optimization benchmarks for LLM workloads",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Neural Nova — benchmarks de otimização de GPU para cargas de trabalho de LLMs"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49649243",
+      "url": "https://www.lolbench.lol/",
+      "original": "Show HN: LOL Bench – a benchmark for whether LLMs get jokes",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: LOL Bench — um benchmark para saber se LLMs entendem piadas"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49626771",
+      "url": "https://voicebenchmarks.com/",
+      "original": "Voice AI Benchmarks: a directory of voice-agent evaluations",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Voice AI Benchmarks: um diretório de avaliações de agentes de voz"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49618666",
+      "url": "https://github.com/RUC-GSAI/YuLan-SwarmIntell",
+      "original": "Benchmarking LLMs' Swarm Intelligence",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Avaliando a inteligência de enxame dos LLMs"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49612583",
+      "url": "https://offscriptlabs.ai/",
+      "original": "I made 5 AI models play a golf season. I think we benchmark agents wrong",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Fiz 5 modelos de IA jogarem uma temporada de golfe. Acho que avaliamos agentes do jeito errado"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49570089",
+      "url": "https://github.com/aws-bench/aws-bench",
+      "original": "AWS-bench: Benchmark for evaluating AI coding agents on real-world AWS tasks",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "AWS-bench: benchmark para avaliar agentes de programação de IA em tarefas reais da AWS"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49550375",
+      "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
+      "original": "Porting my 1993 Amiga game to Godot, with an LLM reading the 68000 assembly",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Adaptando meu jogo de Amiga de 1993 para Godot, com um LLM lendo o assembly do 68000"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49549107",
+      "url": "https://hotdogbenchmark.lol/",
+      "original": "Show HN: Hot. Dog. Bench. Mark. The AI benchmark we deserve",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: Hot. Dog. Bench. Mark. O benchmark de IA que merecemos"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49525341",
+      "url": "https://github.com/OactoDev/claude-code-field-kit",
+      "original": "Claude Code Field Kit: a tested safety hook and lean Claude.md templates",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Claude Code Field Kit: um hook de segurança testado e modelos enxutos de Claude.md"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49511401",
+      "url": "https://informant.reiners.io/gauntlet",
+      "original": "Show HN: I benchmark local LLMs on real bugs from my own repo's Git history",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Show HN: avalio LLMs locais em bugs reais do histórico Git do meu próprio repositório"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49504287",
+      "url": "https://arxiv.org/abs/2608.08239",
+      "original": "Static Evaluation of Model Switching in LLM Agents Scores the Wrong World",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "A avaliação estática da troca de modelos em agentes de LLM avalia o cenário errado"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49470263",
+      "url": "https://www.openui.com/benchmarks",
+      "original": "Benchmark for LLM Generated UI",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Benchmark para interfaces geradas por LLMs"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49454488",
+      "url": "https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations",
+      "original": "Cheating behaviour in frontier model evaluations",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Comportamento de trapaça nas avaliações de modelos de fronteira"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49447761",
+      "url": "https://vercel.com/customers/how-ora-benchmarks-every-major-ai-agent-on-vercel",
+      "original": "Ora benchmarks every major AI agent on Vercel – Customers",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ora avalia todos os principais agentes de IA na Vercel — Clientes"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49445460",
+      "url": "https://github.com/angeluriot/Julia_bench",
+      "original": "Reconstructing the benchmark behind Luc Julia's 64% LLM reliability claim",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Reconstruindo o benchmark por trás da afirmação de Luc Julia de que LLMs têm 64% de confiabilidade"
+      }
+    },
+    {
+      "kind": "experiment",
+      "id": "49442232",
+      "url": "https://robjhyndman.com/hyndsight/foundation_models.html",
+      "original": "Evaluating Time Series Foundation Model Claims",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Avaliando alegações sobre modelos fundacionais para séries temporais"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102897863097545197",
+      "url": "https://x.com/AnthropicAI/status/2102897863097545197",
+      "original": "In the Democratic Republic of the Congo, global health organizations including @CEPIvaccines , @WHOAFRO , and @inrb_kinshasa are using Claude to accelerate their response to an outbreak of an unusual Ebola variant.\n\nRead the full piece here: https://t.co/lQKx17Mxc3",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Na República Democrática do Congo, organizações globais de saúde, incluindo @CEPIvaccines, @WHOAFRO e @inrb_kinshasa, estão usando Claude para acelerar a resposta a um surto de uma variante incomum do Ebola.\n\nLeia a matéria completa aqui: https://t.co/lQKx17Mxc3"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102888786913087835",
+      "url": "https://x.com/theo/status/2102888786913087835",
+      "original": "Hey @grok , if you could only use one model for coding, what model would it be and why?",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Ei, @grok, se você pudesse usar apenas um modelo para programar, qual seria e por quê?"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102884973695082784",
+      "url": "https://x.com/theo/status/2102884973695082784",
+      "original": "Why does ChatGPT still use 5.6 Sol? pic.twitter.com/Hg1PjLEY6w",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Por que o ChatGPT ainda usa o 5.6 Sol? pic.twitter.com/Hg1PjLEY6w"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102878738375655676",
+      "url": "https://x.com/theo/status/2102878738375655676",
+      "original": "I had high hopes for the new Opus release. It massively exceeded them. Opus 5.5 is an incredible model. pic.twitter.com/pvidNTSlsF",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Eu tinha grandes expectativas para a nova versão do Opus. Ela as superou de longe. Opus 5.5 é um modelo incrível. pic.twitter.com/pvidNTSlsF"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102854267782705648",
+      "url": "https://x.com/bcherny/status/2102854267782705648",
+      "original": "If you've noticed how fast https://t.co/9A6X5iqpbs and the Desktop app have become in the last few weeks, here's how we did it.\n\nLots of juicy learnings & techniques in the blog post for engineers working on speeding up your own apps. https://t.co/42Zcob1Udq",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Se você percebeu como https://t.co/9A6X5iqpbs e o aplicativo para desktop ficaram rápidos nas últimas semanas, veja como fizemos isso.\n\nO post no blog traz muitos aprendizados e técnicas interessantes para engenheiros que estão tentando acelerar seus próprios aplicativos. https://t.co/42Zcob1Udq"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102824961538920822",
+      "url": "https://x.com/AnthropicAI/status/2102824961538920822",
+      "original": "This is the first result from our new molecular biology lab, where a team of Anthropic biologists is using Claude to explore and accelerate fundamental biology research. There, Claude works through data and literature to generate hypotheses and candidate biological systems to… pic.twitter.com/2rlsYxGowp",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Este é o primeiro resultado do nosso novo laboratório de biologia molecular, onde uma equipe de biólogos da Anthropic está usando Claude para explorar e acelerar a pesquisa básica em biologia. Ali, Claude analisa dados e literatura para gerar hipóteses e sistemas biológicos candidatos a… pic.twitter.com/2rlsYxGowp"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102824959827742916",
+      "url": "https://x.com/AnthropicAI/status/2102824959827742916",
+      "original": "Claude has discovered a previously unknown enzyme system hidden in the DNA of bacteriophages. Beside the enzyme’s gene sits a long array of repeating DNA—a structure that looks somewhat similar to CRISPR.\n\nWe don’t yet understand what this system does, but only a handful of known…",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Claude descobriu um sistema enzimático até então desconhecido, escondido no DNA de bacteriófagos. Ao lado do gene da enzima há uma longa sequência de repetições de DNA — uma estrutura um pouco parecida com o CRISPR.\n\nAinda não entendemos o que esse sistema faz, mas apenas alguns dos sistemas conhecidos…"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102819851173773436",
+      "url": "https://x.com/OpenAIDevs/status/2102819851173773436",
+      "original": "GPT-Live-1 handles the conversation while the Raspberry Pi sends research and tool tasks to GPT-5.6 Luna via the Responses API.\n\nThe Pi’s local renderer turns scenes into 128 × 64 pixels.\n\nSid can keep talking while research and rendering happen in the background. pic.twitter.com/mCJbi5AfxA",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "GPT-Live-1 conduz a conversa enquanto o Raspberry Pi envia tarefas de pesquisa e uso de ferramentas ao GPT-5.6 Luna pela Responses API.\n\nO renderizador local do Pi transforma as cenas em 128 × 64 pixels.\n\nSid pode continuar falando enquanto a pesquisa e a renderização acontecem em segundo plano. pic.twitter.com/mCJbi5AfxA"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102819834790908072",
+      "url": "https://x.com/OpenAIDevs/status/2102819834790908072",
+      "original": "From figuring out the wiring to debugging “show that on the wall,” @sidrampally shares how he used Codex to turn an LED display into a voice-controlled assistant.\n\nPowered by GPT-Live-1 and a Raspberry Pi, it shows weather, subway arrivals, and more: pic.twitter.com/d6wv1qNHzc",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Desde descobrir as conexões dos fios até depurar o comando “mostre isso na parede”, @sidrampally conta como usou Codex para transformar um painel de LED em um assistente controlado por voz.\n\nCom GPT-Live-1 e um Raspberry Pi, ele mostra a previsão do tempo, os horários de chegada do metrô e muito mais: pic.twitter.com/d6wv1qNHzc"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102543349102338309",
+      "url": "https://x.com/bcherny/status/2102543349102338309",
+      "original": "I used Opus 5.5 to formally verify the Claude Agent SDK using Lean. A couple short prompts = 16 PRs fixing various bugs and race conditions. Video attached.\n\nTLA+ also works well. I sometimes combine Lean and TLA+ to look for issues around data flow, concurrency, and state mgmt.… pic.twitter.com/C0PLNLow9p",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Usei Opus 5.5 para verificar formalmente o Claude Agent SDK com Lean. Alguns prompts curtos = 16 PRs corrigindo vários bugs e condições de corrida. Vídeo em anexo.\n\nTLA+ também funciona bem. Às vezes combino Lean e TLA+ para procurar problemas de fluxo de dados, concorrência e gerenciamento de estado.… pic.twitter.com/C0PLNLow9p"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102543350436180277",
+      "url": "https://x.com/bcherny/status/2102543350436180277",
+      "original": "Opus made an infographic pic.twitter.com/w9fMWqB7HA",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Opus fez um infográfico pic.twitter.com/w9fMWqB7HA"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102523228275225031",
+      "url": "https://x.com/OpenAIDevs/status/2102523228275225031",
+      "original": "Thanks to @cerebral_valley for co-hosting our GPT-6 hackathons in SF and NYC 🤝",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Obrigado à @cerebral_valley por coorganizar nossos hackathons de GPT-6 em São Francisco e Nova York 🤝"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102523216136900988",
+      "url": "https://x.com/OpenAIDevs/status/2102523216136900988",
+      "original": "Get lost in your side projects.\n\nOne builder at our GPT-6 hackathons brought real star maps and Astra to help you find your way home. pic.twitter.com/D9lkBA7ar4",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Mergulhe nos seus projetos paralelos.\n\nUma pessoa que participou dos nossos hackathons de GPT-6 combinou mapas estelares reais e Astra para ajudar você a encontrar o caminho de casa. pic.twitter.com/D9lkBA7ar4"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102506476401258678",
+      "url": "https://x.com/OpenAIDevs/status/2102506476401258678",
+      "original": "We’ve improved prompt caching in the API for GPT-6, helping agents run faster and cost less.\n\nHigher cache-hit rates by default mean more input tokens benefit from cached-input discounts of up to 90%.\npic.twitter.com/NZse8QKr8G",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Melhoramos o cache de prompts na API para GPT-6, ajudando os agentes a executar mais rápido e custar menos.\n\nUma taxa maior de acertos no cache por padrão significa que mais tokens de entrada se beneficiam de descontos de até 90% para entradas em cache.\npic.twitter.com/NZse8QKr8G"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102484651072016848",
+      "url": "https://x.com/karpathy/status/2102484651072016848",
+      "original": "I love this class of image -> GTA ieas. Imagine taking arbitrary images/videos (e.g this famous historical one from 1906 SF) and use them to build full-fledged custom GTAs, then drop into the world, move around, etc.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Adoro esse tipo de ideia de imagem → GTA. Imagine pegar imagens ou vídeos quaisquer (por exemplo, essa famosa imagem histórica de São Francisco em 1906) e usá-los para criar GTAs personalizados completos; depois, entrar nesse mundo, circular por ele etc."
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102469008079679640",
+      "url": "https://x.com/sama/status/2102469008079679640",
+      "original": "Startups are naturally good at this; it is hard to keep a bigger company good at this and i think an underexplored space. https://t.co/Sr48wgC0lL",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Startups são naturalmente boas nisso; é difícil manter essa capacidade em uma empresa maior, e acho que é um campo pouco explorado. https://t.co/Sr48wgC0lL"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102468713866055872",
+      "url": "https://x.com/sama/status/2102468713866055872",
+      "original": "michelle embodies this as much as anyone\n\nopenai is so, so lucky to have benefited from everything she has done so far and i think people will be quite pleased to see what she + team have cooking next! https://t.co/AVZAtyk6Uc",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "michelle personifica isso como poucas pessoas\n\na openai tem muita, muita sorte de ter se beneficiado de tudo o que ela fez até agora, e acho que as pessoas vão gostar bastante de ver o que ela e a equipe estão preparando! https://t.co/AVZAtyk6Uc"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102466605758452017",
+      "url": "https://x.com/sama/status/2102466605758452017",
+      "original": "We ❤️ developers.\n\nSee you next week.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Nós ❤️ desenvolvedores.\n\nAté a semana que vem."
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102466603111551187",
+      "url": "https://x.com/sama/status/2102466603111551187",
+      "original": "We want the OpenAI API to feature the best model at every price point and to be the best at every modality (text, code, image, video, etc).\n\nAnd then we want you all to come up with great ideas and build them and to get to be happy users. The best ideas will come from you all.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Queremos que a API da OpenAI ofereça o melhor modelo em cada faixa de preço e seja a melhor em cada modalidade (texto, código, imagem, vídeo etc.).\n\nE então queremos que vocês tenham ótimas ideias, as coloquem em prática e sejam usuários satisfeitos. As melhores ideias virão de vocês."
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102465143997440308",
+      "url": "https://x.com/sama/status/2102465143997440308",
+      "original": "Especially compared by per-task pricing, which is the metric that should matter, I don't think there is anything competitive anywhere in the market.\n\nWe want people to be able to use tons of AI; it is important to being able to explore this new renaissance in front of us. https://t.co/ac7M9QjIsm",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Especialmente comparando o preço por tarefa, que é a métrica que deveria importar, não acho que exista nada competitivo em qualquer parte do mercado.\n\nQueremos que as pessoas possam usar muita IA; isso é importante para conseguir explorar este novo renascimento que temos pela frente. https://t.co/ac7M9QjIsm"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102435703535939725",
+      "url": "https://x.com/AnthropicAI/status/2102435703535939725",
+      "original": "Claude Opus 5.5 is available today. https://t.co/lSCmTYw9eJ",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Claude Opus 5.5 está disponível a partir de hoje. https://t.co/lSCmTYw9eJ"
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102124533729955960",
+      "url": "https://x.com/karpathy/status/2102124533729955960",
+      "original": "I see it as a point on the LLM pareto optimal curve in a regime that had a large revealed latent demand (no thinking, single token, low latency acceptable intelligence) that was under-invested into because of a race to higher intelligence.",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Vejo isso como um ponto na fronteira ótima de Pareto dos LLMs, em uma configuração que revelou uma grande demanda latente (sem raciocínio, um único token, baixa latência e inteligência aceitável) e que recebeu pouco investimento por causa da corrida por mais inteligência."
+      }
+    },
+    {
+      "kind": "social",
+      "id": "2102063518979969034",
+      "url": "https://x.com/karpathy/status/2102063518979969034",
+      "original": "So ready to do my part in pacing the frontier 🫡\n:D",
+      "sourceLanguage": "en",
+      "translations": {
+        "pt-BR": "Prontíssimo para fazer minha parte em ditar o ritmo da fronteira 🫡\n:D"
+      }
+    }
+  ]
+}
