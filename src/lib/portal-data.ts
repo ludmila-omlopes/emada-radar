@@ -1,12 +1,13 @@
 import "server-only";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
-import { z } from "zod";
 import { feedSources, parseFeed } from "./feed-parser";
 import { liveBenchMetadata, newestUnique, parseAnthropicNews, parseExperiments, parseLiveBench } from "./portal-parsers";
 import { socialProfiles, type Collection, type Experiment, type Leaderboard, type PortalArticle, type SocialPost, type SourceState } from "./portal-types";
 import socialSelection from "@/data/social-post-selection.json";
 import { parseSocialEmbed, selectedSocialPosts } from "./social-posts";
+import { databaseConfigured, getDb } from "./db";
+import { SocialSearchStore } from "./social-search-store";
 import { ARTIFICIAL_ANALYSIS_URL, parseArtificialAnalysisApi, parseArtificialAnalysisPage } from "./artificial-analysis";
 
 const LIVEBENCH_RAW = "https://raw.githubusercontent.com/LiveBench/new-livebench/main";
@@ -106,30 +107,18 @@ export const getExperiments = cache(async (): Promise<Collection<Experiment>> =>
   };
 });
 
-const xUsers = z.object({ data: z.array(z.object({ id: z.string().regex(/^\d+$/), username: z.string() })).optional() });
-const xPosts = z.object({ data: z.array(z.object({ id: z.string().regex(/^\d+$/), text: z.string(), created_at: z.string().datetime(), note_tweet: z.object({ text: z.string() }).optional() })).optional(), errors: z.array(z.unknown()).optional() });
 export const getSocialPosts = cache(async (): Promise<Collection<SocialPost>> => {
   const token = process.env.X_API_BEARER_TOKEN;
-  const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
-  let users: z.infer<typeof xUsers>["data"] = [];
-  if (headers) {
+  if (databaseConfigured()) {
     try {
-      const lookup = await readRemote(`https://api.x.com/2/users/by?usernames=${socialProfiles.map(profile => profile.username).join(",")}`, 86_400, headers);
-      users = xUsers.parse(JSON.parse(lookup.text)).data ?? [];
-    } catch { /* Use the dated public selection when API discovery is unavailable. */ }
+      const saved = await new SocialSearchStore(getDb()).read();
+      if (token || saved.items.length) return saved;
+    } catch { /* Keep the page available if storage is temporarily unavailable. */ }
   }
+  if (token) return { items: [], sources: socialProfiles.map(profile => sourceState(profile.name, `https://x.com/${profile.username}`, "unavailable")) };
+  // A dated public selection is only used when automatic collection is unconfigured.
   const results = await Promise.all(socialProfiles.map(async profile => {
     const profileUrl = `https://x.com/${profile.username}`;
-    const user = users.find(user => user.username.toLowerCase() === profile.username.toLowerCase());
-    if (headers && user) {
-      try {
-        const params = new URLSearchParams({ max_results: "5", exclude: "retweets", "tweet.fields": "created_at,note_tweet" });
-        const response = await readRemote(`https://api.x.com/2/users/${user.id}/tweets?${params}`, 3600, headers);
-        const parsed = xPosts.parse(JSON.parse(response.text));
-        if (parsed.errors?.length && !parsed.data?.length) throw new Error("Posts indisponíveis.");
-        return { source: sourceState(profile.name, profileUrl, "ok", response.fetchedAt), items: (parsed.data ?? []).map(post => ({ id: post.id, text: post.note_tweet?.text ?? post.text, publishedAt: post.created_at, url: `${profileUrl}/status/${post.id}`, profile })) };
-      } catch { /* Fallback is per profile, so other live timelines remain available. */ }
-    }
     const references = selectedSocialPosts(socialSelection, profile);
     if (!references.length) return { items: [], source: sourceState(profile.name, profileUrl, token ? "unavailable" : "unconfigured") };
     const embeds = await Promise.allSettled(references.map(async reference => {

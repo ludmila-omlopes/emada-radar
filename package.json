@@ -5,7 +5,7 @@
   "scripts": {
     "translations:collect": "node --conditions=react-server --import tsx scripts/export-translation-candidates.ts",
     "dev": "next dev --hostname 127.0.0.1",
-    "build": "tsx scripts/verify-practice-config.ts && tsx scripts/verify-translation-config.ts && tsx scripts/verify-news-classification.ts && node --conditions=react-server --import tsx scripts/seed-news-classification.ts && next build",
+    "build": "tsx scripts/verify-practice-config.ts && tsx scripts/verify-translation-config.ts && tsx scripts/verify-news-classification.ts && node --conditions=react-server --import tsx scripts/seed-news-classification.ts && tsx scripts/seed-social-search.ts && next build",
     "start": "next start --hostname 127.0.0.1",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -16,7 +16,8 @@
     "admin:invite": "tsx scripts/invite-admin.ts",
     "db:migrate:localization": "tsx scripts/migrate-localization.ts",
     "db:migrate:translations": "tsx scripts/migrate-openrouter-translations.ts",
-    "db:migrate:news-classification": "tsx scripts/migrate-news-classification.ts"
+    "db:migrate:news-classification": "tsx scripts/migrate-news-classification.ts",
+    "db:migrate:social": "tsx scripts/migrate-social-search.ts"
   },
   "dependencies": {
     "@next/env": "^16.3.4",

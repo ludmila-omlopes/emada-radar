@@ -34,7 +34,7 @@
     "experimentsNote": "Automatic title search on Hacker News via Algolia, covering the last 30 days. Reports belong to their authors and have not been reproduced by Emada. Open the source and discussion to check methods, prompts and limitations.",
     "voicesDescription": "Posts from AI researchers, developers and leaders on X.",
     "followedProfiles": "Followed profiles",
-    "voicesNote": "Up to five posts per profile, including conversations and excluding reposts. Text comes from official X services; images, videos and complete threads remain in the original post. Dates and times are in UTC. Dated selections are identified and expire after seven days; connected timelines check for new posts hourly when the portal is visited.",
+    "voicesNote": "Posts about AI, models and tools, excluding replies and reposts. New posts are collected twice a day; busy periods may take more than one collection. Images, videos and full conversations remain in the original post. Dates and times are in UTC. Dated selections are identified.",
     "sourceHealth": "Sources and updates",
     "available": "Available",
     "pending": "Connection pending",

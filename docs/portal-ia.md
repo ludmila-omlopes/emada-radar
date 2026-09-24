@@ -67,7 +67,7 @@ As páginas são renderizadas no servidor. As consultas usam o cache persistente
 | Notícias | RSS de OpenAI, Google AI, Google DeepMind e Hugging Face | 15 minutos |
 | Notícias | Lista pública de notícias da Anthropic | 30 minutos |
 | Experimentos | Busca por títulos no Hacker News via Algolia | 30 minutos |
-| Vozes | API oficial do X, até 5 posts por perfil, incluindo respostas | 1 hora |
+| Vozes | Busca recente do X, filtrada por IA e perfis, sem respostas/reposts; leitura do Postgres | Coleta às 09h e 21h UTC |
 | Vozes sem API | Seleção datada de URLs + conteúdo do oEmbed oficial do X | 1 hora para o conteúdo; seleção pontual |
 | Modelos adicionais | Tabela pública da Artificial Analysis; Data API opcional | 6 horas |
 
@@ -83,7 +83,7 @@ Experimentos são descobertas automáticas dos últimos 30 dias, com filtro de r
 
 Configure no ambiente do servidor, nunca com prefixo `NEXT_PUBLIC_`:
 
-- `X_API_BEARER_TOKEN`: token de aplicativo do X com acesso de leitura a usuários e timelines. O administrador deve configurar acesso e créditos no console do X. Habilita a descoberta automática de novos posts. Sem token (ou se a API falhar para um perfil), o portal usa a seleção pontual descrita abaixo.
+- `X_API_BEARER_TOKEN`: token de aplicativo do X com acesso de leitura a usuários e busca recente. O administrador deve configurar acesso e créditos no console do X. Habilita a descoberta automática de novos posts. Sem token, o portal pode usar a seleção pontual descrita abaixo. Com token, falhas preservam os posts já salvos e são indicadas no estado das fontes.
 - `ARTIFICIAL_ANALYSIS_API_KEY`: chave opcional da Data API gratuita. O adaptador prioriza `/api/v2/data/llms/models` quando a chave estiver configurada. Sem chave, ou em caso de falha da API, usa a tabela pública atualizada da Artificial Analysis. Não é necessária credencial para o ranking público funcionar.
 
 ### Artificial Analysis
@@ -96,7 +96,7 @@ O HTML público excede o limite de 2 MB do cache de fetch do Next. Por isso, a l
 
 Com a API configurada, também podem estar disponíveis Coding Index, Math Index e preços de entrada/saída por milhão de tokens. As métricas refletem a origem utilizada, identificada na nota do ranking. Preço por milhão de tokens nunca é tratado como custo por tarefa. Não se misturam resultados da API e da tabela pública no mesmo conjunto.
 
-Os perfis são definidos em `src/lib/portal-types.ts`: Sam Altman, Boris Cherny, Theo Browne, OpenAI Developers, Anthropic e Andrej Karpathy. O X resolve seus IDs pela API e busca as timelines, incluindo respostas e excluindo reposts. Nenhuma chamada de publicação é feita.
+Os perfis são definidos em `src/lib/portal-types.ts`: Sam Altman, Boris Cherny, Theo Browne, OpenAI Developers, Anthropic e Andrej Karpathy. O X resolve seus IDs uma vez e os salva no Postgres. Uma única busca reúne os seis perfis e filtra por assuntos de IA, excluindo respostas e reposts. Nenhuma chamada de publicação é feita. Veja [coleta e limites](social-search.md).
 
 ### Coleta pontual de posts
 

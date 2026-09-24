@@ -34,7 +34,7 @@
     "experimentsNote": "Busca automática por títulos no Hacker News, via Algolia, cobrindo os últimos 30 dias. Os relatos pertencem aos autores e não foram reproduzidos pela Emada. Abra a fonte e a discussão para conferir método, prompts e limitações.",
     "voicesDescription": "Posts de pesquisadores, desenvolvedores e lideranças de IA no X.",
     "followedProfiles": "Perfis acompanhados",
-    "voicesNote": "Até cinco posts por perfil, incluindo conversas e sem reposts. Texto obtido dos serviços oficiais do X; imagens, vídeos e threads completos estão na publicação original. Datas e horários em UTC. Coletas pontuais são identificadas e expiram após sete dias; timelines conectadas acompanham novos posts a cada hora, quando o portal recebe visitas.",
+    "voicesNote": "Posts sobre IA, modelos e ferramentas, sem respostas nem reposts. Novidades são coletadas duas vezes ao dia; períodos com muitos posts podem levar mais de uma coleta. Imagens, vídeos e conversas completas estão na publicação original. Datas e horários em UTC. Seleções pontuais são identificadas.",
     "sourceHealth": "Fontes e atualização",
     "available": "Disponível",
     "pending": "Conexão pendente",
