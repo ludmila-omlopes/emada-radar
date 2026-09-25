@@ -96,7 +96,7 @@ O HTML público excede o limite de 2 MB do cache de fetch do Next. Por isso, a l
 
 Com a API configurada, também podem estar disponíveis Coding Index, Math Index e preços de entrada/saída por milhão de tokens. As métricas refletem a origem utilizada, identificada na nota do ranking. Preço por milhão de tokens nunca é tratado como custo por tarefa. Não se misturam resultados da API e da tabela pública no mesmo conjunto.
 
-Os perfis são definidos em `src/lib/portal-types.ts`: Sam Altman, Boris Cherny, Theo Browne, OpenAI Developers, Anthropic e Andrej Karpathy. O X resolve seus IDs uma vez e os salva no Postgres. Uma única busca reúne os seis perfis e filtra por assuntos de IA, excluindo respostas e reposts. Nenhuma chamada de publicação é feita. Veja [coleta e limites](social-search.md).
+Os perfis são definidos em `src/lib/portal-types.ts`: Sam Altman, Boris Cherny, Theo Browne, OpenAI Developers, Anthropic, Andrej Karpathy, Simon Willison, swyx, Jason Liu, Alex Albert, Thariq, Noam Brown, Lisan al Gaib e Chubby. O X resolve seus IDs uma vez e os salva no Postgres. Uma única busca reúne os 14 perfis e filtra por assuntos de IA, excluindo respostas e reposts. Nenhuma chamada de publicação é feita. Veja [coleta e limites](social-search.md).
 
 ### Coleta pontual de posts
 

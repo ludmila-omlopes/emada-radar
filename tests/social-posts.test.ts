@@ -40,6 +40,11 @@ test("one-time collection expires and rejects future selections instead of posin
   assert.equal(selectedSocialPosts(selection, profile, new Date("2026-10-01T00:00:00Z")).length, 0);
   for (const person of socialProfiles) {
     const references = selectedSocialPosts(selection, person, now);
+    // Profiles added later have no posts in the historical one-time selection.
+    if (!selection.posts.some(post => post.username.toLowerCase() === person.username.toLowerCase())) {
+      assert.deepEqual(references, []);
+      continue;
+    }
     assert.ok(references.length >= 3 && references.length <= 5);
     assert.ok(references.every(ref => ref.url.startsWith(`https://x.com/${person.username}/status/`)));
     assert.deepEqual(references.map(ref => ref.publishedAt), references.map(ref => ref.publishedAt).sort().reverse());

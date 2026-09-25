@@ -61,7 +61,7 @@ export function ProfileDirectory({ compact = false }: {
     compact?: boolean;
 }) {
     const t = useTranslations("Portal");
-    return <div className={`profile-directory ${compact ? "compact" : ""}`}>{socialProfiles.map(profile => <a key={profile.username} href={`https://x.com/${profile.username}`} target="_blank" rel="noreferrer"><span className="profile-initials">{profile.initials}</span><span><strong>{profile.name}</strong><small>{profile.username === "theo" ? t("roleTheo") : profile.username === "OpenAIDevs" ? t("roleOpenai") : profile.username === "AnthropicAI" ? t("roleAnthropic") : profile.username === "karpathy" ? t("roleKarpathy") : profile.role}</small><span className="profile-handle">@{profile.username}</span></span><ArrowUpRight size={16}/></a>)}</div>;
+    return <div className={`profile-directory ${compact ? "compact" : ""}`}>{socialProfiles.map(profile => <a key={profile.username} href={`https://x.com/${profile.username}`} target="_blank" rel="noreferrer"><span className="profile-initials">{profile.initials}</span><span><strong>{profile.name}</strong><small>{profile.username === "theo" ? t("roleTheo") : profile.username === "OpenAIDevs" ? t("roleOpenai") : profile.username === "AnthropicAI" ? t("roleAnthropic") : profile.username === "karpathy" ? t("roleKarpathy") : profile.role === "Comunidade de IA" ? t("roleCommunity") : profile.role}</small><span className="profile-handle">@{profile.username}</span></span><ArrowUpRight size={16}/></a>)}</div>;
 }
 export function SocialFeed({ data, limit = 30 }: {
     data: Collection<SocialPost>;

@@ -2,7 +2,9 @@
 
 `/api/cron/social` usa `CRON_SECRET` e executa às **09:00 e 21:00 UTC**. As páginas só leem o Postgres: visitas, traduções, filtros da interface e o botão Atualizar não fazem consultas pagas ao X.
 
-A consulta em `src/lib/social-search.ts` combina os seis perfis do diretório com termos de IA/modelos/ferramentas e `-is:retweet -is:reply`. Não restringe idioma. Palavras-chave podem deixar passar referências indiretas ou nomes inéditos; o filtro é temático, não um classificador semântico. Alterar os termos cria uma nova versão da consulta e inicia uma janela de 24 horas; resultados da versão anterior deixam de aparecer.
+A consulta em `src/lib/social-search.ts` combina os 14 perfis do diretório com termos de IA/modelos/ferramentas e `-is:retweet -is:reply`. Não restringe idioma. Palavras-chave podem deixar passar referências indiretas ou nomes inéditos; o filtro é temático, não um classificador semântico. Alterar os termos ou perfis cria uma nova versão da consulta e inicia uma janela de 24 horas na próxima coleta; resultados da versão anterior deixam de aparecer.
+
+Em 25/09/2026, foram acrescentados `@simonw`, `@swyx`, `@jxnlco`, `@alexalbert__`, `@trq212`, `@polynoamial`, `@scaling01` e `@kimmonismus`. `@karpathy` e `@bcherny` já estavam cadastrados. O diretório público e a busca usam a mesma lista; a inclusão não altera os horários nem o limite global de posts por execução.
 
 ## Limites e continuidade
 

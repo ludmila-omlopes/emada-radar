@@ -34,4 +34,12 @@ export const socialProfiles: SocialProfile[] = [
   { name: "OpenAI Developers", username: "OpenAIDevs", role: "Ferramentas para devs", initials: "OA" },
   { name: "Anthropic", username: "AnthropicAI", role: "Pesquisa e modelos", initials: "AN" },
   { name: "Andrej Karpathy", username: "karpathy", role: "Pesquisa e educação em IA", initials: "AK" },
+  { name: "Simon Willison", username: "simonw", role: "Datasette · Django", initials: "SW" },
+  { name: "swyx", username: "swyx", role: "Comunidade de IA", initials: "SX" },
+  { name: "Jason Liu", username: "jxnlco", role: "Comunidade de IA", initials: "JL" },
+  { name: "Alex Albert", username: "alexalbert__", role: "Anthropic", initials: "AA" },
+  { name: "Thariq", username: "trq212", role: "Comunidade de IA", initials: "TQ" },
+  { name: "Noam Brown", username: "polynoamial", role: "Comunidade de IA", initials: "NB" },
+  { name: "Lisan al Gaib", username: "scaling01", role: "Comunidade de IA", initials: "LG" },
+  { name: "Chubby", username: "kimmonismus", role: "Comunidade de IA", initials: "CH" },
 ];

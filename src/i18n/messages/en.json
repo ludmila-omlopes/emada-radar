@@ -149,6 +149,7 @@
     "roleOpenai": "Developer tools",
     "roleAnthropic": "Research and models",
     "roleKarpathy": "AI research and education",
+    "roleCommunity": "AI community",
     "loading": "Loading…",
     "loadingContent": "Loading content",
     "loadFailed": "This page could not be loaded.",
