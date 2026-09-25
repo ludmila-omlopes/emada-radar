@@ -10,6 +10,7 @@ import { getDayProgress } from "@/lib/learning-days";
 import { getPublishedDays } from "@/lib/published-lessons";
 import "./globals.css";
 import "./portal.css";
+import "./radar.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space", display: "swap" });
 export const metadata: Metadata = { title: { default: "Emada · Seu radar de IA", template: "%s | Emada" }, description: "Um portal para profissionais de IA: rankings de modelos, notícias, vozes da comunidade e experimentos. Atualize seu repertório e compare resultados direto das fontes.", robots: { index: true, follow: true } };

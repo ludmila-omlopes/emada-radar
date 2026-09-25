@@ -7,7 +7,8 @@ import { LocaleSyncNotice } from "./locale-sync-notice";
 import { useState } from "react";
 import { PortalLink as Link } from "@/components/portal-link";
 import { usePathname, useRouter } from "next/navigation";
-import { ArrowRight, ArrowUpRight, BookOpen, ChartNoAxesColumnIncreasing, ChevronRight, FlaskConical, Home, Library, LogOut, Menu, Newspaper, Puzzle, Search, ShieldCheck, Users } from "lucide-react";
+import { DropdownMenu } from "radix-ui";
+import { ArrowRight, ArrowUpRight, BookOpen, ChartNoAxesColumnIncreasing, ChevronDown, ChevronRight, FlaskConical, Home, Library, LogOut, Menu, Newspaper, Puzzle, Search, ShieldCheck, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -31,7 +32,9 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
 }) {
     const t = useTranslations("Portal");
     const locale = useLocale();
-    const nav = [{ href: "/", label: t("radar"), icon: Home }, { href: "/modelos", label: t("models"), icon: ChartNoAxesColumnIncreasing }, { href: "/noticias", label: t("news"), icon: Newspaper }, { href: "/vozes", label: t("voices"), icon: Users }, { href: "/experimentos", label: t("experiments"), icon: FlaskConical }, { href: "/formacao", label: t("training"), icon: Library }, { href: "/skills", label: "Skills", icon: Puzzle }, { href: "/modulos", label: "Academy", icon: BookOpen }];
+    const primaryNav = [{ href: "/", label: t("radar"), icon: Home }, { href: "/modelos", label: t("models"), icon: ChartNoAxesColumnIncreasing }, { href: "/noticias", label: t("news"), icon: Newspaper }, { href: "/vozes", label: t("voices"), icon: Users }, { href: "/experimentos", label: t("experiments"), icon: FlaskConical }];
+    const learnNav = [{ href: "/modulos", label: "Academy", icon: BookOpen }, { href: "/formacao", label: t("training"), icon: Library }, { href: "/skills", label: "Skills", icon: Puzzle }];
+    const nav = [...primaryNav, ...learnNav];
     const pathname = stripLocale(usePathname());
     const router = useRouter();
     const [mobile, setMobile] = useState(false);
@@ -69,7 +72,13 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
     <header className="site-header">
       <div className="header-inner">
         <Logo />
-        <nav className="desktop-nav" aria-label={t("mainNavigation")}>{nav.map(({ href, label }) => <Link key={href} href={href} className={cn("nav-link", active(href) && "active")} aria-current={active(href) ? "page" : undefined}>{label}</Link>)}</nav>
+        <nav className="desktop-nav" aria-label={t("mainNavigation")}>{primaryNav.map(({ href, label }) => <Link key={href} href={href} className={cn("nav-link", active(href) && "active")} aria-current={active(href) ? "page" : undefined}>{label}</Link>)}
+          <span className="nav-divider" aria-hidden="true"/>
+          <DropdownMenu.Root modal={false}>
+            <DropdownMenu.Trigger asChild><button type="button" className={cn("nav-learn", learnNav.some(item => active(item.href)) && "active")}>{t("learn")}<span className="nav-learn-hint">{t("learnHint")}</span><ChevronDown size={15} aria-hidden="true"/></button></DropdownMenu.Trigger>
+            <DropdownMenu.Portal><DropdownMenu.Content className="nav-learn-menu" align="end" sideOffset={10}>{learnNav.map(({ href, label, icon: Icon }) => <DropdownMenu.Item key={href} asChild><Link href={href} className={cn(active(href) && "active")} aria-current={active(href) ? "page" : undefined}><Icon size={18} aria-hidden="true"/>{label}<ArrowUpRight size={15} aria-hidden="true"/></Link></DropdownMenu.Item>)}</DropdownMenu.Content></DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        </nav>
         <div className="header-actions">
 <LanguageSelector className="desktop-language"/>
           <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
@@ -94,7 +103,7 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
               <DialogTitle>{t("homeTitle")}</DialogTitle>
               <DialogDescription>{t("menuDescription")}</DialogDescription>
               <LanguageSelector/>
-<nav aria-label={t("mobileNavigation")}>{nav.map(({ href, label, icon: Icon }) => <Link key={href} href={href} onClick={() => setMobile(false)} className={cn("nav-link", active(href) && "active")} aria-current={active(href) ? "page" : undefined}><Icon size={20}/>{label}<ArrowUpRight size={17}/></Link>)}</nav>
+<nav aria-label={t("mobileNavigation")}>{primaryNav.map(({ href, label, icon: Icon }) => <Link key={href} href={href} onClick={() => setMobile(false)} className={cn("nav-link", active(href) && "active")} aria-current={active(href) ? "page" : undefined}><Icon size={20}/>{label}<ArrowUpRight size={17}/></Link>)}<p className="mobile-nav-group">{t("learn")}</p>{learnNav.map(({ href, label, icon: Icon }) => <Link key={href} href={href} onClick={() => setMobile(false)} className={cn("nav-link", active(href) && "active")} aria-current={active(href) ? "page" : undefined}><Icon size={20}/>{label}<ArrowUpRight size={17}/></Link>)}</nav>
               {user && <div className="menu-progress"><div><span>{t("journey")}</span><span>{Math.round(completed / allLessons.length * 100)}%</span></div><Progress value={completed / allLessons.length * 100} aria-label={t("journeyProgress")}/><p>{t("completedDays", {completed, total:allLessons.length})}</p><Link href="/progresso" onClick={() => setMobile(false)}>{t("viewProgress")}<ArrowRight size={16}/></Link></div>}
               {admin && <Link href="/admin/aulas" className="text-link" onClick={() => setMobile(false)}><BookOpen size={18}/>{t("editLessons")}</Link>}
               {admin && <Link href="/admin" className="text-link" onClick={() => setMobile(false)}><ShieldCheck size={18}/>{t("administration")}</Link>}
