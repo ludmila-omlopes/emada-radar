@@ -7,7 +7,7 @@ import { LocaleSyncNotice } from "./locale-sync-notice";
 import { useState } from "react";
 import { PortalLink as Link } from "@/components/portal-link";
 import { usePathname, useRouter } from "next/navigation";
-import { ArrowRight, ArrowUpRight, BookOpen, ChartNoAxesColumnIncreasing, ChevronRight, FlaskConical, Home, Library, LogOut, Menu, Newspaper, Search, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookOpen, ChartNoAxesColumnIncreasing, ChevronRight, FlaskConical, Home, Library, LogOut, Menu, Newspaper, Puzzle, Search, ShieldCheck, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -31,7 +31,7 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
 }) {
     const t = useTranslations("Portal");
     const locale = useLocale();
-    const nav = [{ href: "/", label: t("radar"), icon: Home }, { href: "/modelos", label: t("models"), icon: ChartNoAxesColumnIncreasing }, { href: "/noticias", label: t("news"), icon: Newspaper }, { href: "/vozes", label: t("voices"), icon: Users }, { href: "/experimentos", label: t("experiments"), icon: FlaskConical }, { href: "/formacao", label: t("training"), icon: Library }, { href: "/modulos", label: "Academy", icon: BookOpen }];
+    const nav = [{ href: "/", label: t("radar"), icon: Home }, { href: "/modelos", label: t("models"), icon: ChartNoAxesColumnIncreasing }, { href: "/noticias", label: t("news"), icon: Newspaper }, { href: "/vozes", label: t("voices"), icon: Users }, { href: "/experimentos", label: t("experiments"), icon: FlaskConical }, { href: "/formacao", label: t("training"), icon: Library }, { href: "/skills", label: "Skills", icon: Puzzle }, { href: "/modulos", label: "Academy", icon: BookOpen }];
     const pathname = stripLocale(usePathname());
     const router = useRouter();
     const [mobile, setMobile] = useState(false);
@@ -104,7 +104,7 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
         </div>
       </div>
     </header>
-    {!["/", "/modulos", "/progresso", "/modelos", "/noticias", "/vozes", "/experimentos", "/formacao"].includes(pathname) && <div className="context-bar"><div className="breadcrumb"><Link href="/">Emada</Link><ChevronRight size={15}/><span>{current}</span></div>{user && <Link href="/progresso" className="context-progress">{t("completedDays", {completed, total:allLessons.length})} <ArrowUpRight size={15}/></Link>}</div>}
+    {!["/", "/modulos", "/progresso", "/modelos", "/noticias", "/vozes", "/experimentos", "/formacao", "/skills"].includes(pathname) && <div className="context-bar"><div className="breadcrumb"><Link href="/">Emada</Link><ChevronRight size={15}/><span>{current}</span></div>{user && <Link href="/progresso" className="context-progress">{t("completedDays", {completed, total:allLessons.length})} <ArrowUpRight size={15}/></Link>}</div>}
     {logoutError && <p role="alert" className="error-text global-alert">{logoutError}</p>}
     <main id="main-content" tabIndex={-1}><LocaleSyncNotice/>{children}</main>
     <footer className="footer"><div className="footer-top"><Logo /><p>{t("footerDescription")}</p><div className="footer-links"><Link href="/biblioteca">{t("library")}<Library size={15}/></Link><Link href="/laboratorio">{t("lab")}<FlaskConical size={15}/></Link>{user && <Link href="/progresso">{t("progress")}<ArrowUpRight size={15}/></Link>}{admin && <Link href="/admin/aulas">{t("editLessons")}<BookOpen size={15}/></Link>}{admin && <Link href="/admin">{t("administration")}<ShieldCheck size={15}/></Link>}{user && <button onClick={signOut}>{t("signOut")}<LogOut size={15}/></button>}</div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Emada Academy</span><a href="https://ludylops.com" target="_blank" rel="noreferrer">{t("byLud")}<ArrowUpRight size={14}/></a></div></footer>

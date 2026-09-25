@@ -18,4 +18,4 @@ export async function proxy(request: NextRequest) {
   }
   return internationalize(request);
 }
-export const config = { matcher: ["/", "/modelos", "/noticias", "/experimentos", "/vozes", "/formacao", "/(pt-BR|en)/:path*"] };
+export const config = { matcher: ["/", "/modelos", "/noticias", "/experimentos", "/vozes", "/formacao", "/skills", "/(pt-BR|en)/:path*"] };
