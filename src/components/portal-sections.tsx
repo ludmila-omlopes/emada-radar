@@ -40,14 +40,30 @@ export function PortalEmpty({ title, description }: {
 }) {
     return <div className="portal-empty" role="status"><Radio size={24}/><h3>{title}</h3><p>{description}</p></div>;
 }
-export function ArticleList({ items, featured = false }: {
+export function ArticleList({ items, featured = false, groupByDay = false }: {
     items: PortalArticle[];
     featured?: boolean;
+    groupByDay?: boolean;
 }) {
     const t = useTranslations("Portal");
+    const locale = useLocale();
     if (!items.length)
         return <PortalEmpty title={t("noNews")} description={t("noNewsDescription")}/>;
-    return <div className={`portal-articles ${featured ? "with-featured" : ""}`}>{items.map((item, index) => <article key={item.id} className={[featured && index === 0 ? "portal-article-featured" : "", item.modelRelease ? "portal-article-release" : ""].filter(Boolean).join(" ")}><div className="portal-item-meta"><div className="portal-article-labels"><span className="portal-source">{item.source}</span>{item.modelRelease && <span className="model-release-badge" title={t("releaseDetectionNote")}><Rocket size={13} aria-hidden="true"/>{t("newModel")}</span>}</div><PortalDate date={item.publishedAt}/></div><TranslatedContent original={item.title} translation={item.translation} href={item.url}/></article>)}</div>;
+    const article = (item: PortalArticle, index: number) => <article key={item.id} className={[featured && index === 0 ? "portal-article-featured" : "", item.modelRelease ? "portal-article-release" : ""].filter(Boolean).join(" ")}><div className="portal-item-meta"><div className="portal-article-labels"><span className="portal-source">{item.source}</span>{item.modelRelease && <span className="model-release-badge" title={t("releaseDetectionNote")}><Rocket size={13} aria-hidden="true"/>{t("newModel")}</span>}</div><PortalDate date={item.publishedAt}/></div><TranslatedContent original={item.title} translation={item.translation} href={item.url}/></article>;
+    if (!groupByDay)
+        return <div className={`portal-articles ${featured ? "with-featured" : ""}`}>{items.map(article)}</div>;
+    const groups: { key: string; items: PortalArticle[] }[] = [];
+    for (const item of items) {
+        const key = item.publishedAt.slice(0, 10);
+        const last = groups.at(-1);
+        if (last?.key === key) last.items.push(item);
+        else groups.push({ key, items: [item] });
+    }
+    const dayLabel = (key: string) => new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(`${key}T12:00:00Z`));
+    return <div className="portal-articles grouped">{groups.map(group => <section key={group.key} className="news-day" aria-label={dayLabel(group.key)}>
+        <h2 className="news-day-title"><time dateTime={group.key}>{dayLabel(group.key)}</time><span>{group.items.length}</span></h2>
+        {group.items.map(article)}
+    </section>)}</div>;
 }
 export function ExperimentCards({ items }: {
     items: Experiment[];

@@ -7,17 +7,17 @@ import type { Experiment, Leaderboard, PortalArticle } from "@/lib/portal-types"
 import { bestValue, categoryLeaders, costFrontier, costMetric, heatmap, leaderSummary, orgKey, overallMetric, rankBy, scatterPoints, standoutCategory, type OrgKey, type ScatterPoint } from "@/lib/radar-insights";
 import { PortalDate } from "./portal-sections";
 
-const ORGS: OrgKey[] = ["anthropic", "openai", "google", "other"];
-const orgColor = (key: OrgKey) => `var(--org-${key})`;
-const delay = (ms: number) => ({ animationDelay: `${ms}ms` }) as CSSProperties;
+export const ORGS: OrgKey[] = ["anthropic", "openai", "google", "other"];
+export const orgColor = (key: OrgKey) => `var(--org-${key})`;
+export const delay = (ms: number) => ({ animationDelay: `${ms}ms` }) as CSSProperties;
 
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 }
 
-function useNumber(decimals = 0) {
+export function useNumber(decimals = 0, compact = false) {
   const locale = useLocale();
-  return useMemo(() => new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }), [locale, decimals]);
+  return useMemo(() => new Intl.NumberFormat(locale, compact ? { notation: "compact", maximumFractionDigits: 1 } : { minimumFractionDigits: decimals, maximumFractionDigits: decimals }), [locale, decimals, compact]);
 }
 
 function useLocalized(board: Leaderboard) {
@@ -25,8 +25,8 @@ function useLocalized(board: Leaderboard) {
   return useMemo(() => localizeLeaderboard(board, t), [board, t]);
 }
 
-export function CountUp({ value, decimals = 0, prefix = "", wait = 300, duration = 1100 }: { value: number; decimals?: number; prefix?: string; wait?: number; duration?: number }) {
-  const format = useNumber(decimals);
+export function CountUp({ value, decimals = 0, prefix = "", compact = false, wait = 300, duration = 1100 }: { value: number; decimals?: number; prefix?: string; compact?: boolean; wait?: number; duration?: number }) {
+  const format = useNumber(decimals, compact);
   const ref = useRef<HTMLSpanElement>(null);
   const [shown, setShown] = useState(value);
   useEffect(() => {
