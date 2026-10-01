@@ -25,7 +25,7 @@ let rejected = false;
 const store = new SocialSearchStore(pool, async path => {
   paths.push(path);
   if (failure) throw new SocialApiError("x_http_429");
-  if (rejected && path.startsWith("tweets/")) throw new SocialApiError("x_http_400", "Invalid since_id");
+  if (rejected && path.startsWith("tweets/")) throw new SocialApiError("x_http_400", "Invalid use of 'since_id' or 'until_id' in conjunction with 'start_time' or 'end_time'.");
   return path.startsWith("users/") ? users : page;
 });
 before(async () => { const sql = await readFile(new URL("../migrations/007-social-search.sql", import.meta.url), "utf8"); await db.exec(sql); await db.exec(sql); });
@@ -61,12 +61,12 @@ test("simultaneous cron calls and same-slot retries collect only once", async ()
   assert.equal(paths.filter(p => p.startsWith("users/")).length, 1);
   assert.equal(paths.filter(p => p.startsWith("tweets/")).length, 2);
   const params = new URLSearchParams(paths[2].split("?")[1]);
-  assert.equal(params.get("since_id"), post().id);
-  assert.equal(params.has("start_time"), false);
+  assert.equal(params.get("start_time"), "2026-09-24T08:59:00.000Z", "each window starts where the previous one ended");
+  assert.equal(params.has("since_id"), false, "X rejects since_id together with end_time");
   assert.equal((await store.read(next)).items.length, 1, "duplicate IDs must be upserted");
 });
 
-test("pagination preserves its window and advances the highest ID only after completion", async () => {
+test("pagination preserves its window and advances only after completion", async () => {
   page = { data: [post()], meta: { result_count: 1, next_token: "page-two" } };
   await store.collect("fake", first);
   const initial = new URLSearchParams(paths[1].split("?")[1]);
@@ -79,7 +79,8 @@ test("pagination preserves its window and advances the highest ID only after com
   page = { meta: { result_count: 0 } };
   await store.collect("fake", third);
   const resumed = new URLSearchParams(paths[3].split("?")[1]);
-  assert.equal(resumed.get("since_id"), "2000000000000000010");
+  assert.equal(resumed.get("start_time"), initial.get("end_time"));
+  assert.equal(resumed.has("since_id"), false);
   assert.equal(resumed.has("next_token"), false);
   assert.equal((await store.read(third)).items.length, 2);
 });
@@ -95,7 +96,7 @@ test("failed collections retain saved posts and cursor without immediate paid re
   assert.equal(saved.items.length, 1);
   assert.ok(saved.sources.every(s => s.status === "unavailable"));
   const state = (await db.query<{ cursor: SearchCursor; last_error: string }>("SELECT cursor,last_error FROM social_search_state")).rows[0];
-  assert.equal(state.cursor.sinceId, post().id);
+  assert.equal(state.cursor.completedAt, "2026-09-24T08:59:00.000Z");
   assert.equal(state.last_error, "x_http_429");
 });
 
@@ -103,12 +104,10 @@ test("a rejected search records X's reason and restarts the window instead of re
   await store.collect("fake", first);
   rejected = true;
   assert.equal((await store.collect("fake", next)).ok, false);
-  const failed = new URLSearchParams(paths[2].split("?")[1]);
-  assert.equal(failed.get("since_id"), post().id);
   const state = (await db.query<{ cursor: SearchCursor; last_error: string }>("SELECT cursor,last_error FROM social_search_state")).rows[0];
-  assert.equal(state.last_error, "x_http_400: Invalid since_id");
+  assert.match(state.last_error, /^x_http_400: Invalid use of 'since_id'/);
   assert.equal(state.cursor.window, undefined);
-  assert.equal(state.cursor.sinceId, undefined);
+  assert.equal(state.cursor.completedAt, "2026-09-24T08:59:00.000Z");
   rejected = false;
   assert.ok((await store.collect("fake", third)).ok);
   const retried = new URLSearchParams(paths[3].split("?")[1]);
@@ -123,7 +122,7 @@ test("partial or unexpected-author responses cannot advance the cursor", async (
   assert.equal((await store.collect("fake", next)).ok, false);
   assert.equal((await store.read(next)).items.length, 0);
   const state = (await db.query<{ cursor: SearchCursor; last_error: string }>("SELECT cursor,last_error FROM social_search_state")).rows[0];
-  assert.equal(state.cursor.sinceId, undefined);
+  assert.equal(state.cursor.completedAt, undefined);
   assert.equal(state.last_error, "x_collection_failed");
 });
 
@@ -132,12 +131,12 @@ test("empty results advance time, stale windows restart, and changed filters res
   await store.collect("fake", first); await store.collect("fake", next);
   const params = new URLSearchParams(paths[2].split("?")[1]);
   assert.equal(params.get("start_time"), "2026-09-24T08:59:00.000Z");
-  const stale = prepareSearch({ queryKey: SOCIAL_QUERY_KEY, window: { end: "2026-09-10T09:00:00Z", nextToken: "expired" } }, first);
+  const stale = prepareSearch({ queryKey: SOCIAL_QUERY_KEY, window: { end: "2026-09-10T09:00:00Z", nextToken: "expired" } } as SearchCursor, first);
   assert.equal(stale.expired, true); assert.equal(stale.params.has("next_token"), false);
   const aging = prepareSearch({ queryKey: SOCIAL_QUERY_KEY, window: { start: "2026-09-17T09:30:00Z", end: "2026-09-23T09:00:00Z", nextToken: "aging" } }, first);
   assert.equal(aging.expired, true, "pagination must consider the oldest covered time, not just its end");
-  const changed = prepareSearch({ queryKey: "old", sinceId: "123" }, first);
-  assert.equal(changed.params.has("since_id"), false);
+  const changed = prepareSearch({ queryKey: "old", completedAt: "2026-09-24T08:00:00Z" }, first);
+  assert.equal(changed.params.get("start_time"), "2026-09-23T09:00:00.000Z");
   const old = await store.read(new Date("2026-09-26T00:00:00Z"));
   assert.ok(old.sources.every(s => s.status === "unavailable"));
 });
@@ -149,4 +148,12 @@ test("cron rejects unauthenticated requests before accessing storage or X", asyn
     assert.equal((await GET(new Request("https://example.test/api/cron/social"))).status, 401);
     assert.equal((await GET(new Request("https://example.test/api/cron/social", { headers: { authorization: "Bearer wrong" } }))).status, 401);
   } finally { if (old === undefined) delete process.env.CRON_SECRET; else process.env.CRON_SECRET = old; }
+});
+
+test("a cursor saved with since_id (as stuck in production) is rebuilt as a time window", () => {
+  const stuck = { queryKey: SOCIAL_QUERY_KEY, sinceId: "2103576349499855160", completedAt: "2026-09-25T20:59:39.488Z", window: { sinceId: "2103576349499855160", end: "2026-09-27T20:59:39.328Z" } } as unknown as SearchCursor;
+  const { params } = prepareSearch(stuck, new Date("2026-10-02T09:00:00Z"));
+  assert.equal(params.has("since_id"), false);
+  assert.equal(params.get("start_time"), "2026-09-26T09:00:00.000Z");
+  assert.equal(params.get("end_time"), "2026-10-02T08:59:00.000Z");
 });

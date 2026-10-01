@@ -9,9 +9,8 @@ export const SOCIAL_PAGE_SIZE = 10;
 const DAY = 86_400_000;
 export type SearchCursor = {
   queryKey?: string;
-  sinceId?: string;
   completedAt?: string;
-  window?: { start?: string; sinceId?: string; end: string; nextToken?: string; newestId?: string };
+  window?: { start: string; end: string; nextToken?: string };
 };
 
 // Slots line up with the cron at 09:00 and 21:00 UTC, including manual invocations.
@@ -21,18 +20,18 @@ export function prepareSearch(previous: SearchCursor, now: Date) {
   const oldestCovered = cursor.window?.start ?? cursor.completedAt ?? cursor.window?.end;
   const expired = Boolean(cursor.window && oldestCovered && new Date(oldestCovered).getTime() < now.getTime() - (7 * DAY - 3_600_000));
   if (expired) cursor = { queryKey: SOCIAL_QUERY_KEY };
+  // X rejects since_id together with end_time, and the fixed end_time is what keeps pagination
+  // stable, so consecutive windows are chained by time: each starts where the last one ended.
+  // Windows saved before this change used since_id instead of a start; they are rebuilt by time.
+  if (cursor.window && !cursor.window.start) cursor.window = undefined;
   if (!cursor.window) {
     const end = new Date(now.getTime() - 60_000).toISOString();
-    // Recent search only covers seven days. An old since_id must not hide that limit.
+    // Recent search only covers seven days.
     const recent = cursor.completedAt && new Date(cursor.completedAt).getTime() > now.getTime() - 6 * DAY;
-    cursor.window = recent && cursor.sinceId
-      ? { sinceId: cursor.sinceId, end }
-      : { start: recent ? cursor.completedAt : new Date(now.getTime() - (expired || cursor.completedAt ? 6 : 1) * DAY).toISOString(), end };
+    cursor.window = { start: recent ? cursor.completedAt! : new Date(now.getTime() - (expired || cursor.completedAt ? 6 : 1) * DAY).toISOString(), end };
   }
   const window = cursor.window;
-  const params = new URLSearchParams({ query: SOCIAL_QUERY, max_results: String(SOCIAL_PAGE_SIZE), sort_order: "recency", "tweet.fields": "author_id,created_at,note_tweet", end_time: window.end });
-  if (window.sinceId) params.set("since_id", window.sinceId);
-  else if (window.start) params.set("start_time", window.start);
+  const params = new URLSearchParams({ query: SOCIAL_QUERY, max_results: String(SOCIAL_PAGE_SIZE), sort_order: "recency", "tweet.fields": "author_id,created_at,note_tweet", start_time: window.start, end_time: window.end });
   if (window.nextToken) params.set("next_token", window.nextToken);
   return { cursor, params, expired };
 }
@@ -46,14 +45,12 @@ export const searchResponse = z.object({
 export const usersResponse = z.object({ data: z.array(z.object({ id, username: z.string() })).optional(), errors: z.array(z.unknown()).optional() });
 export function advanceSearch(cursor: SearchCursor, response: z.infer<typeof searchResponse>): SearchCursor {
   if (!cursor.window) throw new Error("missing_window");
-  const ids = [cursor.window.newestId, response.meta.newest_id, ...(response.data ?? []).map(p => p.id)].filter((id): id is string => Boolean(id));
-  const newestId = ids.reduce<string | undefined>((a, b) => !a || BigInt(b) > BigInt(a) ? b : a, undefined);
-  if (response.meta.next_token) return { ...cursor, window: { ...cursor.window, nextToken: response.meta.next_token, newestId } };
-  return { queryKey: SOCIAL_QUERY_KEY, sinceId: newestId ?? cursor.sinceId, completedAt: cursor.window.end };
+  if (response.meta.next_token) return { ...cursor, window: { ...cursor.window, nextToken: response.meta.next_token } };
+  return { queryKey: SOCIAL_QUERY_KEY, completedAt: cursor.window.end };
 }
 
 // A rejected request (HTTP 400) fails identically on every retry, so coverage restarts from the
-// last completed time without the since_id or page token that X refused.
+// last completed time without the page token that X refused.
 export const restartSearch = (cursor: SearchCursor): SearchCursor => ({ queryKey: SOCIAL_QUERY_KEY, completedAt: cursor.completedAt });
 
 export class SocialApiError extends Error {
