@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight, MessageSquare, Rocket } from "lucide-react";
 import { localizeLeaderboard } from "@/i18n/benchmarks";
 import type { Experiment, Leaderboard, PortalArticle } from "@/lib/portal-types";
-import { bestValue, categoryLeaders, costFrontier, costMetric, heatmap, leaderSummary, orgKey, overallMetric, rankBy, scatterPoints, standoutCategory, type OrgKey, type ScatterPoint } from "@/lib/radar-insights";
+import { bestValue, categoryLeaders, costMetric, heatmap, leaderSummary, orgFrontiers, orgKey, overallMetric, rankBy, scatterPoints, standoutCategory, type OrgKey, type ScatterPoint } from "@/lib/radar-insights";
 import { PortalDate } from "./portal-sections";
 
 export const ORGS: OrgKey[] = ["anthropic", "openai", "google", "other"];
@@ -184,28 +184,46 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const board = useLocalized(rawBoard);
   const [ref, width] = useWidth(1100);
   const [hover, setHover] = useState<ScatterPoint | null>(null);
-  const points = useMemo(() => scatterPoints(board), [board]);
+  const [shown, setShown] = useState<OrgKey[]>(ORGS);
+  // Entrance delays only apply to the first reveal; filter changes respond immediately.
+  const [filtered, setFiltered] = useState(false);
+  const all = useMemo(() => scatterPoints(board), [board]);
   const cost = costMetric(board);
   const score = overallMetric(board);
-  if (board.status !== "ok" || !cost || !score || points.length < 5) return null;
+  if (board.status !== "ok" || !cost || !score || all.length < 5) return null;
+  const orgs = ORGS.filter(key => all.some(point => point.org === key));
+  const active = orgs.filter(key => shown.includes(key));
+  const points = all.filter(point => active.includes(point.org));
+  function toggle(key: OrgKey) {
+    setFiltered(true);
+    setHover(null);
+    setShown(current => current.includes(key) ? (current.filter(item => item !== key && orgs.includes(item)).length ? current.filter(item => item !== key) : current) : [...current, key]);
+  }
+  function showAll() {
+    setFiltered(true);
+    setHover(null);
+    setShown(ORGS);
+  }
   const narrow = width < 640;
   const height = narrow ? 340 : 440;
   const m = { l: narrow ? 36 : 52, r: 16, t: 16, b: 44 };
-  const lx = Math.floor(Math.log10(Math.min(...points.map(point => point.cost))));
-  const hx = Math.ceil(Math.log10(Math.max(...points.map(point => point.cost))));
-  const hy = Math.ceil(Math.max(...points.map(point => point.score)) / 10) * 10;
+  // Axes span every model, so they stay put while companies are toggled.
+  const lx = Math.floor(Math.log10(Math.min(...all.map(point => point.cost))));
+  const hx = Math.ceil(Math.log10(Math.max(...all.map(point => point.cost))));
+  const hy = Math.ceil(Math.max(...all.map(point => point.score)) / 10) * 10;
   const sx = (value: number) => m.l + (Math.log10(value) - lx) / (hx - lx) * (width - m.l - m.r);
   const sy = (value: number) => m.t + (1 - value / hy) * (height - m.t - m.b);
   const money = (value: number) => new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: value < 0.01 ? 4 : value < 1 ? 2 : 2, minimumFractionDigits: value >= 1 && Number.isInteger(value) ? 0 : 2 }).format(value);
-  const frontier = costFrontier(points);
+  const frontiers = orgFrontiers(all, orgs);
+  const visibleFrontiers = frontiers.filter(entry => active.includes(entry.org));
   const value = bestValue(points);
   const top = [...points].sort((a, b) => b.score - a.score)[0];
   const labels = [top, value].filter((point, index, list): point is ScatterPoint => Boolean(point) && list.findIndex(item => item?.id === point?.id) === index);
   const xTicks = Array.from({ length: hx - lx + 1 }, (_, index) => Math.pow(10, lx + index));
   const yStep = hy > 40 ? 20 : 10;
   const yTicks = Array.from({ length: hy / yStep + 1 }, (_, index) => index * yStep);
-  const ordered = [...points].sort((a, b) => (a.org === "other" ? 0 : 1) - (b.org === "other" ? 0 : 1));
-  const orgs = ORGS.filter(key => points.some(point => point.org === key));
+  const ordered = [...all].sort((a, b) => (a.org === "other" ? 0 : 1) - (b.org === "other" ? 0 : 1));
+  const wait = (ms: number) => filtered ? undefined : delay(ms);
   function track(event: React.PointerEvent<SVGSVGElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -221,22 +239,25 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   return <div className="radar-card radar-scatter">
     <div className="radar-scatter-head">
       <div><h2>{t("scatterTitle", { y: score.label, x: cost.label })}</h2><p>{t("scatterDescription", { count: points.length, source: board.name })}</p></div>
-      <ul className="radar-legend">{orgs.map(key => <li key={key}><span className="radar-dot" style={{ background: orgColor(key) }}/>{t(`org.${key}`)}</li>)}<li><span className="radar-line-key"/>{t("frontier")}</li></ul>
+      <div className="radar-org-filter" role="group" aria-label={t("scatterFilter")}>
+        <button type="button" aria-pressed={active.length === orgs.length} onClick={showAll}>{t("scatterAll")}</button>
+        {orgs.map(key => <button type="button" key={key} aria-pressed={active.includes(key)} onClick={() => toggle(key)} style={{ "--org": orgColor(key) } as CSSProperties}><span className="radar-line-key" aria-hidden="true"/>{t(`org.${key}`)}</button>)}
+      </div>
     </div>
     <div ref={ref} className="radar-scatter-plot">
       <svg width={width} height={height} role="img" aria-label={t("scatterAria", { y: score.label, x: cost.label })} onPointerMove={track} onPointerLeave={() => setHover(null)}>
         {yTicks.map(tick => <g key={`y${tick}`}><line x1={m.l} x2={width - m.r} y1={sy(tick)} y2={sy(tick)} className="radar-grid"/><text x={m.l - 10} y={sy(tick) + 4} textAnchor="end" className="radar-axis">{tick}</text></g>)}
         {xTicks.map(tick => <g key={`x${tick}`}><line x1={sx(tick)} x2={sx(tick)} y1={m.t} y2={height - m.b} className="radar-grid"/><text x={sx(tick)} y={height - m.b + 20} textAnchor="middle" className="radar-axis">{money(tick)}</text></g>)}
         <text x={(m.l + width - m.r) / 2} y={height - 6} textAnchor="middle" className="radar-axis-title">{t("scatterX", { metric: cost.label })}</text>
-        <polyline points={frontier.map(point => `${sx(point.cost).toFixed(1)},${sy(point.score).toFixed(1)}`).join(" ")} pathLength={1} className="radar-frontier rc-draw" style={delay(1500)}/>
+        {frontiers.map((entry, index) => <polyline key={entry.org} points={entry.points.map(point => `${sx(point.cost).toFixed(1)},${sy(point.score).toFixed(1)}`).join(" ")} pathLength={1} stroke={orgColor(entry.org)} className={`radar-frontier rc-draw ${active.includes(entry.org) ? "" : "off"}`} style={delay(1500 + index * 150)}/>)}
         {ordered.map(point => {
           const on = hover?.id === point.id;
-          return <circle key={point.id} cx={sx(point.cost)} cy={sy(point.score)} r={(point.org === "other" ? 4 : 5) + (on ? 3 : 0)} fill={orgColor(point.org)} className={`radar-point rc-pop ${on ? "on" : ""}`} style={delay(300 + (sx(point.cost) - m.l) / (width - m.l) * 1100)}/>;
+          return <circle key={point.id} cx={sx(point.cost).toFixed(1)} cy={sy(point.score).toFixed(1)} r={(point.org === "other" ? 4 : 5) + (on ? 3 : 0)} fill={orgColor(point.org)} className={`radar-point rc-pop ${on ? "on" : ""} ${active.includes(point.org) ? "" : "off"}`} style={delay(Math.round(300 + (sx(point.cost) - m.l) / (width - m.l) * 1100))}/>;
         })}
         {!narrow && labels.map(point => {
           const x = sx(point.cost);
           const start = x < 220;
-          return <text key={`l${point.id}`} x={start ? x + 12 : x - 12} y={sy(point.score) + 4} textAnchor={start ? "start" : "end"} className="radar-point-label rc-fade" style={delay(2600)}>{point.name}</text>;
+          return <text key={`l${point.id}`} x={start ? x + 12 : x - 12} y={sy(point.score) + 4} textAnchor={start ? "start" : "end"} className="radar-point-label rc-fade" style={wait(2600)}>{point.name}</text>;
         })}
       </svg>
       {hover && <div className="radar-tooltip" style={{ left: Math.min(width - 250, sx(hover.cost) + 14), top: Math.max(0, sy(hover.score) - 30) }}>
@@ -248,7 +269,7 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
     <details className="radar-table-toggle">
       <summary>{t("scatterTable")}</summary>
       <table><caption className="sr-only">{t("frontier")}</caption><thead><tr><th scope="col">{t("model")}</th><th scope="col">{t("organization")}</th><th scope="col" className="numeric">{score.label}</th><th scope="col" className="numeric">{cost.label}</th></tr></thead>
-        <tbody>{frontier.slice().reverse().map(point => <tr key={point.id}><td>{point.name}</td><td>{point.organization}</td><td className="numeric">{point.score}</td><td className="numeric">{money(point.cost)}</td></tr>)}</tbody></table>
+        <tbody>{visibleFrontiers.flatMap(entry => entry.points.slice().reverse()).map(point => <tr key={point.id}><td><span className="radar-dot" style={{ background: orgColor(point.org) }}/>{point.name}</td><td>{point.organization}</td><td className="numeric">{point.score}</td><td className="numeric">{money(point.cost)}</td></tr>)}</tbody></table>
     </details>
     <footer className="radar-source"><a href={board.url} target="_blank" rel="noreferrer">{t("source")} {board.name}<ArrowUpRight size={12} aria-hidden="true"/></a><span>{t("scatterNote")}</span></footer>
   </div>;

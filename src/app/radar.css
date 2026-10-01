@@ -172,8 +172,16 @@
 .radar-grid { stroke: var(--radar-grid); stroke-width: 1; }
 .radar-axis { fill: #a9a2a7; font-size: 12px; }
 .radar-axis-title { fill: #c4bcc1; font-size: 12px; }
-.radar-frontier { fill: none; stroke: var(--foreground); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; opacity: .85; }
-.radar-point { stroke: var(--radar-card); stroke-width: 2; transition: r .15s; }
+.radar-frontier { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; opacity: .9; transition: opacity .2s; }
+.radar-frontier.off, .radar-point.off { opacity: 0; pointer-events: none; }
+.radar-point { stroke: var(--radar-card); stroke-width: 2; transition: r .15s, opacity .2s; }
+.radar-org-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.radar-org-filter button { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 14px; border: 1px solid #333033; border-radius: 999px; font-size: 12px; color: #a9a2a7; transition: background-color .18s, border-color .18s, color .18s; }
+.radar-org-filter button:hover { color: var(--foreground); }
+.radar-org-filter button[aria-pressed="true"] { background: #2a272a; border-color: #423d41; color: var(--foreground); }
+.radar-org-filter .radar-line-key { height: 3px; border-radius: 2px; background: var(--org); opacity: .35; transition: opacity .18s; }
+.radar-org-filter button[aria-pressed="true"] .radar-line-key { opacity: 1; }
+.radar-table-toggle td .radar-dot { margin-right: 8px; }
 .radar-point.on { stroke: var(--foreground); }
 .radar-point-label { fill: var(--foreground); font-size: 12px; font-weight: 600; paint-order: stroke; stroke: var(--radar-card); stroke-width: 4px; stroke-linejoin: round; }
 .radar-tooltip { position: absolute; z-index: 2; width: 236px; display: grid; gap: 6px; padding: 12px 14px; border: 1px solid #423d41; border-radius: 8px; background: #262326; box-shadow: 0 8px 24px rgba(0, 0, 0, .4); pointer-events: none; font-size: 12px; color: #c4bcc1; animation: rc-fade .15s ease-out; }

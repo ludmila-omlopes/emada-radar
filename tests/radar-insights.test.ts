@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bestValue, categoryLeaders, costFrontier, dailyCounts, featuredReleases, heatmap, leaderSummary, newsSummary, orgKey, rankBy, scatterPoints, standoutCategory } from "../src/lib/radar-insights";
+import { bestValue, categoryLeaders, costFrontier, dailyCounts, featuredReleases, heatmap, leaderSummary, newsSummary, orgFrontiers, orgKey, rankBy, scatterPoints, standoutCategory } from "../src/lib/radar-insights";
 import type { Leaderboard, PortalArticle } from "../src/lib/portal-types";
 
 const now = Date.parse("2026-09-25T20:00:00Z");
@@ -66,4 +66,5 @@ test("builds the cost frontier and best value pick", () => {
   assert.deepEqual(points.map(point => point.name), ["Cheap", "Mid", "Worse", "Top"]);
   assert.deepEqual(costFrontier(points).map(point => point.name), ["Cheap", "Mid", "Top"]);
   assert.equal(bestValue(points)?.name, "Mid");
+  assert.deepEqual(orgFrontiers(points, ["anthropic", "openai", "google", "other"]).map(entry => [entry.org, entry.points.map(point => point.name)]), [["anthropic", ["Top"]], ["openai", ["Cheap"]], ["other", ["Mid"]]]);
 });

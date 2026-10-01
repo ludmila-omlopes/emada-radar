@@ -136,6 +136,11 @@ export function costFrontier(points: ScatterPoint[]) {
   return frontier;
 }
 
+// One cost frontier per organization, so each company's own trade-off curve can be drawn.
+export function orgFrontiers(points: ScatterPoint[], orgs: OrgKey[]) {
+  return orgs.map(org => ({ org, points: costFrontier(points.filter(point => point.org === org)) })).filter(entry => entry.points.length > 0);
+}
+
 // Frontier model with the most score per dollar among those at or above the median score.
 export function bestValue(points: ScatterPoint[]) {
   if (!points.length) return null;
