@@ -21,14 +21,16 @@ const post = (id = "2000000000000000010") => ({ id, author_id: "1", text: "New A
 let paths: string[] = [];
 let page: unknown;
 let failure = false;
+let rejected = false;
 const store = new SocialSearchStore(pool, async path => {
   paths.push(path);
   if (failure) throw new SocialApiError("x_http_429");
+  if (rejected && path.startsWith("tweets/")) throw new SocialApiError("x_http_400", "Invalid since_id");
   return path.startsWith("users/") ? users : page;
 });
 before(async () => { const sql = await readFile(new URL("../migrations/007-social-search.sql", import.meta.url), "utf8"); await db.exec(sql); await db.exec(sql); });
 beforeEach(async () => {
-  paths = []; failure = false; page = { data: [post()], meta: { result_count: 1 } };
+  paths = []; failure = false; rejected = false; page = { data: [post()], meta: { result_count: 1 } };
   await db.exec("TRUNCATE social_search_posts, social_search_runs; UPDATE social_search_state SET cursor='{}', accounts='{}', lease_id=NULL, lease_until=NULL, last_error=NULL, last_success_at=NULL");
 });
 after(async () => { await db.close(); });
@@ -95,6 +97,23 @@ test("failed collections retain saved posts and cursor without immediate paid re
   const state = (await db.query<{ cursor: SearchCursor; last_error: string }>("SELECT cursor,last_error FROM social_search_state")).rows[0];
   assert.equal(state.cursor.sinceId, post().id);
   assert.equal(state.last_error, "x_http_429");
+});
+
+test("a rejected search records X's reason and restarts the window instead of repeating the request", async () => {
+  await store.collect("fake", first);
+  rejected = true;
+  assert.equal((await store.collect("fake", next)).ok, false);
+  const failed = new URLSearchParams(paths[2].split("?")[1]);
+  assert.equal(failed.get("since_id"), post().id);
+  const state = (await db.query<{ cursor: SearchCursor; last_error: string }>("SELECT cursor,last_error FROM social_search_state")).rows[0];
+  assert.equal(state.last_error, "x_http_400: Invalid since_id");
+  assert.equal(state.cursor.window, undefined);
+  assert.equal(state.cursor.sinceId, undefined);
+  rejected = false;
+  assert.ok((await store.collect("fake", third)).ok);
+  const retried = new URLSearchParams(paths[3].split("?")[1]);
+  assert.equal(retried.has("since_id"), false);
+  assert.equal(retried.get("start_time"), "2026-09-24T08:59:00.000Z");
 });
 
 test("partial or unexpected-author responses cannot advance the cursor", async () => {

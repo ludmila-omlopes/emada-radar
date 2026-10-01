@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import type { Pool } from "pg";
-import { advanceSearch, prepareSearch, readX, searchResponse, SOCIAL_QUERY_KEY, SocialApiError, socialSlot, usersResponse, type SearchCursor } from "./social-search";
+import { advanceSearch, prepareSearch, readX, restartSearch, searchResponse, SOCIAL_QUERY_KEY, SocialApiError, socialSlot, usersResponse, type SearchCursor } from "./social-search";
 import { socialProfiles, type Collection, type SocialPost } from "./portal-types";
 
 type State = { cursor: SearchCursor; accounts: Record<string, string>; last_success_at: Date | null; last_error: string | null };
@@ -26,6 +26,7 @@ export class SocialSearchStore {
     } catch (error) { await client.query("ROLLBACK"); throw error; }
     finally { client.release(); }
 
+    let searching = false;
     try {
       // Resolve only missing handles; no daily user-expansion charges.
       const missing = socialProfiles.filter(p => !state.accounts[p.username.toLowerCase()]);
@@ -39,6 +40,7 @@ export class SocialSearchStore {
         if (missing.some(p => !state.accounts[p.username.toLowerCase()])) throw new Error("x_users_incomplete");
       }
       // One page per slot: max 20 posts/day across all profiles, with no automatic retries.
+      searching = true;
       const result = searchResponse.parse(await this.request(`tweets/search/recent?${prepared.params}`, token));
       if (result.errors?.length) throw new Error("x_partial_response");
       const posts = (result.data ?? []).map(post => {
@@ -61,8 +63,11 @@ export class SocialSearchStore {
       return { ok: true, skipped: false, posts: posts.length, pending: Boolean(result.meta.next_token), windowExpired: prepared.expired };
     } catch (error) {
       const code = error instanceof SocialApiError ? error.message : "x_collection_failed";
-      await this.db.query("UPDATE social_search_state SET last_error=$1, lease_id=NULL, lease_until=NULL WHERE id=1 AND lease_id=$2", [code, lease]);
-      await this.db.query("UPDATE social_search_runs SET status='failed', finished_at=$1, error_code=$2 WHERE slot=$3", [now, code, slot]);
+      const reason = error instanceof SocialApiError && error.detail ? `${code}: ${error.detail}` : code;
+      const restart = searching && code === "x_http_400" ? JSON.stringify(restartSearch(prepared.cursor)) : null;
+      console.error(`[social] collection failed: ${reason}${restart ? " (search window restarted)" : ""}`);
+      await this.db.query("UPDATE social_search_state SET last_error=$1, cursor=COALESCE($3::jsonb, cursor), lease_id=NULL, lease_until=NULL WHERE id=1 AND lease_id=$2", [reason, lease, restart]);
+      await this.db.query("UPDATE social_search_runs SET status='failed', finished_at=$1, error_code=$2 WHERE slot=$3", [now, reason, slot]);
       return { ok: false, skipped: false, posts: 0, error: code };
     }
   }

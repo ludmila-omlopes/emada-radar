@@ -11,7 +11,7 @@ import { SocialSearchStore } from "./social-search-store";
 import { ARTIFICIAL_ANALYSIS_URL, parseArtificialAnalysisApi, parseArtificialAnalysisPage } from "./artificial-analysis";
 
 const LIVEBENCH_RAW = "https://raw.githubusercontent.com/LiveBench/new-livebench/main";
-const UA = "EmadaAcademy/2.0 (+https://emada.academy; source reader)";
+const UA = "EmadaAcademy/2.0 (+https://emada.space; source reader)";
 
 async function readRemote(url: string, revalidate: number, headers: Record<string, string> = {}, maxBytes = 2_000_000) {
   const response = await fetch(url, { headers: { "User-Agent": UA, ...headers }, signal: AbortSignal.timeout(12_000), next: { revalidate } });

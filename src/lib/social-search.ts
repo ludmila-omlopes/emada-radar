@@ -52,9 +52,19 @@ export function advanceSearch(cursor: SearchCursor, response: z.infer<typeof sea
   return { queryKey: SOCIAL_QUERY_KEY, sinceId: newestId ?? cursor.sinceId, completedAt: cursor.window.end };
 }
 
-export class SocialApiError extends Error {}
+// A rejected request (HTTP 400) fails identically on every retry, so coverage restarts from the
+// last completed time without the since_id or page token that X refused.
+export const restartSearch = (cursor: SearchCursor): SearchCursor => ({ queryKey: SOCIAL_QUERY_KEY, completedAt: cursor.completedAt });
+
+export class SocialApiError extends Error {
+  constructor(message: string, readonly detail?: string) { super(message); }
+}
 export async function readX(path: string, token: string): Promise<unknown> {
   const response = await fetch(`https://api.x.com/2/${path}`, { headers: { Authorization: `Bearer ${token}` }, cache: "no-store", signal: AbortSignal.timeout(15_000) });
-  if (!response.ok) throw new SocialApiError(`x_http_${response.status}`);
+  if (!response.ok) {
+    const body = await response.json().catch(() => null) as { errors?: { message?: unknown }[]; detail?: unknown; title?: unknown } | null;
+    const reason = [body?.errors?.[0]?.message, body?.detail, body?.title].find((value): value is string => typeof value === "string");
+    throw new SocialApiError(`x_http_${response.status}`, reason?.replace(/\s+/g, " ").slice(0, 300));
+  }
   return response.json();
 }
