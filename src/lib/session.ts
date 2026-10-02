@@ -2,6 +2,7 @@ import "server-only";
 import { cache } from "react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { isAcademyOwner } from "./academy-access";
 import { authConfigured, getAuth } from "./auth";
 import { getDb } from "./db";
 
@@ -14,6 +15,10 @@ export const isAdmin = cache(async () => {
   if (!session) return false;
   const result = await getDb().query("SELECT 1 FROM admin_users WHERE user_id = $1", [session.user.id]);
   return result.rowCount === 1;
+});
+export const canAccessAcademy = cache(async () => {
+  const session = await getSession();
+  return isAcademyOwner(session?.user, session ? await isAdmin() : false);
 });
 export async function requireSession(next = "/progresso") {
   const session = await getSession();

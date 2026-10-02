@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { requireSession } from "@/lib/session";
+import { canAccessAcademy, requireSession } from "@/lib/session";
+import { AcademyWaitlist } from "@/components/academy-waitlist";
 import { getProgress } from "@/lib/progress";
 import { getDayProgress } from "@/lib/learning-days";
 import { getPublishedDays } from "@/lib/published-lessons";
@@ -11,6 +12,8 @@ export const metadata = { title: "Meu progresso", robots: { index: false, follow
 export default async function ProgressPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
   await requireSession("/progresso");
+  // Account settings stay reachable while the lessons are on the waitlist.
+  if (!await canAccessAcademy()) return <AcademyWaitlist source="progresso"><details className="account-details" open={Boolean(error)}><summary>Minha conta · Conexão com Google</summary><GoogleAccount error={error}/></details></AcademyWaitlist>;
   const progress = await getProgress();
   const learningDays = await getPublishedDays();
   const state = getDayProgress(progress.map(p => p.lesson_slug), learningDays);

@@ -408,3 +408,60 @@
   .news-day, .experiment-card, .social-post, .training-card, .radar-page .skill-card, .radar-page .skill-repository { animation: none; }
   .experiment-card:hover, .social-post:hover, .training-card:hover, .radar-page .skill-card:hover, .radar-page .skill-repository:hover, .radar-page .profile-directory > a:hover { transform: none; }
 }
+
+/* =========================================================
+   Newsletter: sign-up, confirmation pages and admin preview
+   ========================================================= */
+.newsletter-signup { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; align-items: center; padding: 32px; border: 1px solid #3a2c36; border-radius: 12px; background: var(--radar-release); }
+.newsletter-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--pink); }
+.newsletter-copy h2 { font-size: 26px; line-height: 1.2; letter-spacing: -.03em; font-weight: 500; }
+.newsletter-copy p:not(.newsletter-eyebrow) { margin-top: 10px; font-size: 14px; line-height: 1.65; color: #b7b0b5; max-width: 52ch; }
+.newsletter-form { min-width: 0; }
+.newsletter-fields { position: relative; display: flex; gap: 8px; }
+.newsletter-fields input[type="email"] { height: 44px; font-size: 15px; background: #141214; }
+.newsletter-fields button { height: 44px; padding-inline: 18px; }
+.newsletter-trap { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.newsletter-note { margin-top: 10px; font-size: 12px; line-height: 1.55; color: #a9a2a7; }
+.newsletter-message { margin-top: 8px; font-size: 14px; line-height: 1.55; }
+.newsletter-message:empty { display: none; }
+.newsletter-signup.compact { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 24px; margin-top: 36px; padding: 24px; background: transparent; border-color: var(--line); }
+.newsletter-signup.compact h2 { font-size: 18px; letter-spacing: -.02em; }
+.newsletter-page { max-width: 760px; }
+.newsletter-page .page-heading h1 { margin-top: 8px; }
+.newsletter-page .page-heading > .newsletter-eyebrow { margin: 0; font-size: 12px; line-height: 1.4; color: var(--pink); }
+.newsletter-token-form { display: grid; justify-items: start; gap: 16px; }
+.newsletter-token-form p { display: flex; align-items: center; gap: 8px; }
+.newsletter-token-form p:empty { display: none; }
+.newsletter-admin .text-link { margin-bottom: 24px; gap: 8px; }
+.newsletter-admin-config, .newsletter-admin-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.newsletter-admin-config > div, .newsletter-admin-stats > div { padding: 18px 20px; border-radius: 12px; background: var(--radar-card); min-width: 0; }
+.newsletter-admin-config dt, .newsletter-admin-stats dt { font-size: 12px; color: #a9a2a7; }
+.newsletter-admin-config dd { margin-top: 6px; font-size: 14px; overflow-wrap: anywhere; }
+.newsletter-admin-stats dd { margin-top: 6px; font-size: 30px; letter-spacing: -.03em; }
+.newsletter-admin-table { overflow-x: auto; margin: 8px 0 24px; }
+.newsletter-admin-table table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px; }
+.newsletter-admin-table th, .newsletter-admin-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.newsletter-admin-table thead th { font-size: 12px; font-weight: 400; color: #a9a2a7; }
+.newsletter-admin-test { margin: 24px 0; }
+.newsletter-admin .callout { margin: 16px 0; padding: 16px 20px; border: 1px solid #493a44; border-radius: 12px; }
+.newsletter-previews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+.newsletter-previews h2 { font-size: 20px; font-weight: 500; }
+.newsletter-previews p { margin: 6px 0 12px; font-size: 13px; color: #a9a2a7; }
+.newsletter-previews iframe { display: block; width: 100%; height: 1100px; border: 0; border-radius: 12px; background: #f4f1f3; }
+@media (max-width: 900px) {
+  .newsletter-signup, .newsletter-signup.compact, .newsletter-previews { grid-template-columns: minmax(0, 1fr); }
+  .newsletter-signup { gap: 20px; padding: 24px; }
+}
+@media (max-width: 560px) {
+  .newsletter-fields { flex-direction: column; }
+  .newsletter-signup { padding: 20px; }
+  .newsletter-copy h2 { font-size: 22px; }
+  .newsletter-admin-config, .newsletter-admin-stats { grid-template-columns: minmax(0, 1fr); }
+}
+
+.waitlist-page { max-width: 760px; }
+.waitlist-page .page-heading > .newsletter-eyebrow { margin: 0 0 8px; font-size: 12px; line-height: 1.4; color: var(--pink); }
+.waitlist-form { padding: 24px; border: 1px solid #3a2c36; border-radius: 12px; background: var(--radar-release); }
+.waitlist-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 24px; }
+.waitlist-page .account-details { margin-top: 40px; }
+@media (max-width: 560px) { .waitlist-form { padding: 18px; } }

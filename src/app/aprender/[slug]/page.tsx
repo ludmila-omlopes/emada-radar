@@ -1,12 +1,13 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getDayProgress } from "@/lib/learning-days";
 import { getPublishedDays } from "@/lib/published-lessons";
 import { getProgress } from "@/lib/progress";
-import { requireSession } from "@/lib/session";
+import { canAccessAcademy, requireSession } from "@/lib/session";
 import { LessonSession } from "@/components/lesson-session";
 import { archivedLessons } from "@/lib/curriculum";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  if (!await canAccessAcademy()) return { title: "Emada Academy" };
   const { slug } = await params;
   const learningDays = await getPublishedDays();
   const day = learningDays.find(d => d.lesson.slug === slug);
@@ -14,6 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: day ? `Dia ${day.number} · ${day.lesson.title}` : archived ? `${archived.title} · Versão anterior` : "Aula não encontrada" };
 }
 export default async function LessonPage({ params }: { params: Promise<{ slug: string }> }) {
+  // The waitlist lives on the timeline page, outside the focused lesson layout.
+  if (!await canAccessAcademy()) redirect("/modulos");
   const { slug } = await params;
   const learningDays = await getPublishedDays();
   const day = learningDays.find(d => d.lesson.slug === slug);

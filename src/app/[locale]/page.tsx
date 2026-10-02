@@ -9,6 +9,8 @@ import { Reveal } from "@/components/reveal";
 import { CategoryLeaders, CostScatter, ExperimentHighlights, RankingSnapshot, ReleaseCards, SourceBars, SummaryTiles } from "@/components/radar";
 import { currentTime, experimentSummary, featuredReleases, newsSummary, topExperiments } from "@/lib/radar-insights";
 import { getArtificialAnalysis, getExperiments, getLiveBench, getPortalNews, getSocialPosts } from "@/lib/portal-data";
+import { newsletterSettings } from "@/lib/newsletter-sender";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export default async function HomePage() {
     const t = await getTranslations("Portal");
@@ -68,6 +70,8 @@ export default async function HomePage() {
         <SocialFeed data={social} limit={3}/>
       </Reveal>
     </div>
+
+    {newsletterSettings() && <Reveal as="div" className="radar-block"><NewsletterSignup/></Reveal>}
 
     <nav className="radar-learn" aria-label={t("learn")}>
       <Link href="/modulos"><span><strong>{t("academyTitle")}</strong><small>{t("academyDescription")}</small></span><ArrowUpRight size={18} aria-hidden="true"/></Link>

@@ -1,12 +1,13 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { getDb } from "@/lib/db";
-import { getSession } from "@/lib/session";
+import { canAccessAcademy, getSession } from "@/lib/session";
 import { validateSubmission } from "@/lib/validation";
 
 export async function saveLesson(input: unknown) {
   const session = await getSession();
   if (!session) return { ok: false, error: "Entre na sua conta para salvar o progresso." };
+  if (!await canAccessAcademy()) return { ok: false, error: "A Academy ainda não está aberta. Entre na lista de espera para ser avisado." };
   const validation = validateSubmission(input);
   if (!validation.ok) return validation;
   const { lessonSlug, answer, checked, choice } = validation.data;

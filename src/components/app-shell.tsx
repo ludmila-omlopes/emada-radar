@@ -3,6 +3,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { stripLocale } from "@/i18n/config";
 import { LanguageSelector } from "./language-selector";
 import { LocaleSyncNotice } from "./locale-sync-notice";
+import { NewsletterSignup } from "./newsletter-signup";
 
 import { useState } from "react";
 import { PortalLink as Link } from "@/components/portal-link";
@@ -20,7 +21,7 @@ export function Logo() {
     const t = useTranslations("Portal");
     return <Link href="/" className="brand" aria-label={t("homeLabel")}><span className="brand-mark">e<span>✳</span></span><span>emada<span className="brand-subtitle">{t("brandSubtitle")}</span></span></Link>;
 }
-export function AppShell({ children, user, completed, admin, lessons: allLessons }: {
+export function AppShell({ children, user, completed, admin, lessons: allLessons, newsletter }: {
     children: React.ReactNode;
     user: {
         name: string;
@@ -29,6 +30,7 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
     completed: number;
     admin: boolean;
     lessons: Pick<Lesson, "slug" | "title" | "intro" | "minutes">[];
+    newsletter: boolean;
 }) {
     const t = useTranslations("Portal");
     const locale = useLocale();
@@ -41,7 +43,7 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
     const [searchOpen, setSearchOpen] = useState(false);
     const [query, setQuery] = useState("");
     const [logoutError, setLogoutError] = useState("");
-    const current = nav.find(item => item.href === pathname)?.label ?? (pathname.startsWith("/aprender") ? t("classroom") : pathname.startsWith("/admin") ? t("administration") : pathname === "/progresso" ? t("progress") : pathname === "/biblioteca" ? t("library") : pathname === "/laboratorio" ? t("lab") : t("account"));
+    const current = nav.find(item => item.href === pathname)?.label ?? (pathname.startsWith("/aprender") ? t("classroom") : pathname.startsWith("/admin") ? t("administration") : pathname === "/progresso" ? t("progress") : pathname === "/biblioteca" ? t("library") : pathname === "/laboratorio" ? t("lab") : pathname.startsWith("/newsletter") ? "Newsletter" : t("account"));
     const normalize = (value: string) => value.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const search = normalize(query.trim());
     const lessonResults = allLessons.filter(l => normalize(l.title + " " + l.intro).includes(search));
@@ -116,6 +118,6 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
     {!["/", "/modulos", "/progresso", "/modelos", "/noticias", "/vozes", "/experimentos", "/formacao", "/skills"].includes(pathname) && <div className="context-bar"><div className="breadcrumb"><Link href="/">Emada</Link><ChevronRight size={15}/><span>{current}</span></div>{user && <Link href="/progresso" className="context-progress">{t("completedDays", {completed, total:allLessons.length})} <ArrowUpRight size={15}/></Link>}</div>}
     {logoutError && <p role="alert" className="error-text global-alert">{logoutError}</p>}
     <main id="main-content" tabIndex={-1}><LocaleSyncNotice/>{children}</main>
-    <footer className="footer"><div className="footer-top"><Logo /><p>{t("footerDescription")}</p><div className="footer-links"><Link href="/biblioteca">{t("library")}<Library size={15}/></Link><Link href="/laboratorio">{t("lab")}<FlaskConical size={15}/></Link>{user && <Link href="/progresso">{t("progress")}<ArrowUpRight size={15}/></Link>}{admin && <Link href="/admin/aulas">{t("editLessons")}<BookOpen size={15}/></Link>}{admin && <Link href="/admin">{t("administration")}<ShieldCheck size={15}/></Link>}{user && <button onClick={signOut}>{t("signOut")}<LogOut size={15}/></button>}</div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Emada Academy</span><a href="https://ludylops.com" target="_blank" rel="noreferrer">{t("byLud")}<ArrowUpRight size={14}/></a></div></footer>
+    <footer className="footer"><div className="footer-top"><Logo /><p>{t("footerDescription")}</p><div className="footer-links"><Link href="/biblioteca">{t("library")}<Library size={15}/></Link><Link href="/laboratorio">{t("lab")}<FlaskConical size={15}/></Link>{user && <Link href="/progresso">{t("progress")}<ArrowUpRight size={15}/></Link>}{admin && <Link href="/admin/aulas">{t("editLessons")}<BookOpen size={15}/></Link>}{admin && <Link href="/admin">{t("administration")}<ShieldCheck size={15}/></Link>}{user && <button onClick={signOut}>{t("signOut")}<LogOut size={15}/></button>}</div></div>{newsletter && pathname !== "/" && !pathname.startsWith("/newsletter") && <NewsletterSignup variant="compact"/>}<div className="footer-bottom"><span>© {new Date().getFullYear()} Emada Academy</span><a href="https://ludylops.com" target="_blank" rel="noreferrer">{t("byLud")}<ArrowUpRight size={14}/></a></div></footer>
   </div>;
 }

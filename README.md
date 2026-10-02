@@ -10,6 +10,7 @@ Portal para profissionais de inteligência artificial acompanharem notícias, be
 - Interface em português e inglês, com traduções de conteúdo via OpenRouter.
 - Identificação de lançamentos de modelos com Jev e filtro de notícias destacadas.
 - Aulas, acompanhamento de progresso, autenticação e administração de conteúdo.
+- Newsletter semanal do Radar por e-mail, com dupla confirmação e envio pelo Resend.
 
 ## Executar localmente
 
@@ -41,6 +42,8 @@ O build valida credenciais e tabelas das integrações habilitadas. As flags de 
 - [Login com Google](docs/google-login.md)
 - [Chat das aulas](docs/practice-chat.md)
 - [Editor administrativo](docs/admin-lesson-editor.md)
+- [Newsletter do Radar](docs/newsletter.md)
+- [Lista de espera da Academy](docs/academy-waitlist.md)
 
 ## Configuração e publicação
 

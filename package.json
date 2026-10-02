@@ -17,7 +17,9 @@
     "db:migrate:localization": "tsx scripts/migrate-localization.ts",
     "db:migrate:translations": "tsx scripts/migrate-openrouter-translations.ts",
     "db:migrate:news-classification": "tsx scripts/migrate-news-classification.ts",
-    "db:migrate:social": "tsx scripts/migrate-social-search.ts"
+    "db:migrate:social": "tsx scripts/migrate-social-search.ts",
+    "db:migrate:newsletter": "tsx scripts/migrate-newsletter.ts",
+    "db:migrate:waitlist": "tsx scripts/migrate-academy-waitlist.ts"
   },
   "dependencies": {
     "@next/env": "^16.3.4",

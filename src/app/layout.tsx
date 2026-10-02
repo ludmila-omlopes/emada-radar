@@ -8,6 +8,7 @@ import { getSession, isAdmin } from "@/lib/session";
 import { getProgress } from "@/lib/progress";
 import { getDayProgress } from "@/lib/learning-days";
 import { getPublishedDays } from "@/lib/published-lessons";
+import { newsletterSettings } from "@/lib/newsletter-sender";
 import "./globals.css";
 import "./portal.css";
 import "./radar.css";
@@ -18,5 +19,5 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = await getLocale();
   const [session, progress, admin] = await Promise.all([getSession(), getProgress(), isAdmin()]);
   const lessons = (await getPublishedDays()).map(({ lesson: { slug, title, intro, minutes } }) => ({ slug, title, intro, minutes }));
-  return <html lang={locale} data-scroll-behavior="smooth" className={`dark ${geist.variable} ${space.variable}`}><body><NextIntlClientProvider><TooltipProvider><AppShell user={session ? { name: session.user.name, email: session.user.email } : null} completed={getDayProgress(progress.map(p => p.lesson_slug)).count} admin={admin} lessons={lessons}>{children}</AppShell></TooltipProvider></NextIntlClientProvider></body></html>;
+  return <html lang={locale} data-scroll-behavior="smooth" className={`dark ${geist.variable} ${space.variable}`}><body><NextIntlClientProvider><TooltipProvider><AppShell user={session ? { name: session.user.name, email: session.user.email } : null} completed={getDayProgress(progress.map(p => p.lesson_slug)).count} admin={admin} lessons={lessons} newsletter={Boolean(newsletterSettings())}>{children}</AppShell></TooltipProvider></NextIntlClientProvider></body></html>;
 }
