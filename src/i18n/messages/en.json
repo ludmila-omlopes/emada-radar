@@ -207,6 +207,8 @@
     "footerDescription": "Knowledge for working with AI.",
     "byLud": "by Lud",
     "copyright": "© {year} Radar · <emada>by Emada</emada>",
+    "consultingPrompt": "Need help using AI in your workflow?",
+    "consultingLink": "Meet Emada's consulting",
     "sourceCount": "{available}/{total} {kind, select, fontes {sources} buscas {searches} other {profiles}} available",
     "comments": "{count, plural, one {# comment} other {# comments}}",
     "points": "{count, plural, one {# point} other {# points}}",
