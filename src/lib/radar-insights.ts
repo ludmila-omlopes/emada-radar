@@ -44,12 +44,22 @@ export function featuredReleases(items: PortalArticle[], now: number, limit = 4)
 }
 
 // Public summary for emada.space: this week's releases first, then the newest news,
-// with the localized title when one exists. Future-dated items are left out.
+// with the localized title when one exists. Future-dated items are left out, and an
+// announcement published by two sources (DeepMind and the Google blog) appears once.
 export function radarHighlights(items: PortalArticle[], now: number, limit = 3) {
   const newest = items.filter(item => time(item.publishedAt) <= now).sort((a, b) => time(b.publishedAt) - time(a.publishedAt));
   const fresh = (item: PortalArticle) => item.modelRelease && now - time(item.publishedAt) < 7 * DAY;
-  const picked = [...newest.filter(fresh), ...newest.filter(item => !fresh(item))].slice(0, limit);
-  return picked.map(item => ({ title: item.translation?.text ?? item.title, source: item.source, url: item.url, publishedAt: item.publishedAt, modelRelease: Boolean(item.modelRelease) }));
+  const seen = new Set<string>();
+  const highlights = [];
+  for (const item of [...newest.filter(fresh), ...newest.filter(item => !fresh(item))]) {
+    const title = item.translation?.text ?? item.title;
+    const key = title.trim().toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    highlights.push({ title, source: item.source, url: item.url, publishedAt: item.publishedAt, modelRelease: Boolean(item.modelRelease) });
+    if (highlights.length === limit) break;
+  }
+  return highlights;
 }
 
 export function sourceCounts(items: PortalArticle[]) {
