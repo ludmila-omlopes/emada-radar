@@ -2,6 +2,8 @@
 
 Portal para profissionais de inteligência artificial acompanharem notícias, benchmarks, lançamentos de modelos, publicações e experimentos da comunidade. Inclui a área de aprendizado Emada Academy.
 
+Publicado em [radar.emada.space](https://radar.emada.space) com a marca "Radar · por Emada". O domínio principal, `emada.space`, é o site da consultoria Emada, mantido em outro projeto.
+
 ## Recursos
 
 - Rankings do LiveBench e da Artificial Analysis.
@@ -11,6 +13,7 @@ Portal para profissionais de inteligência artificial acompanharem notícias, be
 - Identificação de lançamentos de modelos com Jev e filtro de notícias destacadas.
 - Aulas, acompanhamento de progresso, autenticação e administração de conteúdo.
 - Newsletter semanal do Radar por e-mail, com dupla confirmação e envio pelo Resend.
+- `/api/highlights`: JSON público com os três destaques mais recentes (lançamentos da semana primeiro, depois as notícias mais novas), lido pelo site emada.space. A CDN guarda cada resposta por uma hora.
 
 ## Executar localmente
 

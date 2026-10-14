@@ -37,7 +37,7 @@ O resumo não gera chamadas pagas: usa a classificação de lançamentos e as tr
 
 1. Criar a conta no Resend e verificar um domínio próprio (registros SPF e DKIM no DNS). Sem domínio verificado, o Resend só entrega ao e-mail do dono da conta, o que basta para o envio de teste.
 2. Aplicar `migrations/008-newsletter.sql` numa branch de teste com `NEWSLETTER_MIGRATION_DATABASE_URL` direto e `npm run db:migrate:newsletter -- --apply`. A migração é aditiva e idempotente. Depois, aplicar em Production.
-3. Configurar na Vercel, como segredos de servidor: `RESEND_API_KEY` (chave com permissão de envio), `NEWSLETTER_FROM` (por exemplo, `Emada Radar <radar@seu-dominio>`), opcionalmente `NEWSLETTER_REPLY_TO`, e `NEWSLETTER_ENABLED=true`. Os links usam a origem de `BETTER_AUTH_URL`; confira se é o domínio público.
+3. Configurar na Vercel, como segredos de servidor: `RESEND_API_KEY` (chave com permissão de envio), `NEWSLETTER_FROM` (por exemplo, `Emada Radar <radar@seu-dominio>`), opcionalmente `NEWSLETTER_REPLY_TO`, e `NEWSLETTER_ENABLED=true`. Os links usam a origem de `BETTER_AUTH_URL`; confira se é o domínio público (em produção, `https://radar.emada.space`).
 4. Publicar, abrir `/admin/newsletter` e usar "Enviar teste" antes da primeira segunda-feira.
 
 Para pausar, definir `NEWSLETTER_ENABLED=false` e publicar novamente: o formulário some, o cron responde 503 e os links de confirmação e cancelamento continuam funcionando.
