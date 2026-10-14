@@ -1,5 +1,5 @@
 import { plainText } from "./portal-parsers";
-const hosts = new Set(["openai.com", "www.openai.com", "blog.google", "deepmind.google", "www.anthropic.com", "anthropic.com", "huggingface.co"]);
+const hosts = new Set(["openai.com", "www.openai.com", "blog.google", "deepmind.google", "www.anthropic.com", "anthropic.com", "huggingface.co", "about.fb.com"]);
 function allowed(raw: string) {
   try { const url = new URL(raw); return url.protocol === "https:" && !url.username && !url.password && !url.port && hosts.has(url.hostname); }
   catch { return false; }

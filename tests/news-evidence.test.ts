@@ -16,6 +16,7 @@ test("only source hosts are fetched and redirects to private or unrelated hosts 
 test("metadata failures fall back to RSS evidence; HTML is bounded and never executed", async () => {
   const html = `<head><meta name="description" content="New model released"></head><body>Long story</body>`;
   assert.equal(await readNewsDescription("https://openai.com/index/example", (async () => new Response(html, { headers: { "content-type": "text/html" } })) as typeof fetch), "New model released");
+  assert.equal(await readNewsDescription("https://about.fb.com/news/2026/10/introducing-muse-wonder-models/", (async () => new Response(html, { headers: { "content-type": "text/html" } })) as typeof fetch), "New model released");
   assert.equal(await readNewsDescription("https://openai.com/index/example", (async () => { throw new Error("Timeout"); }) as typeof fetch), "");
   assert.equal(await readNewsDescription("https://openai.com/index/example", (async () => new Response("x".repeat(500001), { headers: { "content-type": "text/html" } })) as typeof fetch), "");
 });

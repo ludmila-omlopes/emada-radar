@@ -64,7 +64,7 @@ As páginas são renderizadas no servidor. As consultas usam o cache persistente
 | Área | Fonte | Intervalo do cache |
 | --- | --- | --- |
 | Modelos | CSVs e metadados públicos de LiveBench/new-livebench | 6 horas |
-| Notícias | RSS de OpenAI, Google AI, Google DeepMind e Hugging Face | 15 minutos |
+| Notícias | RSS de OpenAI, Google AI, Google DeepMind, Hugging Face e Meta Newsroom (tag IA) | 15 minutos |
 | Notícias | Lista pública de notícias da Anthropic | 30 minutos |
 | Experimentos | Busca por títulos no Hacker News via Algolia | 30 minutos |
 | Vozes | Busca recente do X, filtrada por IA e perfis, sem respostas/reposts; leitura do Postgres | Coleta às 09h e 21h UTC |

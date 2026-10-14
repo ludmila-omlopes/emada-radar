@@ -40,3 +40,11 @@ test("RSS summary supplies bounded plain-text evidence without changing source l
   assert.ok(parsed.summary.length <= 1200); assert.ok(!parsed.summary.includes("<b>"));
   assert.equal(parsed.url, "https://openai.com/news/example");
 });
+test("Meta Newsroom items keep the announcement and drop the WordPress footer", async () => {
+  const meta = feedSources.find(source => source.name === "Meta")!;
+  const xml = `<rss version="2.0"><channel><title>AI Archives | Meta Newsroom</title><item><title>Introducing Muse Wonder and Muse Wonder Full: Frontier Models for Agents</title><link>https://about.fb.com/news/2026/10/introducing-muse-wonder-models/</link><pubDate>Mon, 12 Oct 2026 17:08:05 +0000</pubDate><description><![CDATA[<div><img src="https://about.fb.com/wp-content/uploads/2026/10/thumb.gif"/></div><p>Meta is introducing Muse Wonder and Muse Wonder Full, our most capable models to date.</p><p>The post <a href="https://about.fb.com/news/2026/10/introducing-muse-wonder-models/">Introducing Muse Wonder and Muse Wonder Full: Frontier Models for Agents</a> appeared first on <a href="https://about.fb.com">Meta Newsroom</a>.</p>]]></description></item></channel></rss>`;
+  const [parsed] = await parseFeed(xml, meta, new Date("2026-10-13T00:00:00Z"));
+  assert.equal(parsed.summary, "Meta is introducing Muse Wonder and Muse Wonder Full, our most capable models to date.");
+  assert.equal(parsed.url, "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/");
+  assert.equal(parsed.source, "Meta");
+});

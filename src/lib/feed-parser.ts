@@ -4,6 +4,8 @@ export const feedSources = [
   { name: "Google AI", url: "https://blog.google/technology/ai/rss/", hosts: ["blog.google"], category: "Google" },
   { name: "Google DeepMind", url: "https://deepmind.google/blog/rss.xml", hosts: ["deepmind.google"], category: "Pesquisa" },
   { name: "Hugging Face", url: "https://huggingface.co/blog/feed.xml", hosts: ["huggingface.co"], category: "Comunidade" },
+  // Meta's AI blog has no feed; the Newsroom AI tag carries its model announcements.
+  { name: "Meta", url: "https://about.fb.com/news/tag/ai/feed/", hosts: ["about.fb.com"], category: "Meta" },
 ];
 export type NewsItem = { id: string; title: string; url: string; source: string; category: string; published_at: string; status: "pending" | "approved" | "rejected"; created_at?: string };
 export function safeArticleUrl(raw: string, hosts: string[]) {
@@ -20,7 +22,7 @@ export async function parseFeed(xml: string, source: typeof feedSources[number],
     const published = new Date(item.isoDate || item.pubDate || "");
     const title = (item.title || "").replace(/<[^>]*>/g, "").trim().slice(0, 300);
     if (!url || !title || !Number.isFinite(published.getTime()) || published.getTime() < cutoff || published.getTime() > now.getTime()) return [];
-    const summary = String(item.contentSnippet || item.summary || item.content || "").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().slice(0, 1200);
+    const summary = String(item.contentSnippet || item.summary || item.content || "").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ").replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim().replace(/\s*The post .+? appeared first on [^.]+\.$/, "").slice(0, 1200);
     return [{ title, summary, url, source: source.name, category: source.category, published_at: published.toISOString() }];
   });
 }
