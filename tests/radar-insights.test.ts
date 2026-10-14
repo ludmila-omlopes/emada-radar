@@ -39,6 +39,8 @@ test("highlights this week's releases, then the newest news, for emada.space", (
   const items = [article("future", -1), article("old-release", 20, "OpenAI", true), article("news", 0.1), translated, article("release", 2, "Anthropic", true)];
   assert.deepEqual(radarHighlights(items, now).map(item => item.title), ["release", "news", "Título traduzido"]);
   assert.deepEqual(radarHighlights(items, now, 5).map(item => item.title), ["release", "news", "Título traduzido", "old-release"]);
+  const twice = [article("Gemini", 1, "Google DeepMind", true), { ...article("gemini ", 1.01, "Google AI", true), id: "gemini-blog" }, article("other", 2)];
+  assert.deepEqual(radarHighlights(twice, now).map(item => item.source), ["Google DeepMind", "OpenAI"]);
   assert.deepEqual(radarHighlights([article("a", 1, "Google AI", true)], now)[0], { title: "a", source: "Google AI", url: "https://example.com/a", publishedAt: new Date(now - day).toISOString(), modelRelease: true });
 });
 
