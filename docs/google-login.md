@@ -14,7 +14,7 @@ A integração usa Better Auth e as tabelas de autenticação já existentes no 
 ~~~text
 http://localhost:3000/api/auth/callback/google
 http://127.0.0.1:3000/api/auth/callback/google
-https://emada.space/api/auth/callback/google
+https://radar.emada.space/api/auth/callback/google
 ~~~
 
 Este fluxo usa redirecionamento pelo servidor. Não depende de origens JavaScript autorizadas. Não adicione URLs temporárias de preview ao cliente de produção.
@@ -45,7 +45,7 @@ No [projeto Emada Academy](https://vercel.com/definns-projects/emada-academy/set
 | --- | --- | --- |
 | GOOGLE_CLIENT_ID | ID do cliente OAuth | Production |
 | GOOGLE_CLIENT_SECRET | Segredo do cliente OAuth | Production |
-| BETTER_AUTH_URL | https://emada.space | Production |
+| BETTER_AUTH_URL | https://radar.emada.space | Production |
 
 BETTER_AUTH_URL já existe: confira o valor antes de alterar. Depois, faça um novo deploy para aplicar as credenciais. Para desenvolvimento na Vercel, use as mesmas variáveis no ambiente Development e a URL local. Evite credenciais de produção em previews.
 

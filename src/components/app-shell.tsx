@@ -17,7 +17,7 @@ import { Progress } from "@/components/ui/progress";
 import { authClient } from "@/lib/auth-client";
 import { glossary, type Lesson } from "@/lib/curriculum";
 import { cn } from "@/lib/utils";
-const siteUrl = "https://emada.space";
+const siteUrl = "https://radar.emada.space";
 export function Logo() {
     const t = useTranslations("Portal");
     return <a href={siteUrl} className="brand" aria-label={t("homeLabel")}><span className="brand-mark">e<span>✳</span></span><span>emada<span className="brand-subtitle">{t("brandSubtitle")}</span></span></a>;
