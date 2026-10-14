@@ -17,10 +17,11 @@ import { Progress } from "@/components/ui/progress";
 import { authClient } from "@/lib/auth-client";
 import { glossary, type Lesson } from "@/lib/curriculum";
 import { cn } from "@/lib/utils";
-const siteUrl = "https://emada.space";
+const siteUrl = "https://radar.emada.space";
+const emadaUrl = "https://emada.space";
 export function Logo() {
     const t = useTranslations("Portal");
-    return <a href={siteUrl} className="brand" aria-label={t("homeLabel")}><span className="brand-mark">e<span>✳</span></span><span>emada<span className="brand-subtitle">{t("brandSubtitle")}</span></span></a>;
+    return <a href={siteUrl} className="brand" aria-label={t("homeLabel")}><span className="brand-mark">e<span>✳</span></span><span>radar<span className="brand-subtitle">{t("brandSubtitle")}</span></span></a>;
 }
 export function AppShell({ children, user, completed, admin, lessons: allLessons, newsletter }: {
     children: React.ReactNode;
@@ -116,9 +117,9 @@ export function AppShell({ children, user, completed, admin, lessons: allLessons
         </div>
       </div>
     </header>
-    {!["/", "/modulos", "/progresso", "/modelos", "/noticias", "/vozes", "/experimentos", "/formacao", "/skills"].includes(pathname) && <div className="context-bar"><div className="breadcrumb"><a href={siteUrl}>Emada</a><ChevronRight size={15}/><span>{current}</span></div>{user && <Link href="/progresso" className="context-progress">{t("completedDays", {completed, total:allLessons.length})} <ArrowUpRight size={15}/></Link>}</div>}
+    {!["/", "/modulos", "/progresso", "/modelos", "/noticias", "/vozes", "/experimentos", "/formacao", "/skills"].includes(pathname) && <div className="context-bar"><div className="breadcrumb"><a href={siteUrl}>{t("radar")}</a><ChevronRight size={15}/><span>{current}</span></div>{user && <Link href="/progresso" className="context-progress">{t("completedDays", {completed, total:allLessons.length})} <ArrowUpRight size={15}/></Link>}</div>}
     {logoutError && <p role="alert" className="error-text global-alert">{logoutError}</p>}
     <main id="main-content" tabIndex={-1}><LocaleSyncNotice/>{children}</main>
-    <footer className="footer"><div className="footer-top"><Logo /><p>{t("footerDescription")}</p><div className="footer-links"><Link href="/biblioteca">{t("library")}<Library size={15}/></Link><Link href="/laboratorio">{t("lab")}<FlaskConical size={15}/></Link>{user && <Link href="/progresso">{t("progress")}<ArrowUpRight size={15}/></Link>}{admin && <Link href="/admin/aulas">{t("editLessons")}<BookOpen size={15}/></Link>}{admin && <Link href="/admin">{t("administration")}<ShieldCheck size={15}/></Link>}{user && <button onClick={signOut}>{t("signOut")}<LogOut size={15}/></button>}</div></div>{newsletter && pathname !== "/" && !pathname.startsWith("/newsletter") && <NewsletterSignup variant="compact"/>}<div className="footer-bottom"><span>© {new Date().getFullYear()} Emada Academy</span><a href="https://ludylops.com" target="_blank" rel="noreferrer">{t("byLud")}<ArrowUpRight size={14}/></a></div></footer>
+    <footer className="footer"><div className="footer-top"><Logo /><p>{t("footerDescription")}</p><div className="footer-links"><Link href="/biblioteca">{t("library")}<Library size={15}/></Link><Link href="/laboratorio">{t("lab")}<FlaskConical size={15}/></Link>{user && <Link href="/progresso">{t("progress")}<ArrowUpRight size={15}/></Link>}{admin && <Link href="/admin/aulas">{t("editLessons")}<BookOpen size={15}/></Link>}{admin && <Link href="/admin">{t("administration")}<ShieldCheck size={15}/></Link>}{user && <button onClick={signOut}>{t("signOut")}<LogOut size={15}/></button>}</div></div>{newsletter && pathname !== "/" && !pathname.startsWith("/newsletter") && <NewsletterSignup variant="compact"/>}<p className="footer-consulting">{t("consultingPrompt")} <a href={emadaUrl}>{t("consultingLink")}<ArrowRight size={14} aria-hidden="true"/></a></p><div className="footer-bottom"><span className="footer-owner">{t.rich("copyright", { year: String(new Date().getFullYear()), emada: chunks => <a href={emadaUrl}>{chunks}</a> })}</span><a href="https://ludylops.com" target="_blank" rel="noreferrer">{t("byLud")}<ArrowUpRight size={14}/></a></div></footer>
   </div>;
 }

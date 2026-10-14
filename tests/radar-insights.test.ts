@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { bestValue, categoryLeaders, costFrontier, dailyCounts, featuredReleases, heatmap, leaderSummary, newsSummary, orgFrontiers, orgKey, rankBy, scatterPoints, standoutCategory } from "../src/lib/radar-insights";
+import { bestValue, categoryLeaders, costFrontier, dailyCounts, featuredReleases, heatmap, leaderSummary, newsSummary, orgFrontiers, orgKey, radarHighlights, rankBy, scatterPoints, standoutCategory } from "../src/lib/radar-insights";
 import type { Leaderboard, PortalArticle } from "../src/lib/portal-types";
 
 const now = Date.parse("2026-09-25T20:00:00Z");
@@ -32,6 +32,14 @@ test("summarizes the news week, releases and daily counts", () => {
   assert.equal(dailyCounts(items, now, 14).at(-1), 1);
   assert.deepEqual(featuredReleases(items, now).items.map(item => item.id), ["b", "c"]);
   assert.deepEqual(featuredReleases([article("old", 20, "OpenAI", true)], now), { thisWeek: false, items: [article("old", 20, "OpenAI", true)] });
+});
+
+test("highlights this week's releases, then the newest news, for emada.space", () => {
+  const translated = { ...article("t", 0.5), translation: { text: "Título traduzido", sourceLanguage: "en", locale: "pt-BR" as const } };
+  const items = [article("future", -1), article("old-release", 20, "OpenAI", true), article("news", 0.1), translated, article("release", 2, "Anthropic", true)];
+  assert.deepEqual(radarHighlights(items, now).map(item => item.title), ["release", "news", "Título traduzido"]);
+  assert.deepEqual(radarHighlights(items, now, 5).map(item => item.title), ["release", "news", "Título traduzido", "old-release"]);
+  assert.deepEqual(radarHighlights([article("a", 1, "Google AI", true)], now)[0], { title: "a", source: "Google AI", url: "https://example.com/a", publishedAt: new Date(now - day).toISOString(), modelRelease: true });
 });
 
 test("ranks with ties, finds category leaders and the standout", () => {
