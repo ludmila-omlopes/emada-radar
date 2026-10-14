@@ -43,6 +43,15 @@ export function featuredReleases(items: PortalArticle[], now: number, limit = 4)
   return { thisWeek: week.length > 0, items: (week.length ? week : releases).slice(0, limit) };
 }
 
+// Public summary for emada.space: this week's releases first, then the newest news,
+// with the localized title when one exists. Future-dated items are left out.
+export function radarHighlights(items: PortalArticle[], now: number, limit = 3) {
+  const newest = items.filter(item => time(item.publishedAt) <= now).sort((a, b) => time(b.publishedAt) - time(a.publishedAt));
+  const fresh = (item: PortalArticle) => item.modelRelease && now - time(item.publishedAt) < 7 * DAY;
+  const picked = [...newest.filter(fresh), ...newest.filter(item => !fresh(item))].slice(0, limit);
+  return picked.map(item => ({ title: item.translation?.text ?? item.title, source: item.source, url: item.url, publishedAt: item.publishedAt, modelRelease: Boolean(item.modelRelease) }));
+}
+
 export function sourceCounts(items: PortalArticle[]) {
   const counts = new Map<string, number>();
   for (const item of items) counts.set(item.source, (counts.get(item.source) ?? 0) + 1);
