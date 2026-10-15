@@ -1,16 +1,25 @@
 import { randomUUID } from "node:crypto";
 import type { Pool, PoolClient } from "pg";
+import type { z } from "zod";
 import { checkPracticeKey } from "./openrouter";
 import { PRACTICE_LIMITS } from "./practice-policy";
-import { callNewsClassifier, decisionSchema, NEWS_LIMITS as L, type NewsDecision, type NewsInput, type NewsResult } from "./news-classification";
+import { callNewsClassifier, decisionSchema, NEWS_LIMITS as L, type NewsDecision, type NewsInput } from "./news-classification";
+import { callNewsDuplicates, duplicateDecisionSchema, type DuplicateDecision, type DuplicateInput } from "./news-duplicates";
 
-export class NewsClassificationStore {
-  constructor(private pool: Pool, private key: string, private provider = { check: checkPracticeKey, call: callNewsClassifier }) {}
-  async read(inputs: NewsInput[]) {
-    const found = new Map<string, NewsDecision>();
+type DecisionResult<D> = { items: { cacheKey: string; decision: D }[]; costMicro?: number; generationId?: string; model: string };
+type DecisionProvider<I, D> = { check: (key: string) => Promise<unknown>; call: (key: string, inputs: I[]) => Promise<DecisionResult<D>> };
+
+/**
+ * Jev decisions about news, cached by input hash. Every task shares one table, lock,
+ * one-minute cooldown and monthly budget, so adding a task never raises the spend.
+ */
+export class NewsDecisionStore<I extends { cacheKey: string }, D> {
+  constructor(private pool: Pool, private key: string, private provider: DecisionProvider<I, D>, private schema: z.ZodType<D>) {}
+  async read(inputs: I[]) {
+    const found = new Map<string, D>();
     if (!inputs.length) return found;
     const result = await this.pool.query<{ cache_key: string; decision: unknown }>("SELECT cache_key, decision FROM news_classification_cache WHERE cache_key = ANY($1::text[]) AND decision IS NOT NULL", [inputs.map(input => input.cacheKey)]);
-    for (const row of result.rows) { const parsed = decisionSchema.safeParse(row.decision); if (parsed.success) found.set(row.cache_key, parsed.data); }
+    for (const row of result.rows) { const parsed = this.schema.safeParse(row.decision); if (parsed.success) found.set(row.cache_key, parsed.data); }
     return found;
   }
   private async transaction<T>(work: (client: PoolClient) => Promise<T>) {
@@ -23,7 +32,7 @@ export class NewsClassificationStore {
     } catch (error) { await client.query("ROLLBACK"); throw error; }
     finally { client.release(); }
   }
-  async fill(inputs: NewsInput[], options: { backfill?: boolean } = {}) {
+  async fill(inputs: I[], options: { backfill?: boolean } = {}) {
     if (!this.key || !inputs.length) return { classified: 0 };
     const id = randomUUID();
     const claimed = await this.transaction(async client => {
@@ -32,7 +41,7 @@ export class NewsClassificationStore {
       if (recent.rowCount) return [];
       const usage = await client.query<{ used: string }>("SELECT COALESCE(sum(cost_charge_micro), 0) AS used FROM news_classification_runs WHERE month = date_trunc('month', now() AT TIME ZONE 'UTC')::date");
       if (Number(usage.rows[0].used) + L.reservationMicro > L.monthlyMicro) return [];
-      const batch: NewsInput[] = [];
+      const batch: I[] = [];
       for (const input of inputs) {
         if (batch.length >= L.batchItems || Buffer.byteLength(JSON.stringify([...batch, input])) > L.batchBytes) continue;
         const row = await client.query(`INSERT INTO news_classification_cache (cache_key, lease_owner, retry_at, attempts)
@@ -50,7 +59,7 @@ export class NewsClassificationStore {
     });
     if (!claimed.length) return { classified: 0 };
     let called = false;
-    let result: NewsResult | undefined;
+    let result: DecisionResult<D> | undefined;
     let errorCode: string | null = null;
     try { await this.provider.check(this.key); called = true; result = await this.provider.call(this.key, claimed); }
     catch (error) { errorCode = error instanceof Error && /^news_(?:provider_http_\d+|invalid_response|invalid_probabilities|input_limit)$/.test(error.message) ? error.message : called ? "news_unconfirmed" : "news_credential"; }
@@ -66,4 +75,12 @@ export class NewsClassificationStore {
     });
     return { classified: result?.items.length ?? 0 };
   }
+}
+
+export class NewsClassificationStore extends NewsDecisionStore<NewsInput, NewsDecision> {
+  constructor(pool: Pool, key: string, provider: DecisionProvider<NewsInput, NewsDecision> = { check: checkPracticeKey, call: callNewsClassifier }) { super(pool, key, provider, decisionSchema); }
+}
+
+export class NewsDuplicateStore extends NewsDecisionStore<DuplicateInput, DuplicateDecision> {
+  constructor(pool: Pool, key: string, provider: DecisionProvider<DuplicateInput, DuplicateDecision> = { check: checkPracticeKey, call: callNewsDuplicates }) { super(pool, key, provider, duplicateDecisionSchema); }
 }

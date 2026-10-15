@@ -3,7 +3,7 @@ import { after, before, beforeEach, test } from "node:test";
 import { readFile } from "node:fs/promises";
 import { PGlite } from "@electric-sql/pglite";
 import type { Pool } from "pg";
-import { NewsClassificationStore } from "../src/lib/news-classification-store";
+import { NewsClassificationStore, NewsDuplicateStore } from "../src/lib/news-classification-store";
 import { NEWS_LIMITS as L, NEWS_MODEL, type NewsInput } from "../src/lib/news-classification";
 
 const db = new PGlite();
@@ -64,4 +64,17 @@ test("unsafe keys refund reservations; unexpected cost pauses the shared monthly
   await age();
   const overrun = new NewsClassificationStore(pool, "fake", { check: provider.check, call: async (key, batch) => ({ ...await provider.call(key, batch), costMicro: L.reservationMicro + 1 }) });
   await overrun.fill([{ ...inputs[0], cacheKey: "two" }]); assert.equal(await budget(), 5_000_000);
+});
+
+test("duplicate checks share the cache, cooldown and budget, and never read a classification as a match", async () => {
+  const pairs = [{ cacheKey: "pair", title: "Argon ships", summary: "", source: "Outlet", candidates: [{ id: "first", title: "Gemini 4 Argon", summary: "", source: "Lab" }] }];
+  let compared = 0;
+  const duplicates = new NewsDuplicateStore(pool, "fake", { check: provider.check, call: async (_key, batch) => { compared++; return { items: batch.map(input => ({ cacheKey: input.cacheKey, decision: { duplicateOf: "first", probability: 0.95 } })), costMicro: 40, model: NEWS_MODEL }; } });
+  await store.fill(inputs);
+  await duplicates.fill(pairs); assert.equal(compared, 0, "one batch per minute across both tasks");
+  await age(); await duplicates.fill(pairs);
+  assert.equal(compared, 1); assert.equal(await budget(), 115);
+  assert.deepEqual((await duplicates.read(pairs)).get("pair"), { duplicateOf: "first", probability: 0.95 });
+  assert.equal((await duplicates.read([{ ...pairs[0], cacheKey: "one" }])).size, 0);
+  assert.equal((await store.read([{ ...inputs[0], cacheKey: "pair" }])).size, 0);
 });

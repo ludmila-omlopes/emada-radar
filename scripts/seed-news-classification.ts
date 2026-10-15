@@ -1,8 +1,9 @@
 import { loadEnvConfig } from "@next/env";
 import { Pool } from "pg";
 import { getPortalNews } from "../src/lib/portal-data";
-import { NewsClassificationStore } from "../src/lib/news-classification-store";
+import { NewsClassificationStore, NewsDuplicateStore } from "../src/lib/news-classification-store";
 import { newsInput, isModelRelease } from "../src/lib/news-classification";
+import { duplicateInputs, isDuplicate, repeatedTitles } from "../src/lib/news-duplicates";
 loadEnvConfig(process.cwd());
 async function main() {
   if (process.env.OPENROUTER_NEWS_SEED !== "true") return;
@@ -25,6 +26,21 @@ async function main() {
     const cached = await store.read(inputs);
     const highlights = news.items.filter((_, index) => { const decision = cached.get(inputs[index].cacheKey); return decision && isModelRelease(decision); });
     console.log(JSON.stringify({ newsInitialCollection: { total: inputs.length, classified: cached.size, releases: highlights.map(item => item.title) } }));
+    const repeats = repeatedTitles(news.items);
+    const pairs = duplicateInputs(news.items.filter(item => !repeats.has(item.id)));
+    const duplicates = new NewsDuplicateStore(pool, process.env.OPENROUTER_API_KEY);
+    for (let batch = 0; batch < 25; batch++) {
+      const compared = await duplicates.read(pairs);
+      const missing = pairs.filter(pair => !compared.has(pair.cacheKey));
+      if (!missing.length) break;
+      const result = await duplicates.fill(missing, { backfill: true });
+      console.log(`News duplicate check: ${result.classified} comparisons saved in batch ${batch + 1}.`);
+      if (!result.classified) break;
+    }
+    const compared = await duplicates.read(pairs);
+    const title = new Map(news.items.map(item => [item.id, item.title]));
+    const matched = pairs.flatMap(pair => { const decision = compared.get(pair.cacheKey); return decision && isDuplicate(decision) ? [`${pair.title} = ${title.get(decision.duplicateOf!)}`] : []; });
+    console.log(JSON.stringify({ newsDuplicates: { repeatedTitles: repeats.size, compared: compared.size, of: pairs.length, matched } }));
   } finally { await pool.end(); }
 }
 main().catch(() => { console.error("News initial collection failed. Existing news remains available. No credential was logged."); process.exitCode = 1; });
