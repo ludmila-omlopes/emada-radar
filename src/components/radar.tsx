@@ -185,6 +185,8 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const [ref, width] = useWidth(1100);
   const [hover, setHover] = useState<ScatterPoint | null>(null);
   const [shown, setShown] = useState<OrgKey[]>(ORGS);
+  // Hovering a company previews it alone without changing the clicked selection.
+  const [preview, setPreview] = useState<OrgKey | null>(null);
   // Entrance delays only apply to the first reveal; filter changes respond immediately.
   const [filtered, setFiltered] = useState(false);
   const all = useMemo(() => scatterPoints(board), [board]);
@@ -192,12 +194,15 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const score = overallMetric(board);
   if (board.status !== "ok" || !cost || !score || all.length < 5) return null;
   const orgs = ORGS.filter(key => all.some(point => point.org === key));
-  const active = orgs.filter(key => shown.includes(key));
+  const selected = orgs.filter(key => shown.includes(key));
+  const active = preview && orgs.includes(preview) ? [preview] : selected;
   const points = all.filter(point => active.includes(point.org));
-  function toggle(key: OrgKey) {
+  // Clicking a company isolates it; clicking it again brings every company back.
+  function solo(key: OrgKey) {
     setFiltered(true);
     setHover(null);
-    setShown(current => current.includes(key) ? (current.filter(item => item !== key && orgs.includes(item)).length ? current.filter(item => item !== key) : current) : [...current, key]);
+    setPreview(null);
+    setShown(current => current.length === 1 && current[0] === key ? ORGS : [key]);
   }
   function showAll() {
     setFiltered(true);
@@ -214,6 +219,7 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const sx = (value: number) => m.l + (Math.log10(value) - lx) / (hx - lx) * (width - m.l - m.r);
   const sy = (value: number) => m.t + (1 - value / hy) * (height - m.t - m.b);
   const money = (value: number) => new Intl.NumberFormat(locale, { style: "currency", currency: "USD", maximumFractionDigits: value < 0.01 ? 4 : value < 1 ? 2 : 2, minimumFractionDigits: value >= 1 && Number.isInteger(value) ? 0 : 2 }).format(value);
+  const compact = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
   const frontiers = orgFrontiers(all, orgs);
   const visibleFrontiers = frontiers.filter(entry => active.includes(entry.org));
   const value = bestValue(points);
@@ -236,12 +242,22 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
     }
     setHover(best);
   }
+  // Park the tooltip in a corner of the plot instead of beside the cursor, so it never hides
+  // neighbouring points. The top-left corner (cheap and smart) is usually empty; fall back to
+  // the bottom-right when that one covers fewer points.
+  const tip = { w: 236, h: hover?.tokens != null ? 128 : 108, pad: 12 };
+  const corners = [{ left: m.l + tip.pad, top: m.t + tip.pad }, { left: width - m.r - tip.w - tip.pad, top: height - m.b - tip.h - tip.pad }];
+  const covered = (corner: typeof corners[number]) => points.filter(point => {
+    const x = sx(point.cost), y = sy(point.score);
+    return x > corner.left - 8 && x < corner.left + tip.w + 8 && y > corner.top - 8 && y < corner.top + tip.h + 8;
+  }).reduce((sum, point) => sum + (point.id === hover?.id ? 100 : 1), 0);
+  const corner = hover ? corners.reduce((best, next) => covered(next) < covered(best) ? next : best) : corners[0];
   return <div className="radar-card radar-scatter">
     <div className="radar-scatter-head">
       <div><h2>{t("scatterTitle", { y: score.label, x: cost.label })}</h2><p>{t("scatterDescription", { count: points.length, source: board.name })}</p></div>
       <div className="radar-org-filter" role="group" aria-label={t("scatterFilter")}>
-        <button type="button" aria-pressed={active.length === orgs.length} onClick={showAll}>{t("scatterAll")}</button>
-        {orgs.map(key => <button type="button" key={key} aria-pressed={active.includes(key)} onClick={() => toggle(key)} style={{ "--org": orgColor(key) } as CSSProperties}><span className="radar-line-key" aria-hidden="true"/>{t(`org.${key}`)}</button>)}
+        <button type="button" aria-pressed={selected.length === orgs.length} onClick={showAll}>{t("scatterAll")}</button>
+        {orgs.map(key => <button type="button" key={key} aria-pressed={selected.length < orgs.length && selected.includes(key)} onClick={() => solo(key)} onPointerEnter={event => { if (event.pointerType === "mouse") { setFiltered(true); setHover(null); setPreview(key); } }} onPointerLeave={() => setPreview(null)} style={{ "--org": orgColor(key) } as CSSProperties}><span className="radar-line-key" aria-hidden="true"/>{t(`org.${key}`)}</button>)}
       </div>
     </div>
     <div ref={ref} className="radar-scatter-plot">
@@ -260,16 +276,17 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
           return <text key={`l${point.id}`} x={start ? x + 12 : x - 12} y={sy(point.score) + 4} textAnchor={start ? "start" : "end"} className="radar-point-label rc-fade" style={wait(2600)}>{point.name}</text>;
         })}
       </svg>
-      {hover && <div className="radar-tooltip" style={{ left: Math.min(width - 250, sx(hover.cost) + 14), top: Math.max(0, sy(hover.score) - 30) }}>
+      {hover && <div className="radar-tooltip" style={corner}>
         <strong>{hover.name}</strong>
         <span><span className="radar-dot" style={{ background: orgColor(hover.org) }}/>{hover.organization}</span>
         <span>{score.label}: {hover.score} · {cost.label}: {money(hover.cost)}</span>
+        {hover.tokens != null && <span>{t("scatterTokens")}: {compact.format(hover.tokens)}</span>}
       </div>}
     </div>
     <details className="radar-table-toggle">
       <summary>{t("scatterTable")}</summary>
-      <table><caption className="sr-only">{t("frontier")}</caption><thead><tr><th scope="col">{t("model")}</th><th scope="col">{t("organization")}</th><th scope="col" className="numeric">{score.label}</th><th scope="col" className="numeric">{cost.label}</th></tr></thead>
-        <tbody>{visibleFrontiers.flatMap(entry => entry.points.slice().reverse()).map(point => <tr key={point.id}><td><span className="radar-dot" style={{ background: orgColor(point.org) }}/>{point.name}</td><td>{point.organization}</td><td className="numeric">{point.score}</td><td className="numeric">{money(point.cost)}</td></tr>)}</tbody></table>
+      <table><caption className="sr-only">{t("frontier")}</caption><thead><tr><th scope="col">{t("model")}</th><th scope="col">{t("organization")}</th><th scope="col" className="numeric">{score.label}</th><th scope="col" className="numeric">{cost.label}</th><th scope="col" className="numeric">{t("scatterTokens")}</th></tr></thead>
+        <tbody>{visibleFrontiers.flatMap(entry => entry.points.slice().reverse()).map(point => <tr key={point.id}><td><span className="radar-dot" style={{ background: orgColor(point.org) }}/>{point.name}</td><td>{point.organization}</td><td className="numeric">{point.score}</td><td className="numeric">{money(point.cost)}</td><td className="numeric">{point.tokens != null ? compact.format(point.tokens) : "—"}</td></tr>)}</tbody></table>
     </details>
     <footer className="radar-source"><a href={board.url} target="_blank" rel="noreferrer">{t("source")} {board.name}<ArrowUpRight size={12} aria-hidden="true"/></a><span>{t("scatterNote")}</span></footer>
   </div>;

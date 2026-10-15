@@ -68,6 +68,7 @@
     "scatterX": "{metric} (US$, log scale) →",
     "scatterTable": "View each company’s frontier as a table",
     "scatterNote": "Models without a reported cost are excluded.",
+    "scatterTokens": "Tokens per task",
     "frontier": "Frontier",
     "trendingExperiments": "Trending experiments",
     "highlights": "Highlights",

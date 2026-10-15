@@ -57,7 +57,7 @@ Os testes verificam correspondência entre publicação e tradução, fallback q
 
 ## Coleta
 
-As notícias podem receber destaque automático de lançamento de modelo usando Jev pelo OpenRouter. O filtro “Só lançamentos de modelos” mantém a busca e os filtros de fonte. Veja critérios, avaliação, cache, ativação e limites em [Classificação de notícias](news-classification.md).
+As notícias podem receber destaque automático de lançamento de modelo usando Jev pelo OpenRouter. O filtro “Só lançamentos de modelos” mantém a busca e os filtros de fonte. Notícias repetidas entre fontes aparecem uma vez: títulos idênticos são removidos diretamente, e Jev identifica o mesmo evento com títulos diferentes. Veja critérios, avaliação, cache, ativação e limites em [Classificação de notícias](news-classification.md).
 
 As páginas são renderizadas no servidor. As consultas usam o cache persistente do Next e revalidam ao receber tráfego; não dependem de uma migração ou de um cron. A página aberta verifica atualizações a cada cinco minutos enquanto a aba estiver visível; o botão Atualizar permite uma consulta manual. A primeira consulta após o intervalo pode receber o cache anterior enquanto a atualização acontece em segundo plano.
 

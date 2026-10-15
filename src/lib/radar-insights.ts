@@ -130,7 +130,7 @@ export function heatmap(board: Leaderboard, limit = 10) {
   }) })) };
 }
 
-export type ScatterPoint = { id: string; name: string; organization: string; org: OrgKey; score: number; cost: number; url: string };
+export type ScatterPoint = { id: string; name: string; organization: string; org: OrgKey; score: number; cost: number; tokens: number | null; url: string };
 
 export function costMetric(board: Leaderboard) {
   return board.metrics.find(metric => metric.key === "costPerTask") ?? board.metrics.find(metric => metric.key === "output");
@@ -143,7 +143,7 @@ export function scatterPoints(board: Leaderboard): ScatterPoint[] {
   return board.models.flatMap(model => {
     const x = model.scores[cost.key];
     const y = model.scores[score.key];
-    return x != null && y != null && x > 0 ? [{ id: model.id, name: model.name, organization: model.organization, org: orgKey(model.organization), score: y, cost: x, url: model.url }] : [];
+    return x != null && y != null && x > 0 ? [{ id: model.id, name: model.name, organization: model.organization, org: orgKey(model.organization), score: y, cost: x, tokens: model.scores.tokensPerTask ?? null, url: model.url }] : [];
   });
 }
 

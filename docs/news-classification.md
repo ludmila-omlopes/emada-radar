@@ -33,7 +33,16 @@ O selo “Novo modelo” exige categoria `release` e probabilidade dessa categor
 - Cache persistente por hash de ID, URL, título, resumo RSS, fonte, versão do modelo e regras. Mudanças nesses campos invalidam o resultado. A descrição da página é consultada apenas ao classificar uma entrada nova; edições exclusivas dessa descrição não invalidam o cache sozinhas. Traduções não alteram a decisão.
 - Resultados positivos, negativos e incertos são armazenados. Falhas não viram “outra notícia” nem lançamento. Sem chave, resultados já salvos ainda podem ser lidos; sem banco ou com recurso desativado, a lista funciona sem destaques automáticos.
 
-## Orçamento
+## Notícias repetidas
+
+O mesmo anúncio pode chegar por duas fontes, como o Google DeepMind e o blog do Google, e ocupar dois lugares nos destaques. A lista mostra cada história uma vez, mantendo a cópia publicada primeiro. Se a cópia oculta tinha o selo “Novo modelo”, a cópia mantida recebe o selo.
+
+- **Títulos idênticos:** ignorando maiúsculas, acentos e pontuação, são tratados como repetição sem chamar o modelo. Isso vale mesmo com a classificação desativada.
+- **Mesmo evento com outro título:** Jev compara cada notícia com até quatro notícias anteriores de outras fontes, publicadas nos três dias anteriores e com ao menos uma palavra distintiva em comum no título. Notícias sem candidatas não geram chamada. A pergunta é de escolha entre as candidatas e “nenhuma”. Lançamento versus preço, tutorial ou benchmark posterior, versões diferentes e continuações não contam como o mesmo evento.
+- A notícia só é ocultada quando a probabilidade da candidata escolhida é de pelo menos **0,85** e essa candidata ainda está na lista. Regras versionadas em `same-story-v1`.
+- O resultado usa a mesma tabela de cache, com chave formada por notícia, candidatas, modelo e regras. Uma nova candidata gera nova comparação. A comparação usa o mesmo lote, trava, intervalo de um minuto e orçamento mensal da classificação: cada visita processa no máximo um lote, e as classificações pendentes têm prioridade. `OPENROUTER_NEWS_SEED=true` também processa as comparações pendentes.
+
+
 
 Limite próprio de **US$0,50 por mês UTC**, dentro do orçamento compartilhado de US$5 por banco. Cada lote de até oito notícias reserva US$0,01 antes de chamar a API. O mesmo débito atômico de `practice_budgets` é usado pelo chat e pelas traduções. O limite da chave protege o gasto total entre Preview e Production, cujos bancos são separados.
 

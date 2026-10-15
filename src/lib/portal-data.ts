@@ -8,7 +8,7 @@ import socialSelection from "@/data/social-post-selection.json";
 import { parseSocialEmbed, selectedSocialPosts } from "./social-posts";
 import { databaseConfigured, getDb } from "./db";
 import { SocialSearchStore } from "./social-search-store";
-import { ARTIFICIAL_ANALYSIS_URL, parseArtificialAnalysisApi, parseArtificialAnalysisPage } from "./artificial-analysis";
+import { ARTIFICIAL_ANALYSIS_MODELS_URL, ARTIFICIAL_ANALYSIS_URL, parseArtificialAnalysisApi, parseArtificialAnalysisPage, parseArtificialAnalysisTokens } from "./artificial-analysis";
 
 const LIVEBENCH_RAW = "https://raw.githubusercontent.com/LiveBench/new-livebench/main";
 const UA = "EmadaAcademy/2.0 (+https://radar.emada.space; source reader)";
@@ -55,9 +55,16 @@ export const getLiveBench = cache(async (): Promise<Leaderboard> => {
 // Cache Components are not enabled in this app. Cache the parsed result because
 // the public HTML exceeds Next's 2 MB fetch-cache limit; never cache that raw page.
 const getPublicArtificialAnalysis = unstable_cache(async () => {
-  const response = await readRemote(ARTIFICIAL_ANALYSIS_URL, 0, {}, 5_000_000);
-  return { ...parseArtificialAnalysisPage(response.text), fetchedAt: response.fetchedAt };
-}, ["artificial-analysis-public-v2", ARTIFICIAL_ANALYSIS_URL], { revalidate: 21_600 });
+  const [response, models] = await Promise.all([
+    readRemote(ARTIFICIAL_ANALYSIS_URL, 0, {}, 5_000_000),
+    // Token use is a tooltip extra; the leaderboard still renders if this page fails.
+    readRemote(ARTIFICIAL_ANALYSIS_MODELS_URL, 0, {}, 5_000_000).catch(() => null),
+  ]);
+  const board = parseArtificialAnalysisPage(response.text);
+  const tokens = models ? parseArtificialAnalysisTokens(models.text) : new Map<string, number>();
+  for (const model of board.models) model.scores.tokensPerTask = tokens.get(model.id) ?? null;
+  return { ...board, fetchedAt: response.fetchedAt };
+}, ["artificial-analysis-public-v3", ARTIFICIAL_ANALYSIS_URL], { revalidate: 21_600 });
 
 export const getArtificialAnalysis = cache(async (): Promise<Leaderboard> => {
   const token = process.env.ARTIFICIAL_ANALYSIS_API_KEY;

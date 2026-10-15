@@ -3,6 +3,7 @@ import { plainText } from "./portal-parsers";
 import type { Leaderboard, Metric, RankedModel } from "./portal-types";
 
 export const ARTIFICIAL_ANALYSIS_URL = "https://artificialanalysis.ai/leaderboards/models";
+export const ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models";
 
 const publicColumns: { header: string; metric: Metric }[] = [
   { header: "Artificial Analysis Intelligence Index", metric: { key: "overall", label: "Inteligência", description: "Artificial Analysis Intelligence Index, conforme exibido na tabela pública. As pontuações são arredondadas pela fonte; valores iguais aparecem empatados.", unit: "score", precision: 0 } },
@@ -73,6 +74,26 @@ export function parseArtificialAnalysisPage(html: string): Pick<Leaderboard, "mo
     };
   }
   throw new Error("Tabela da Artificial Analysis não encontrada.");
+}
+
+/**
+ * Output tokens each model spent per Intelligence Index task. The leaderboard omits this,
+ * so it comes from the data embedded in the models page, which only covers featured models.
+ * Keyed by model page URL, matching RankedModel.id from the public leaderboard.
+ */
+export function parseArtificialAnalysisTokens(html: string): Map<string, number> {
+  const data = html.replaceAll('\\"', '"');
+  const tokens = new Map<string, number>();
+  for (const match of data.matchAll(/"intelligenceIndexOutputTokensPerTask":\{[^{}]*?"output":(\d+(?:\.\d+)?)/g)) {
+    const before = data.slice(Math.max(0, match.index - 20_000), match.index);
+    // Model records open with their id and slug; nested objects (creator, effort, release) do not.
+    const slug = [...before.matchAll(/\{"id":"[\da-f-]{36}","slug":"([\w.-]+)","name":"[^"]*","shortName":/g)].at(-1);
+    if (!slug) continue;
+    const url = `https://artificialanalysis.ai/models/${slug[1]}`;
+    const value = Number(match[1]);
+    if (Number.isFinite(value) && value > 0 && !tokens.has(url)) tokens.set(url, value);
+  }
+  return tokens;
 }
 
 const apiScore = z.number().finite().nonnegative().nullish();
