@@ -68,6 +68,7 @@
     "scatterX": "{metric} (US$, escala log) →",
     "scatterTable": "Ver a fronteira de cada empresa em tabela",
     "scatterNote": "Modelos sem custo informado ficam de fora.",
+    "scatterTokens": "Tokens por tarefa",
     "frontier": "Fronteira",
     "trendingExperiments": "Experimentos em alta",
     "highlights": "Destaques",

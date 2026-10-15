@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseArtificialAnalysisApi, parseArtificialAnalysisPage } from "../src/lib/artificial-analysis";
+import { parseArtificialAnalysisApi, parseArtificialAnalysisPage, parseArtificialAnalysisTokens } from "../src/lib/artificial-analysis";
 
 const headers = ["Model", "Context Window", "Creator", "Artificial Analysis Intelligence Index", "Cost per Task USD", "Median Tokens/s", "Latency First Chunk (s)", "Total Response (s)", "Further Analysis"];
 const model = ["Model A &amp; variant", "1.05M", "Lab", "58", "$0.00", "--", "0.25", "12.34", '<a href="/models/a">Model</a><a href="/models/a/providers">Providers</a>'];
@@ -66,4 +66,12 @@ test("API maps its own metrics without relabeling token pricing as cost per task
   assert.ok(board.metrics.some(metric => metric.key === "coding"));
   assert.ok(!board.metrics.some(metric => metric.key === "math"));
   assert.throws(() => parseArtificialAnalysisApi({ data: [] }));
+});
+
+test("token use is read from model records, not from nested objects that also carry a slug", () => {
+  const record = (slug: string, tokens: number) => `{"id":"2f3c4dc9-a450-4303-8697-0237257cf08f","slug":"${slug}","name":"${slug}","shortName":"${slug}","effort":{"slug":"max"},"release":{"slug":"family","name":"Family"},"intelligenceIndexOutputTokensPerTask":{"reasoning":1,"answer":2,"output":${tokens}},"intelligenceIndexEvaluations":[{"slug":"gdpval-aa","outputTokensPerTask":999}]}`;
+  const html = `<script>self.__next_f.push([1,"${`[${record("model-a", 35584.4)},${record("model-b-high", 120)}]`.replaceAll('"', '\\"')}"])</script>`;
+  const tokens = parseArtificialAnalysisTokens(html);
+  assert.deepEqual([...tokens], [["https://artificialanalysis.ai/models/model-a", 35584.4], ["https://artificialanalysis.ai/models/model-b-high", 120]]);
+  assert.equal(parseArtificialAnalysisTokens("<html></html>").size, 0);
 });
