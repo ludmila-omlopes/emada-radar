@@ -185,6 +185,8 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const [ref, width] = useWidth(1100);
   const [hover, setHover] = useState<ScatterPoint | null>(null);
   const [shown, setShown] = useState<OrgKey[]>(ORGS);
+  // Hovering a company previews it alone without changing the clicked selection.
+  const [preview, setPreview] = useState<OrgKey | null>(null);
   // Entrance delays only apply to the first reveal; filter changes respond immediately.
   const [filtered, setFiltered] = useState(false);
   const all = useMemo(() => scatterPoints(board), [board]);
@@ -192,12 +194,15 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
   const score = overallMetric(board);
   if (board.status !== "ok" || !cost || !score || all.length < 5) return null;
   const orgs = ORGS.filter(key => all.some(point => point.org === key));
-  const active = orgs.filter(key => shown.includes(key));
+  const selected = orgs.filter(key => shown.includes(key));
+  const active = preview && orgs.includes(preview) ? [preview] : selected;
   const points = all.filter(point => active.includes(point.org));
-  function toggle(key: OrgKey) {
+  // Clicking a company isolates it; clicking it again brings every company back.
+  function solo(key: OrgKey) {
     setFiltered(true);
     setHover(null);
-    setShown(current => current.includes(key) ? (current.filter(item => item !== key && orgs.includes(item)).length ? current.filter(item => item !== key) : current) : [...current, key]);
+    setPreview(null);
+    setShown(current => current.length === 1 && current[0] === key ? ORGS : [key]);
   }
   function showAll() {
     setFiltered(true);
@@ -251,8 +256,8 @@ export function CostScatter({ board: rawBoard }: { board: Leaderboard }) {
     <div className="radar-scatter-head">
       <div><h2>{t("scatterTitle", { y: score.label, x: cost.label })}</h2><p>{t("scatterDescription", { count: points.length, source: board.name })}</p></div>
       <div className="radar-org-filter" role="group" aria-label={t("scatterFilter")}>
-        <button type="button" aria-pressed={active.length === orgs.length} onClick={showAll}>{t("scatterAll")}</button>
-        {orgs.map(key => <button type="button" key={key} aria-pressed={active.includes(key)} onClick={() => toggle(key)} style={{ "--org": orgColor(key) } as CSSProperties}><span className="radar-line-key" aria-hidden="true"/>{t(`org.${key}`)}</button>)}
+        <button type="button" aria-pressed={selected.length === orgs.length} onClick={showAll}>{t("scatterAll")}</button>
+        {orgs.map(key => <button type="button" key={key} aria-pressed={selected.length < orgs.length && selected.includes(key)} onClick={() => solo(key)} onPointerEnter={event => { if (event.pointerType === "mouse") { setFiltered(true); setHover(null); setPreview(key); } }} onPointerLeave={() => setPreview(null)} style={{ "--org": orgColor(key) } as CSSProperties}><span className="radar-line-key" aria-hidden="true"/>{t(`org.${key}`)}</button>)}
       </div>
     </div>
     <div ref={ref} className="radar-scatter-plot">
