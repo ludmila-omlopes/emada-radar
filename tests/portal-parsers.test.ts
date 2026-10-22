@@ -63,6 +63,22 @@ test("Anthropic featured launches outside /news are included, external hosts are
   assert.equal(articles[1].title, "Research update");
 });
 
+test("Anthropic listing rows associate sibling dates with titles and deduplicate expanded links", () => {
+  const row = (slug: string, date: string) => `<li data-listing-row="${slug}">
+    <div><a class="TableView__title-link" href="/news/${slug}"><span><h3>A model &amp; its evaluation</h3></span></a></div>
+    <div><a href="/news/${slug}"><p>Description</p></a></div>
+    <div><a href="/news/announcements">Announcements</a></div>
+    <div><time>${date}</time></div>
+    <div><a href="/news/${slug}"><h3>A model &amp; its evaluation</h3></a></div>
+  </li>`;
+  const html = `<ul>${row("new-model", "Oct 21, 2026")}${row("older-model", "Oct 18, 2026")}${row("expired", "Aug 1, 2026")}${row("future", "Oct 23, 2026")}${row("invalid", "unknown")}</ul>`;
+  const articles = parseAnthropicNews(html, new Date("2026-10-22T12:00:00Z"));
+  assert.deepEqual(articles.map(({ title, url, publishedAt }) => ({ title, url, publishedAt })), [
+    { title: "A model & its evaluation", url: "https://www.anthropic.com/news/new-model", publishedAt: "2026-10-21T00:00:00.000Z" },
+    { title: "A model & its evaluation", url: "https://www.anthropic.com/news/older-model", publishedAt: "2026-10-18T00:00:00.000Z" },
+  ]);
+});
+
 test("cross-source deduplication preserves the newest entry", () => {
   const items = newestUnique([{ url: "https://example.com/", publishedAt: "2026-09-21T00:00:00Z", title: "Older" }, { url: "https://example.com/", publishedAt: "2026-09-22T00:00:00Z", title: "Newer" }]);
   assert.equal(items.length, 1);
