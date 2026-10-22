@@ -84,17 +84,22 @@ export function parseLiveBench(csv: string, rawCategories: unknown, metadata: Re
 
 export function parseAnthropicNews(html: string, now = new Date()): PortalArticle[] {
   const cutoff = now.getTime() - 45 * 86_400_000;
-  const articles = [...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)].flatMap(([, href, body]) => {
+  // The current listing keeps each date beside its title link, inside a row.
+  // Keep legacy self-contained links too, including featured launches.
+  const rows = [...html.matchAll(/<li\b[^>]*\bdata-listing-row="[^"]*"[^>]*>([\s\S]*?)<\/li>/gi)].map(match => match[1]);
+  const links = (scope: string, rowDate?: string) => [...scope.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)].map(([, href, body]) => ({ href, body, rowDate }));
+  const candidates = [...links(html), ...rows.flatMap(row => links(row, row.match(/<time\b[^>]*>([\s\S]*?)<\/time>/i)?.[1]))];
+  const articles = candidates.flatMap<PortalArticle>(({ href, body, rowDate }) => {
     const url = publicUrl(href.startsWith("/") ? `https://www.anthropic.com${href}` : href);
     if (!url || !["www.anthropic.com", "anthropic.com"].includes(new URL(url).hostname)) return [];
-    const date = body.match(/<time\b[^>]*>([\s\S]*?)<\/time>/i)?.[1];
+    const date = body.match(/<time\b[^>]*>([\s\S]*?)<\/time>/i)?.[1] ?? rowDate;
     const title = body.match(/<span\b[^>]*class="[^"]*__title[^"]*"[^>]*>([\s\S]*?)<\/span>/i)?.[1] ?? body.match(/<h[1-6]\b[^>]*>([\s\S]*?)<\/h[1-6]>/i)?.[1];
     const published = new Date(`${plainText(date ?? "")} UTC`);
     if (!title || !Number.isFinite(published.getTime()) || published.getTime() < cutoff || published > now) return [];
     return [{ id: `anthropic:${url}`, title: plainText(title), url, source: "Anthropic", category: "Anthropic", publishedAt: published.toISOString() }];
   });
   if (!articles.length) throw new Error("Estrutura da página de notícias alterada ou sem publicações recentes.");
-  return articles;
+  return newestUnique(articles);
 }
 
 const hnHit = z.object({ objectID: z.string().regex(/^\d+$/), title: z.string(), url: z.string().nullish(), author: z.string(), created_at: z.string(), points: z.number().nullish(), num_comments: z.number().nullish() });
